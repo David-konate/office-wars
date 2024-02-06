@@ -1,0 +1,61 @@
+// styles.scss
+:root {
+  --primary-color-light: #5c8c26;
+  --primary-color-dark: #ff0000;
+  --secondary-color-light: #f3f3f3;
+  --secondary-color-dark: #3f3d3e;
+  --color-text-light: #ffffff;
+  --color-text-dark: #000000;
+  --black-color: #231f20;
+  --black-light-color: #3f3d3e;
+  --light-dark-color: #ccc8ca;
+  --container-width: sm;
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text); // Changer ici selon le thème initial
+}
+
+.theme-light {
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-light);
+  --color-text: var(--color-text-dark);
+}
+
+.theme-dark {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+
+  --color-text: var(--color-text-light);
+}
+
+.navbar_link {
+  padding: 0 8px;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  color: var(
+    --color-text
+  ); // Utilise la variable --color-text pour définir la couleur du texte
+  align-items: center;
+
+  &:hover::after,
+  &.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--primary-color);
+  }
+
+  &.active {
+    color: var(--primary-color);
+  }
+}
