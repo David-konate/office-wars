@@ -1,9 +1,9 @@
 // styles.scss
 :root {
   --primary-color-light: #5c8c26;
-  --primary-color-dark: #ff0000;
+  --primary-color-dark: #d61313;
   --secondary-color-light: #f3f3f3;
-  --secondary-color-dark: #3f3d3e;
+  --secondary-color-dark: #231f20;
   --color-text-light: #ffffff;
   --color-text-dark: #000000;
   --black-color: #231f20;
@@ -29,7 +29,6 @@ html,
 .theme-dark {
   --primary-color: var(--primary-color-dark);
   --secondary-color: var(--secondary-color-dark);
-
   --color-text: var(--color-text-light);
 }
 
