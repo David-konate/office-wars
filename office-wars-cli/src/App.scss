@@ -24,9 +24,22 @@ body.dark {
   --primary-color: var(--primary-color-dark);
   --secondary-color: var(--secondary-color-dark);
   --color-text: var(--color-text-light);
+  --color-text-title: var(--primary-color-dark);
   background: var(--secondary-color-dark);
 }
+body.light {
+  --primary-color: var(--primary-color-light);
+  --secondary-color: var(--secondary-color-dark);
+  --color-text: var(--color-text-dark);
+  background: var(--secondary-color-light);
+  --color-text-title: var(--color-text-light);
+}
 
+h2 {
+  color: var(
+    --color-text-title
+  ); /* Utilise la variable de couleur en fonction du thème */
+}
 .navbar_link {
   padding: 0 8px;
   display: flex;
@@ -52,4 +65,16 @@ body.dark {
   &.active {
     color: var(--primary-color);
   }
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.textAcceuil {
+  color: var(--secondary-color-light);
 }

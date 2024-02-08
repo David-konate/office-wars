@@ -11,6 +11,7 @@ import BlackButton from "./buttons/BlackButton";
 import { NavLink } from "react-router-dom";
 import { firstLetterUppercase, links } from "../utils";
 import { useTheme } from "../context/ThemeContext";
+import Logo from "./Logo";
 
 function NavBar({ isAuthenticated }) {
   const [activePage, setActivePage] = useState(""); // État pour suivre la page active
@@ -21,7 +22,8 @@ function NavBar({ isAuthenticated }) {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="lg" sx={{ display: "flex" }}>
+      <Container maxWidth="xl" sx={{ display: "flex" }}>
+        <Logo />
         <Toolbar className="toolbar" sx={{ width: "100%" }}>
           <Box
             className="Box"
@@ -36,8 +38,8 @@ function NavBar({ isAuthenticated }) {
             {links.map((link) =>
               // Vérifiez si l'utilisateur est connecté et que le lien est "login" ou "logout"
               // avant de l'afficher dans la barre de navigation
-              (isAuthenticated && link.label === "login") ||
-              (!isAuthenticated && link.label === "logout") ? null : (
+              (isAuthenticated && link.label === "logout") ||
+              (!isAuthenticated && link.label === "login") ? null : (
                 <NavLink
                   className="navbar_link"
                   key={link.label}

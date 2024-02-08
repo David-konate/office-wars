@@ -7,16 +7,16 @@ export const BASE_URL_API = process.env.REACT_APP_BASE_URL_API;
 
 export const links = [
   {
-    label: "Home",
-    path: "/",
-  },
-  {
     label: "planetes",
     path: "/planetes",
   },
   {
-    label: "festivals",
-    path: "/festivals",
+    label: "évenements",
+    path: "/evenements",
+  },
+  {
+    label: "sites",
+    path: "/sites",
   },
   {
     label: "profil",
@@ -29,6 +29,23 @@ export const links = [
   {
     label: "logout",
     path: "/logout",
+  },
+];
+export const linksAcceuil = [
+  {
+    label: "Planetes",
+    path: "/planetes",
+    src: "/images/Naboo.jpg",
+  },
+  {
+    label: "Sites",
+    path: "/sites",
+    src: "/images/pTheed.jpg",
+  },
+  {
+    label: "Evenements",
+    path: "/evenements",
+    src: "/images/module.jpg",
   },
 ];
 
