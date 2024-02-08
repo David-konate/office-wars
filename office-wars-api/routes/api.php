@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\AccomodationController;
-use App\Http\Controllers\Api\SecurityController;
-use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\PlanetController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\SiteController;
-use App\Http\Controllers\TypeController;
-use App\Models\Event;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SiteController;
+use App\Http\Controllers\Api\TypeController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\ImageController;
+use App\Http\Controllers\Api\PlanetController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\SecurityController;
+use App\Http\Controllers\Api\AccomodationController;
+
 
 /*
 |--------------------------------------------------------------------------

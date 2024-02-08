@@ -1,27 +1,20 @@
 // App.js
-import React from "react";
-import { useEffect } from "react";
-
+import React, { useEffect } from "react";
 import NavBar from "./components/NavBar";
 import RouterOutlet from "./pages/components/RouterOutlet";
 
 function App() {
-  // function load() {
-  //     try {
-
-  //     } catch (error) {
-
-  //     }
-  // }
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      // authentification();
+      // Authentification logic ici
     }
   }, [localStorage.getItem("token")]);
+
+  const isAuthenticated = !!localStorage.getItem("token");
+
   return (
     <>
-      <NavBar />
+      <NavBar isAuthenticated={isAuthenticated} />
       <RouterOutlet />
     </>
   );

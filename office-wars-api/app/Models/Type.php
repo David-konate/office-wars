@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Type extends Model
 {
-    use HasFactory;
+    use HasFactory, sluggable;
 
     protected $primaryKey = 'Id_Types';
     public $incrementing = false;
@@ -16,4 +18,13 @@ class Type extends Model
         'nameType',
         'slug',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nameType'
+            ]
+        ];
+    }
 }

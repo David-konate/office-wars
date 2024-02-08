@@ -13,9 +13,10 @@ class SecurityController extends Controller
 {
     public function login(Request $request)
     {
+
         try {
             $validation = Validator::make(request()->all(), [
-                'email' => 'required|email',
+                'mail' => 'required|email',
                 'password' => 'required'
             ]);
 
@@ -27,14 +28,14 @@ class SecurityController extends Controller
                 ], 401);
             }
             //verifi si leuser exist
-            if (!Auth::attempt($request->only(['email', 'password']))) {
+            if (!Auth::attempt($request->only(['mail', 'password']))) {
                 return response()->json([
                     'status' => false,
                     'message' => "L'email ou le mot de passe ne sont pas correct"
                 ], 401);
             }
 
-            $user = User::where("email", $request->email)->first();
+            $user = User::where("mail", $request->mail)->first();
 
             return response()->json([
                 "status" => true,
@@ -50,33 +51,32 @@ class SecurityController extends Controller
         }
     }
 
-    public function register()
+    public function register(Request $request)
     {
-
         try {
             $validation = Validator::make(request()->all(), [
-                'pseudo' => 'required|unique:users,pseudo',
-                'firstName' => 'required',
-                'lastName' => 'required',
-                'zip' => 'required|integer',
-                'email' => 'required|unique:users,email',
-                'password' => 'required|min:6|confirmed',
+                'userPseudo' => 'required|unique:users,userPseudo',
+                'userLastName' => 'required',
+                'userFirstName' => 'required',
+                'bookingHistory' => 'nullable|string',
+                'mail' => 'required|unique:users,mail',
+                'password' => 'required|min:6',
             ]);
 
             if ($validation->fails()) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'validation error',
+                    'message' => 'Validation error',
                     'errors' => $validation->errors(),
                 ], 401);
             }
 
             $user = User::create([
-                'pseudo' => request('pseudo'),
-                'firstName' => request('firstName'),
-                'lastName' => request('lastName'),
-                'zip' => request('zip'),
-                'email' => request('email'),
+                'userPseudo' => request('userPseudo'),
+                'userFirstName' => request('userFirstName'),
+                'userLastName' => request('userLastName'),
+                'bookingHistory' => request('bookingHistory'),
+                'mail' => request('mail'),
                 'role' => 'user',
                 'password' => Hash::make(request('password')),
             ]);

@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 import { firstLetterUppercase, links } from "../utils";
 import { useTheme } from "../context/ThemeContext";
 
-function NavBar() {
+function NavBar({ isAuthenticated }) {
   const [activePage, setActivePage] = useState(""); // État pour suivre la page active
   const { theme, toggleTheme } = useTheme();
   const handleLinkClick = (page) => {
@@ -20,19 +20,9 @@ function NavBar() {
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "var(--secondary-color)",
-      }}
-    >
+    <AppBar position="static">
       <Container maxWidth="lg" sx={{ display: "flex" }}>
         <Toolbar className="toolbar" sx={{ width: "100%" }}>
-          <Switch
-            checked={theme === "dark"}
-            onChange={toggleTheme}
-            inputProps={{ "aria-label": "toggle theme" }}
-          />
           <Box
             className="Box"
             sx={{
@@ -40,10 +30,14 @@ function NavBar() {
               justifyContent: "center",
               flex: 1,
               height: "100%",
+              width: "70%",
             }}
           >
-            {links.map((link) => {
-              return (
+            {links.map((link) =>
+              // Vérifiez si l'utilisateur est connecté et que le lien est "login" ou "logout"
+              // avant de l'afficher dans la barre de navigation
+              (isAuthenticated && link.label === "login") ||
+              (!isAuthenticated && link.label === "logout") ? null : (
                 <NavLink
                   className="navbar_link"
                   key={link.label}
@@ -51,11 +45,33 @@ function NavBar() {
                 >
                   {firstLetterUppercase(link.label)}
                 </NavLink>
-              );
-            })}
+              )
+            )}
           </Box>
-          <Box>
-            <BlackButton>Nous contacter</BlackButton>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+            >
+              Jedi
+            </Typography>
+            <Switch
+              checked={theme === "dark"}
+              onChange={toggleTheme}
+              inputProps={{ "aria-label": "toggle theme" }}
+            />
+            <Typography
+              variant="body2"
+              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+            >
+              Sith
+            </Typography>
           </Box>
         </Toolbar>
       </Container>

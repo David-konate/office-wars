@@ -35,7 +35,7 @@ const CustomThemeProvider = ({ children }) => {
     palette: {
       mode: theme,
       primary: {
-        main: "#5c8c26",
+        main: "#f3f3f3",
       },
     },
   });

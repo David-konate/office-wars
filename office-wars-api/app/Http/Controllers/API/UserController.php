@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
-use App\Models\Review;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -18,8 +16,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        try {
+            $user = User::all();
+
+            return response()->json($user);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' =>  $e->getMessage(),
+            ], 403);
+        }
     }
     /**
      * Store a newly created resource in storage.
@@ -30,7 +36,7 @@ class UserController extends Controller
     public function show($user)
     {
         try {
-            $user = User::with(['receiverReviews.sender'])->findOrFail($user);
+            $user = User::findOrFail($user);
 
             if (!$user) {
                 return response()->json([
@@ -90,12 +96,12 @@ class UserController extends Controller
                 $filename = $filenameWithExt . '_' . time() . '.' . $extension;
                 $request->file('image')->storeAs('public/uploads', $filename);
 
-                // Supprimez l'ancien fichier image s'il existe
-                if ($user->image && Storage::exists('public/uploads/' . $user->image)) {
-                    Storage::delete('public/uploads/' . $user->image);
-                }
+                // // Supprimez l'ancien fichier image s'il existe
+                // if ($user->image && Storage::exists('public/uploads/' . $user->image)) {
+                //     Storage::delete('public/uploads/' . $user->image);
+                // }
 
-                // Attribuez le nom du fichier à l'utilisateur
+                // // Attribuez le nom du fichier à l'utilisateur
                 $user->image = $filename;
             }
 

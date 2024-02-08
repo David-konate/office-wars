@@ -22,6 +22,14 @@ export const links = [
     label: "profil",
     path: "/profil",
   },
+  {
+    label: "login",
+    path: "/login",
+  },
+  {
+    label: "logout",
+    path: "/logout",
+  },
 ];
 
 export const firstLetterUppercase = (value) => {

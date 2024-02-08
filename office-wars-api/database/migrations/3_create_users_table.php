@@ -18,12 +18,15 @@ return new class extends Migration
             $table->string('userFirstName', 50);
             $table->string('mail',);
             $table->string('role')->default('user');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->text('bookingHistory');
+            $table->text('bookingHistory')->nullable();
             $table->string('userImage', 50)->nullable();
             $table->string('slug')->unique();
+
+            $table->timestamp('email_verified_at')->nullable();
+
+
+            $table->rememberToken();
 
             $table->timestamps();
         });

@@ -20,16 +20,11 @@ html,
   color: var(--color-text); // Changer ici selon le thème initial
 }
 
-.theme-light {
-  --primary-color: var(--primary-color-light);
-  --secondary-color: var(--secondary-color-light);
-  --color-text: var(--color-text-dark);
-}
-
-.theme-dark {
+body.dark {
   --primary-color: var(--primary-color-dark);
   --secondary-color: var(--secondary-color-dark);
   --color-text: var(--color-text-light);
+  background: var(--secondary-color-dark);
 }
 
 .navbar_link {

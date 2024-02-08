@@ -1,5 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Box } from "@mui/material";
+import { Container } from "@mui/system";
 
 const Home = () => {
   const [isBusy, setIsBusy] = React.useState(true);
@@ -9,11 +12,15 @@ const Home = () => {
   }, []);
 
   return isBusy ? (
-    <div>Loading...</div>
+    <Container>
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>
+    </Container>
   ) : (
-    <>
-      <div>Loading...</div>
-    </>
+    <Container>
+      <div>chargeé...</div>
+    </Container>
   );
 };
 

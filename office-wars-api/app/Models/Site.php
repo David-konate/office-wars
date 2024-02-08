@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Site extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'siteName',
@@ -18,7 +18,14 @@ class Site extends Model
         'shops',
         'slug',
     ];
-
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'siteName'
+            ]
+        ];
+    }
     /**
      * Relation avec la table Planets
      */

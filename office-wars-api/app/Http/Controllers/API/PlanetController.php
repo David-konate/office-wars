@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Planet;
 use Illuminate\Http\Request;
@@ -14,9 +16,9 @@ class PlanetController extends Controller
     public function index()
     {
         try {
-            $planet = Planet::all();
+            $planets = Planet::all();
 
-            return response()->json($planet);
+            return response()->json($planets);
         } catch (\Throwable $e) {
             return response()->json([
                 'status' => false,
