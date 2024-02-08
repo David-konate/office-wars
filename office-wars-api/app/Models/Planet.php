@@ -14,6 +14,11 @@ class Planet extends Model
         'planetName', 'planetDescription', 'galacticCoordinates', 'population', 'slug',
     ];
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'planet_id');
+    }
+
     protected static function boot()
     {
         parent::boot();

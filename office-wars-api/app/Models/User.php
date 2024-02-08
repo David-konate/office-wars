@@ -26,6 +26,7 @@ class User extends Authenticatable
         'bookingHistory',
         'userImage',
         'role',
+        'userImage',
         'slug',
     ];
 
