@@ -18,7 +18,7 @@ class Planet extends Model
     {
         return [
             'slug' => [
-                'source' => 'planeteName'
+                'source' => 'planetName'
             ]
         ];
     }
@@ -26,6 +26,14 @@ class Planet extends Model
     {
         return $this->hasMany(Event::class, 'planet_id');
     }
+
+    public function accommodations()
+    {
+        return $this->hasMany(Accomodation::class, 'accomodation_id');
+    }
+
+    // .
+
 
     protected static function boot()
     {

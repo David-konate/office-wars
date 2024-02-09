@@ -45,11 +45,11 @@ Route::controller(UserController::class)->group(function () {
 
 //Route hotels
 Route::controller(AccomodationController::class)->group(function () {
-    Route::get('accommodations/{accommodation}', 'show');
-    Route::get('accommodations', 'index');
-    Route::post('accommodations', 'store')->middleware('auth:api');
-    Route::post('accommodations/{accommodation}', 'update')->middleware('auth:api');
-    Route::delete('accommodations/{accommodation}', 'destroy')->middleware('auth:api');
+    Route::get('accomodations/{accomodation}', 'show');
+    Route::get('accomodations', 'index');
+    Route::post('accomodations', 'store')->middleware('auth:api');
+    Route::post('accomodations/{accomodation}', 'update')->middleware('auth:api');
+    Route::delete('accomodations/{accomodation}', 'destroy')->middleware('auth:api');
 });
 
 //Route évènements

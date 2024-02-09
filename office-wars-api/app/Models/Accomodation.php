@@ -12,14 +12,14 @@ class Accomodation extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = [
-        'accommodationName', 'accommodationType', 'numberOfRoom', 'rates', 'slug', 'site_id',
+        'accomodationName', 'accomodationType', 'numberOfRoom', 'rates', 'slug', 'site_id', 'planet_id'
     ];
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'accommodationName'
+                'source' => 'accomodationName'
             ]
         ];
     }
@@ -34,13 +34,16 @@ class Accomodation extends Model
     {
         return $this->belongsTo(Site::class, 'site_id');
     }
-
+    public function planet()
+    {
+        return $this->belongsTo(Planet::class, 'planet_id');
+    }
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = Str::slug($model->accommodationName);
+            $model->slug = Str::slug($model->accomodationName);
         });
     }
 }

@@ -91,8 +91,7 @@ class PlanetController extends Controller
     public function show($planet)
     {
         try {
-
-            return  Planet::findOrFail($planet);
+            $planet = Planet::with('events')->findOrFail($planet);
 
             return response()->json([
                 'status' => true,
@@ -105,6 +104,7 @@ class PlanetController extends Controller
             ], 404);
         }
     }
+
 
 
     /**

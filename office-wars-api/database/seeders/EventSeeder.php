@@ -52,6 +52,7 @@ class EventSeeder extends Seeder
 
         // Créer des images pour l'événement 3
         $this->createEventImages($event3, 1);
+        Event::factory(20)->create();
     }
 
     /**

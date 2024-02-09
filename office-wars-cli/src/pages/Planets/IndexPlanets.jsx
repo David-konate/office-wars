@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import {
   CircularProgress,
   Box,
@@ -7,11 +7,10 @@ import {
   Link,
   Typography,
   Grid,
+  Container,
 } from "@mui/material";
 import axios from "axios";
 import ImagesHandle from "../../components/ImagesHandle";
-import { firstLetterUppercase } from "../../utils";
-import { Container } from "@mui/system";
 
 const IndexPlanets = () => {
   const navigate = useNavigate();

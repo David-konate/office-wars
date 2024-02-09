@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Site;
+use App\Models\Event;
+use App\Models\Planet;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
- */
 class EventFactory extends Factory
 {
     /**
@@ -16,8 +17,16 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
+
+        $randomPlanetId = Planet::inRandomOrder()->value('id');
+        $randomSiteId = Site::inRandomOrder()->value('id');
         return [
-            //
+            'eventName' => $this->faker->words(2, true),
+            'eventDescription' => $this->faker->paragraph,
+            'dateTime' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
+            'slug' => Str::slug($this->faker->words(2, true)),
+            'planet_id' => $randomPlanetId,
+            'site_id' => $randomSiteId,
         ];
     }
 }

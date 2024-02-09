@@ -35,8 +35,8 @@ class AccomodationController extends Controller
     {
         try {
             $validationAccomodation = Validator::make(request()->all(), [
-                'accommodationName' => 'required|min:1|string',
-                'accommodationType' => 'required|min:1|string',
+                'accomodationName' => 'required|min:1|string',
+                'accomodationType' => 'required|min:1|string',
                 'numberOfRoom' => 'required|integer',
                 'rates' => 'required|numeric',
                 'slug' => 'required|min:1|string|unique:accomodations',
@@ -51,9 +51,9 @@ class AccomodationController extends Controller
                 ], 401);
             }
 
-            $accommodation = Accomodation::create([
-                'accommodationName' => request('accommodationName'),
-                'accommodationType' => request('accommodationType'),
+            $accomodation = Accomodation::create([
+                'accomodationName' => request('accomodationName'),
+                'accomodationType' => request('accomodationType'),
                 'numberOfRoom' => request('numberOfRoom'),
                 'rates' => request('rates'),
                 'slug' => request('slug'),
@@ -61,7 +61,7 @@ class AccomodationController extends Controller
             ]);
 
             return response()->json([
-                'data' => $accommodation,
+                'data' => $accomodation,
                 'status' => true,
                 'message' => 'Hébergement créé avec succès'
             ], 200);
@@ -76,15 +76,15 @@ class AccomodationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($accommodation)
+    public function show($accomodation)
     {
         try {
 
-            return  Accomodation::findOrFail($accommodation);
+            return  Accomodation::findOrFail($accomodation);
 
             return response()->json([
                 'status' => true,
-                'data' => $accommodation
+                'data' => $accomodation
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
@@ -98,16 +98,16 @@ class AccomodationController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, $accommodation)
+    public function update(Request $request, $accomodation)
     {
         try {
             // Validation des données
             $validator = Validator::make($request->all(), [
-                'accommodationName' => 'required|min:1|string',
-                'accommodationType' => 'required|min:1|string',
+                'accomodationName' => 'required|min:1|string',
+                'accomodationType' => 'required|min:1|string',
                 'numberOfRoom' => 'required|integer',
                 'rates' => 'required|numeric',
-                'slug' => 'required|min:1|string|unique:accomodations,slug,' . $accommodation,
+                'slug' => 'required|min:1|string|unique:accomodations,slug,' . $accomodation,
                 'site_id' => 'required|exists:sites,id',
             ]);
 
@@ -119,12 +119,12 @@ class AccomodationController extends Controller
             }
 
             // Récupération de l'hébergement
-            $accommodation_single = Accomodation::findOrFail($accommodation);
+            $accomodation_single = Accomodation::findOrFail($accomodation);
 
             // Mise à jour des données
-            $accommodation_single->update([
-                'accommodationName' => request('accommodationName'),
-                'accommodationType' => request('accommodationType'),
+            $accomodation_single->update([
+                'accomodationName' => request('accomodationName'),
+                'accomodationType' => request('accomodationType'),
                 'numberOfRoom' => request('numberOfRoom'),
                 'rates' => request('rates'),
                 'slug' => request('slug'),
@@ -134,7 +134,7 @@ class AccomodationController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Hébergement mis à jour avec succès',
-                'data' => $accommodation_single
+                'data' => $accomodation_single
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
@@ -147,14 +147,14 @@ class AccomodationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($accommodation)
+    public function destroy($accomodation)
     {
 
         try {
 
-            $accommodation_find = Accomodation::findOrFail($accommodation);
+            $accomodation_find = Accomodation::findOrFail($accomodation);
 
-            $accommodation_find->delete();
+            $accomodation_find->delete();
 
             return response()->json([
                 'status' => true,
