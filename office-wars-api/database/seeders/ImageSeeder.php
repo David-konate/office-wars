@@ -19,17 +19,17 @@ class ImageSeeder extends Seeder
     {
         // Ajouter les images pour tous les sites
         Site::all()->each(function ($site) {
-            $this->createImages($site, 'public/sites');
+            $this->createImages($site, 'public/images');
         });
 
         // Ajouter les images pour tous les événements
         Event::all()->each(function ($event) {
-            $this->createImages($event, 'public/paysages');
+            $this->createImages($event, 'public/images');
         });
 
         // Ajouter les images pour toutes les planètes
         Planet::all()->each(function ($planet) {
-            $this->createImages($planet, 'public/planets');
+            $this->createImages($planet, 'public/images');
         });
     }
 
@@ -42,14 +42,15 @@ class ImageSeeder extends Seeder
      */
     private function createImages($entity, string $folderPath): void
     {
-
         for ($i = 1; $i <= 4; $i++) {
+            $imagePath = $this->getRandomImageFromFolder($folderPath) ?? null;
+
             Image::factory()->create([
-                'imageName' => "Image $i",
+                'imageName' => $imagePath, // Enregistrez le chemin de l'image dans 'imageName'
                 'event_id' => $entity instanceof Event ? $entity->id : null,
                 'site_id' => $entity instanceof Site ? $entity->id : null,
                 'planet_id' => $entity instanceof Planet ? $entity->id : null,
-                'imagePath' => $this->getRandomImageFromFolder($folderPath) ?? null,
+                'imagePath' => $imagePath, // Vous pouvez également conserver le chemin de l'image dans 'imagePath' si nécessaire
                 'slug' => Str::slug("Image $i"),
             ]);
         }

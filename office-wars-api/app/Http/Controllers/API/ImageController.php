@@ -3,25 +3,30 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Show images for handle
      */
-    public function create()
+    public function headband()
     {
-        //
+        try {
+            $images = Image::all();
+
+            // Sélectionner 4 images au hasard
+            $imagesHandle = $images->random(4);
+
+            return response()->json($imagesHandle);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' =>  $e->getMessage(),
+            ], 403);
+        }
     }
 
     /**

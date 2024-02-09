@@ -63,10 +63,7 @@ Route::controller(EventController::class)->group(function () {
 
 //Route images
 Route::controller(ImageController::class)->group(function () {
-    Route::get('images/{image}', 'show');
-    Route::get('images', 'index');
-    Route::post('images', 'store')->middleware('auth:api');
-    Route::post('images/{image}', 'update')->middleware('auth:api');
+    Route::get('imagesHeadband', 'headband');
     Route::delete('images/{image}', 'destroy')->middleware('auth:api');
 });
 

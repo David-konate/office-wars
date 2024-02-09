@@ -21,7 +21,7 @@ function NavBar({ isAuthenticated }) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{ top: 0 }}>
       <Container maxWidth="xl" sx={{ display: "flex" }}>
         <Logo />
         <Toolbar className="toolbar" sx={{ width: "100%" }}>

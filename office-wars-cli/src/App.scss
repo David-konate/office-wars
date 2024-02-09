@@ -32,10 +32,13 @@ body.light {
   --secondary-color: var(--secondary-color-dark);
   --color-text: var(--color-text-dark);
   background: var(--secondary-color-light);
-  --color-text-title: var(--color-text-light);
+  --color-text-title: var(--primary-color-light);
 }
 
-h2 {
+h1,
+h2,
+h3,
+h4 {
   color: var(
     --color-text-title
   ); /* Utilise la variable de couleur en fonction du thème */
@@ -67,6 +70,16 @@ h2 {
   }
 }
 
+.custom-link {
+  color: var(--color-text-title) !important;
+  text-decoration: underline; // Ajouter un soulignement
+  // Ajouter d'autres styles personnalisés selon vos besoins
+}
+
+.custom-link:hover {
+  color: var(--color-text) !important; // Changer la couleur au survol
+}
+
 .logo {
   height: 60px;
   width: 60px;
@@ -77,4 +90,30 @@ h2 {
 
 .textAcceuil {
   color: var(--secondary-color-light);
+}
+
+.img-planetes-index {
+  width: fit-content !important;
+}
+
+.img-planetes-index > img {
+  object-fit: cover;
+  width: 400px;
+  height: 350px;
+}
+
+.img-planet-detail {
+  max-width: 60%;
+}
+
+.img-planet-detail > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.titre-planet-detail {
+  background-color: var(--primary-color);
+  color: var(--color-text);
+  display: inline;
 }
