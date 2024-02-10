@@ -73,7 +73,7 @@ class UserController extends Controller
                 'userLastName' => 'required|min:1|string',
                 'city' => 'required|integer',
                 'userPseudo' => 'required|min:1|string|unique:users,userPseudo,' . $id,
-                'mail' => 'required|min:1|string|unique:users,mail,' . $id,
+                'email' => 'required|min:1|string|unique:users,email,' . $id,
                 'password' => 'required|string|min:8',
                 'phone' => 'nullable|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image
@@ -110,7 +110,7 @@ class UserController extends Controller
                 'userLastName' => $request->userLastName,
                 'city' => $request->city,
                 'userPseudo' => $request->userPseudo,
-                'mail' => $request->mail,
+                'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
             ]);

@@ -16,7 +16,7 @@ class SecurityController extends Controller
 
         try {
             $validation = Validator::make(request()->all(), [
-                'mail' => 'required|email',
+                'email' => 'required|email',
                 'password' => 'required'
             ]);
 
@@ -28,14 +28,14 @@ class SecurityController extends Controller
                 ], 401);
             }
             //verifi si leuser exist
-            if (!Auth::attempt($request->only(['mail', 'password']))) {
+            if (!Auth::attempt($request->only(['email', 'password']))) {
                 return response()->json([
                     'status' => false,
                     'message' => "L'email ou le mot de passe ne sont pas correct"
                 ], 401);
             }
 
-            $user = User::where("mail", $request->mail)->first();
+            $user = User::where("email", $request->email)->first();
 
             return response()->json([
                 "status" => true,
@@ -59,7 +59,7 @@ class SecurityController extends Controller
                 'userLastName' => 'required',
                 'userFirstName' => 'required',
                 'bookingHistory' => 'nullable|string',
-                'mail' => 'required|unique:users,mail',
+                'email' => 'required|unique:users,email',
                 'password' => 'required|min:6',
             ]);
 
@@ -76,7 +76,7 @@ class SecurityController extends Controller
                 'userFirstName' => request('userFirstName'),
                 'userLastName' => request('userLastName'),
                 'bookingHistory' => request('bookingHistory'),
-                'mail' => request('mail'),
+                'email' => request('email'),
                 'role' => 'user',
                 'password' => Hash::make(request('password')),
             ]);

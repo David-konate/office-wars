@@ -22,7 +22,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction à Casicanto.',
             'shops' => 'Boutiques à Casicanto.',
             'slug' => Str::slug('Casicanto'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
 
         // Ajoutez plusieurs images au site "Casicanto"
@@ -35,7 +35,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction au Palais de Jabba.',
             'shops' => 'Boutiques au Palais de Jabba.',
             'slug' => Str::slug('Palais de Jabba'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
 
         // Ajoutez plusieurs images au site "Palais de Jabba"
@@ -48,7 +48,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction au Temple Jedi.',
             'shops' => 'Boutiques au Temple Jedi.',
             'slug' => Str::slug('Temple Jedi'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
 
         // Ajoutez plusieurs images au site "Temple Jedi"
@@ -61,7 +61,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction à Gungan City.',
             'shops' => 'Boutiques à Gungan City.',
             'slug' => Str::slug('Gungan City'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
 
         // Ajoutez plusieurs images au site "Gungan City"
@@ -74,7 +74,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction au Château de Maz.',
             'shops' => 'Boutiques au Château de Maz.',
             'slug' => Str::slug('Château de Maz'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
 
 
@@ -86,7 +86,7 @@ class SiteSeeder extends Seeder
             'attractionType' => 'Type d\'attraction au Palais de Theed.',
             'shops' => 'Boutiques au Palais de Theed.',
             'slug' => Str::slug('Palais de Theed'),
-            'planets_id' => Planet::inRandomOrder()->first()->id,
+            'planet_id' => Planet::inRandomOrder()->first()->id,
         ]);
     }
 }

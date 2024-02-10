@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
 
-            $table->foreignId('planets_id')->constrained(('planets'));
+            $table->foreignId('planet_id')->constrained('planets');
         });
     }
 

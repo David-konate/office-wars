@@ -29,7 +29,11 @@ class Planet extends Model
 
     public function accommodations()
     {
-        return $this->hasMany(Accomodation::class, 'accomodation_id');
+        return $this->hasMany(Accomodation::class, 'planet_id');
+    }
+    public function sites()
+    {
+        return $this->hasMany(Site::class, 'planet_id');
     }
 
     // .

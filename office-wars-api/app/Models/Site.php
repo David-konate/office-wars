@@ -29,10 +29,12 @@ class Site extends Model
     /**
      * Relation avec la table Planets
      */
+    // Site model
     public function planet()
     {
-        return $this->belongsTo(Planet::class, 'planets_id');
+        return $this->belongsTo(Planet::class, 'planet_id'); //
     }
+
 
 
     /**

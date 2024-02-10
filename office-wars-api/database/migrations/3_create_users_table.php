@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('userPseudo', 50);
             $table->string('userLastName', 50);
             $table->string('userFirstName', 50);
-            $table->string('mail',);
+            $table->string('email',);
             $table->string('role')->default('user');
             $table->string('password');
             $table->text('bookingHistory')->nullable();
             $table->string('userImage', 50)->nullable();
             $table->string('slug')->unique();
 
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('eemail_verified_at')->nullable();
 
 
             $table->rememberToken();

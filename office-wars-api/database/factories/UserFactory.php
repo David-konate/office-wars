@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'userLastName' => $faker->lastName,
             'userFirstName' => $faker->firstName,
             'password' => static::$password ??= Hash::make('Azerty@123'),
-            'mail' => $faker->unique()->safeEmail,
+            'email' => $faker->unique()->safeEmail,
             'bookingHistory' => $faker->text(200),
             'userImage' => '',
             'role' => 'user',

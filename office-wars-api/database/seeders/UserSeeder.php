@@ -20,12 +20,12 @@ class UserSeeder extends Seeder
             'userLastName' => 'R2',
             'userFirstName' => 'D2',
             'password' => Hash::make('Azerty@123'),
-            'mail' => 'admin@boss.fr',
+            'email' => 'admin@boss.fr',
             'bookingHistory' => 'Booking history for admin...', // Adjust as needed within the 350-character limit
             'userImage' => 'resources/images/users/r2d2.jpg',
             'role' => 'admin',
             'slug' => Str::slug('administrateur'),
-            'email_verified_at' => now(),
+            'eemail_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 
@@ -35,12 +35,12 @@ class UserSeeder extends Seeder
             'userLastName' => 'Mara',
             'userFirstName' => 'Jane',
             'password' => Hash::make('Azerty@123'),
-            'mail' => 'utilisateur@use.fr',
+            'email' => 'utilisateur@use.fr',
             'bookingHistory' => 'Booking history for user...',
             'userImage' => 'resources/images/users/mara.jpg',
             'role' => 'user',
             'slug' => Str::slug('utilisateur'),
-            'email_verified_at' => now(),
+            'eemail_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 

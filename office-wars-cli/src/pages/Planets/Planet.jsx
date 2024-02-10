@@ -9,15 +9,17 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+import { firstLetterUppercase } from "../../utils";
+
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import FlareIcon from "@mui/icons-material/Flare";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import moment from "moment";
 const Planet = () => {
   const location = useLocation();
   const planetId = location.state ? location.state.planetId : null;
   const [isBusy, setIsBusy] = useState(true);
 
-  const [events, setEvents] = useState();
   const [planet, setPlanet] = useState([]);
   const { slug } = useParams();
 
@@ -107,46 +109,57 @@ const Planet = () => {
             className="event-planet"
             sx={{ display: "flex", flexDirection: "column" }}
           >
-            {planet.events.map((event, index) => (
-              <Box
-                mt={1}
-                key={index}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ flex: "15%", marginRight: "10px" }}
-                >
-                  - {event.eventName}
-                </Typography>
-                <Typography
-                  sx={{
-                    flex: "60%",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    marginRight: "10px",
-                  }}
-                >
-                  {event.eventDescription}
-                </Typography>
+            {planet.events
+              .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
+              .map((event, index) => (
                 <Box
+                  mt={1}
+                  key={index}
                   sx={{
-                    flex: "15%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    alignItems: "center",
+                    width: "70%",
                   }}
                 >
-                  <Typography ml={2}>{event.dateTime}</Typography>
-                  <VisibilityIcon /> {/* Icône d'œil navigant */}
+                  <Box mt={3} display={"flex"}>
+                    <Box width={"25%"}>
+                      <Typography
+                        sx={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {firstLetterUppercase(event.eventName)}
+                      </Typography>
+                    </Box>
+                    <Box width={"50%"}>
+                      {moment(event.dateTime).format("Do MMMM YYYY")}
+                    </Box>
+                    <Box
+                      width={"25%"}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        "&:hover": {
+                          cursor: "pointer",
+                          color: "var(--primary-color)",
+                        },
+                      }}
+                    >
+                      <VisibilityIcon />
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {event.eventDescription}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            ))}
+              ))}
           </Box>
         </Box>
       </Box>

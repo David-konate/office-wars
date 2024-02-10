@@ -30,9 +30,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route users
-Route::controller(SecurityController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
+Route::prefix('/security')->group(function () {
+    Route::post('/register', [SecurityController::class, 'register'])->middleware('guest')->name('security.register');
+    Route::post('/login', [SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
 });
 
 //Route users

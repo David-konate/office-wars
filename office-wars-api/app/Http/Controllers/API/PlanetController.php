@@ -91,7 +91,18 @@ class PlanetController extends Controller
     public function show($planet)
     {
         try {
-            $planet = Planet::with('events')->findOrFail($planet);
+            $planet = Planet::with(['events' => function ($query) {
+                $query->where(function ($query) {
+                    $query->where('dateTime', '>=', now()) // Événements à venir
+                        ->orderBy('dateTime', 'asc') // Tri croissant pour les événements à venir
+                        ->limit(3);
+                })->orWhere(function ($query) {
+                    $query->where('dateTime', '<', now()) // Événements passés
+                        ->orderBy('dateTime', 'desc') // Tri décroissant pour les événements passés
+                        ->limit(2);
+                });
+            }])->findOrFail($planet);
+            // $planet = Planet::with(['sites']);
 
             return response()->json([
                 'status' => true,
@@ -104,6 +115,10 @@ class PlanetController extends Controller
             ], 404);
         }
     }
+
+
+
+
 
 
 
