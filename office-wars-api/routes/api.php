@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/security')->group(function () {
     Route::post('/register', [SecurityController::class, 'register'])->middleware('guest')->name('security.register');
     Route::post('/login', [SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
+    Route::post('/logout', [SecurityController::class, 'logout'])->middleware('auth');
 });
 
 //Route users
@@ -71,7 +72,7 @@ Route::controller(ImageController::class)->group(function () {
 Route::controller(PlanetController::class)->group(function () {
     Route::get('planets/{planet}', 'show');
     Route::get('planets', 'index');
-    Route::post('planets', 'store')->middleware('auth:api');
+    Route::post('planets', 'store');
     Route::post('planets/{planet}', 'update')->middleware('auth:api');
     Route::delete('planets/{planet}', 'destroy')->middleware('auth:api');
 });

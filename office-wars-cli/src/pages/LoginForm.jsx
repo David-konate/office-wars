@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Container, Typography, TextField, Button, Box } from "@mui/material";
+import { Navigate } from "react-router-dom";
+
 import axios from "axios";
 
 const LoginForm = () => {
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,6 +35,7 @@ const LoginForm = () => {
 
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
+      setRedirectToReferrer(true);
     } catch (error) {
       console.error(error);
     }

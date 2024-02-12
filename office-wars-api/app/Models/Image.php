@@ -12,7 +12,7 @@ class Image extends Model
     use HasFactory, Sluggable;
 
     // Image.php (modèle Eloquent)
-    protected $fillable = ['imageName', 'planet_id', 'site_id', 'event_id', 'updated_at', 'slug', 'created_at'];
+    protected $fillable = ['imageName', 'planet_id', 'site_id', 'event_id', 'updated_at', 'slug', 'created_at', 'imagePlanet'];
 
     public function sluggable(): array
     {

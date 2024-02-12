@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+
 import {
   Typography,
   AppBar,
@@ -12,12 +14,24 @@ import { NavLink } from "react-router-dom";
 import { firstLetterUppercase, links } from "../utils";
 import { useTheme } from "../context/ThemeContext";
 import Logo from "./Logo";
+import { useUserContext } from "../context/UserProvider"; // Importez le hook
 
-function NavBar({ isAuthenticated }) {
+function NavBar() {
   const [activePage, setActivePage] = useState(""); // État pour suivre la page active
   const { theme, toggleTheme } = useTheme();
-  const handleLinkClick = (page) => {
-    setActivePage(page);
+  const { user } = useUserContext(); // Utilisez le hook useUserContext pour obtenir l'état d'authentification
+  const handleLogout = async () => {
+    try {
+      await axios.post("/security/logout");
+      // Effacez le token du local storage ou effectuez d'autres opérations de déconnexion nécessaires
+      localStorage.removeItem("token");
+      // Mettez à jour l'état d'authentification (si nécessaire)
+      // ...
+      // Redirigez l'utilisateur vers la page de connexion ou toute autre page appropriée
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion :", error);
+    }
   };
 
   return (
@@ -36,14 +50,13 @@ function NavBar({ isAuthenticated }) {
             }}
           >
             {links.map((link) =>
-              // Vérifiez si l'utilisateur est connecté et que le lien est "login" ou "logout"
-              // avant de l'afficher dans la barre de navigation
-              (isAuthenticated && link.label === "logout") ||
-              (!isAuthenticated && link.label === "login") ? null : (
+              (user && (link.label === "logout" || link.label === "profil")) ||
+              (!user && link.label === "login") ? null : (
                 <NavLink
                   className="navbar_link"
                   key={link.label}
-                  to={link.path}
+                  to={link.label === "logout" ? "#" : link.path}
+                  onClick={link.label === "logout" ? handleLogout : null}
                 >
                   {firstLetterUppercase(link.label)}
                 </NavLink>

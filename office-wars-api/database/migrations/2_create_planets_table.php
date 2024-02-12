@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('planetDescription');
             $table->string('galacticCoordinates', 50);
             $table->integer('population');
+            $table->text('imagePlanet')->nullable();
+
             $table->string('slug')->unique();
             $table->timestamps();
         });

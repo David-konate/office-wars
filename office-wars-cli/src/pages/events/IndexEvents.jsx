@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router";
+
 import {
+  Grid,
   CircularProgress,
   Box,
   Breadcrumbs,
   Link,
   Typography,
-  Grid,
   Container,
 } from "@mui/material";
-import axios from "axios";
 import ImagesHandle from "../../components/ImagesHandle";
-
-const IndexPlanets = () => {
+const IndexEvents = () => {
   const navigate = useNavigate();
+  useEffect(() => {}, []);
+  const [events, setEvents] = useState([]);
   const [isBusy, setIsBusy] = useState(true);
-  const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -23,8 +24,9 @@ const IndexPlanets = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`planets`);
-      setPlanets(res.data);
+      const res = await axios.get(`events`);
+      setEvents(res.data);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -38,7 +40,7 @@ const IndexPlanets = () => {
     </Box>
   ) : (
     <Box>
-      <ImagesHandle route="images" customText="DE LOINTAINE PLANETES" />
+      <ImagesHandle route="images" customText="DES EVENEMENTS GALACTIQUE" />
       <Box ml={5} mr={5}>
         <Breadcrumbs aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
@@ -47,29 +49,29 @@ const IndexPlanets = () => {
           <Link
             underline="hover"
             color="inherit"
-            href="/planetes"
+            href="/evenements"
             style={{ color: "var(--primary-color)" }}
           >
-            {"Planetes"}
+            {"Evénements"}
           </Link>
         </Breadcrumbs>
         <Container>
           <Grid container spacing={2} mt={1}>
-            {planets.map((planet, index) => (
+            {events.map((event, index) => (
               <Grid key={index} item mt={5} xs={6}>
                 <Box
-                  className="Planete"
+                  className="event"
                   display="flex"
                   flexDirection="column"
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography variant="h4">{planet.planetName}</Typography>
+                  <Typography variant="h4">{event.eventName}</Typography>
                   <Box mt={3} className="img-planetes-index">
                     <img
                       style={{ borderRadius: "10px" }}
-                      src={`https://upload.wikimedia.org/wikipedia/commons/e/ec/Coruscant.jpg`}
-                      alt={planet.name}
+                      src={`https://www.anakinworld.com/_next/image?url=https%3A%2F%2Fmedia.anakinworld.com%2Fuploads%2Fentries%2Fpage_full%2Fculture-podracer.jpg%3Fts%3D1649010167&w=1920&q=75`}
+                      alt={event.eventName}
                     />
                   </Box>
                   <Typography
@@ -86,7 +88,7 @@ const IndexPlanets = () => {
                       position: "relative",
                     }}
                   >
-                    {planet.planetDescription}
+                    {event.eventDescription}
                   </Typography>
                   <Box mt={1}>
                     <Link
@@ -94,8 +96,8 @@ const IndexPlanets = () => {
                       component="button"
                       variant="body2"
                       onClick={() =>
-                        navigate(`/planetes/${planet.slug}`, {
-                          state: { planetId: planet.id },
+                        navigate(`/evenements/${event.slug}`, {
+                          state: { eventId: event.id },
                         })
                       }
                     >
@@ -112,4 +114,4 @@ const IndexPlanets = () => {
   );
 };
 
-export default IndexPlanets;
+export default IndexEvents;

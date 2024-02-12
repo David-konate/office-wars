@@ -17,16 +17,25 @@ class EventController extends Controller
     public function index()
     {
         try {
-            $event = Event::all();
+            $events = Event::with(['planet', 'images'])->get();
 
-            return response()->json($event);
+            // Sélectionner aléatoirement la première image associée à chaque événement
+            $events->transform(function ($event) {
+                $shuffledImages = $event->images->shuffle();
+                $event->image = $shuffledImages->first();
+                unset($event->images); // Supprimer la liste complète des images si nécessaire
+                return $event;
+            });
+
+            return response()->json($events);
         } catch (\Throwable $e) {
             return response()->json([
                 'status' => false,
-                'message' =>  $e->getMessage(),
+                'message' => $e->getMessage(),
             ], 403);
         }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -100,7 +109,7 @@ class EventController extends Controller
     {
         try {
 
-            return  Event::findOrFail($event);
+            return  Event::with(['planet', 'site'])->findOrFail($event);
 
             return response()->json([
                 'status' => true,
