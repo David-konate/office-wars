@@ -8,12 +8,15 @@ import {
   Link,
   Container,
   Typography,
+  Divider,
 } from "@mui/material";
 import { firstLetterUppercase } from "../../utils";
 
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import FlareIcon from "@mui/icons-material/Flare";
+import CastleIcon from "@mui/icons-material/Castle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import FoodBankIcon from "@mui/icons-material/FoodBank";
 import moment from "moment";
 const Planet = () => {
   const location = useLocation();
@@ -109,9 +112,8 @@ const Planet = () => {
             className="event-planet"
             sx={{ display: "flex", flexDirection: "column" }}
           >
-            {planet.events
-              .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
-              .map((event, index) => (
+            <Box mb={3}>
+              {planet.events_past.map((event, index) => (
                 <Box
                   mt={1}
                   key={index}
@@ -120,7 +122,7 @@ const Planet = () => {
                   }}
                 >
                   <Box mt={3} display={"flex"}>
-                    <Box width={"25%"}>
+                    <Box width={"50%"}>
                       <Typography
                         sx={{
                           fontWeight: "bold",
@@ -129,14 +131,15 @@ const Planet = () => {
                         {firstLetterUppercase(event.eventName)}
                       </Typography>
                     </Box>
-                    <Box width={"50%"}>
+                    <Box width={"25%"}>
                       {moment(event.dateTime).format("Do MMMM YYYY")}
                     </Box>
                     <Box
                       width={"25%"}
                       sx={{
+                        pb: 1,
                         display: "flex",
-                        alignItems: "center",
+                        justifyContent: "flex-end",
                         "&:hover": {
                           cursor: "pointer",
                           color: "var(--primary-color)",
@@ -160,6 +163,195 @@ const Planet = () => {
                   </Box>
                 </Box>
               ))}
+            </Box>
+            <Divider
+              sx={{ my: 2, width: "40%", color: "var(--primary-color)" }}
+            />
+            <Box>
+              {planet.events.map((event, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    width: "70%",
+                  }}
+                >
+                  <Box mt={3} display={"flex"}>
+                    <Box width={"50%"}>
+                      <Typography
+                        sx={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {firstLetterUppercase(event.eventName)}
+                      </Typography>
+                    </Box>
+                    <Box width={"25%"}>
+                      {moment(event.dateTime).format("Do MMMM YYYY")}
+                    </Box>
+                    <Box
+                      width={"25%"}
+                      sx={{
+                        pb: 1,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        "&:hover": {
+                          cursor: "pointer",
+                          color: "var(--primary-color)",
+                        },
+                      }}
+                    >
+                      <VisibilityIcon />
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {event.eventDescription}
+                    </Typography>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+            <Box
+              mt={4}
+              display="flex"
+              className="localisationPlanet"
+              alignItems="center"
+            >
+              <CastleIcon sx={{ mt: 2 }} fontSize="large" />
+              <Typography variant="h5" mt={3} marginLeft={1}>
+                À la Découverte de :
+              </Typography>
+            </Box>
+            <Box mt={5} mb={2}>
+              {planet.sites.map((site, index) => (
+                <Box
+                  mt={1}
+                  key={index}
+                  sx={{
+                    width: "70%",
+                    display: "flex",
+                    alignItems: "center", // Alignement des éléments sur la même ligne
+                  }}
+                >
+                  {/* Ajout de l'image à gauche */}
+                  <img
+                    src="https://img1.starwars-holonet.com/holonet/dictionnaire/photos/lieu_theed_palais.jpg"
+                    alt={site.siteName}
+                    style={{
+                      width: "10%",
+                      marginRight: "10px",
+                    }}
+                  />
+
+                  <Box ml={2} flex="1">
+                    {/* Contenu à afficher à côté de l'image */}
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Typography
+                        sx={{
+                          fontWeight: "bold",
+                          width: "70%", // Ajustez la largeur selon vos besoins
+                        }}
+                      >
+                        {firstLetterUppercase(site.siteName)}
+                      </Typography>
+
+                      <Box
+                        width={"30%"}
+                        sx={{
+                          pb: 1,
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          "&:hover": {
+                            cursor: "pointer",
+                            color: "var(--primary-color)",
+                          },
+                        }}
+                      >
+                        <VisibilityIcon />
+                      </Box>
+                    </Box>
+
+                    {/* Description en dessous */}
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {site.siteDescription}
+                    </Typography>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          mt={4}
+          display="flex"
+          className="localisationPlanet"
+          alignItems="center"
+        >
+          <FoodBankIcon sx={{ mt: 2 }} fontSize="large" />
+          <Typography variant="h5" mt={3} marginLeft={1}>
+            Repas & Repos :{" "}
+          </Typography>
+        </Box>
+        <Box
+          mt={2}
+          className="event-planet"
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
+          <Box mb={3}>
+            {planet.accommodations.map((accomodation, index) => (
+              <Box
+                mt={1}
+                key={index}
+                sx={{
+                  width: "70%",
+                }}
+              >
+                <Box mt={3} display={"flex"}>
+                  <Box width={"50%"}>
+                    <Typography
+                      sx={{
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {firstLetterUppercase(accomodation.accomodationName)}
+                    </Typography>
+                  </Box>
+                  <Box width={"25%"}>Localisation : {accomodation.rates}</Box>
+                  <Box
+                    width={"25%"}
+                    sx={{
+                      pb: 1,
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      "&:hover": {
+                        cursor: "pointer",
+                        color: "var(--primary-color)",
+                      },
+                    }}
+                  >
+                    <VisibilityIcon />
+                  </Box>
+                </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
       </Box>

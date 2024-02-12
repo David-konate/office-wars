@@ -92,17 +92,14 @@ class PlanetController extends Controller
     {
         try {
             $planet = Planet::with(['events' => function ($query) {
-                $query->where(function ($query) {
-                    $query->where('dateTime', '>=', now()) // Événements à venir
-                        ->orderBy('dateTime', 'asc') // Tri croissant pour les événements à venir
-                        ->limit(3);
-                })->orWhere(function ($query) {
-                    $query->where('dateTime', '<', now()) // Événements passés
-                        ->orderBy('dateTime', 'desc') // Tri décroissant pour les événements passés
-                        ->limit(2);
-                });
-            }])->findOrFail($planet);
-            // $planet = Planet::with(['sites']);
+                $query->where('dateTime', '>=', now())
+                    ->orderBy('dateTime', 'asc')
+                    ->limit(3);
+            }, 'eventsPast' => function ($query) {
+                $query->where('dateTime', '<', now())
+                    ->orderBy('dateTime', 'asc')
+                    ->limit(3);
+            }, 'sites', 'accommodations'])->findOrFail($planet);
 
             return response()->json([
                 'status' => true,
@@ -111,10 +108,11 @@ class PlanetController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'status' => false,
-                'message' => 'Planet non trouvée : ' . $e->getMessage()
+                'message' => 'Planète non trouvée : ' . $e->getMessage()
             ], 404);
         }
     }
+
 
 
 

@@ -22,6 +22,10 @@ class Planet extends Model
             ]
         ];
     }
+    public function eventsPast()
+    {
+        return $this->hasMany(Event::class, 'planet_id');
+    }
     public function events()
     {
         return $this->hasMany(Event::class, 'planet_id');
