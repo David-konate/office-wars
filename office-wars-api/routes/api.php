@@ -41,32 +41,32 @@ Route::prefix('/security')->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('users/{user}', 'show');
     Route::get('users', 'index');
-    Route::post('users/{user}', 'update')->middleware('auth:api');
-    Route::delete('users/{user}', 'destroy')->middleware('auth:api');
+    Route::post('users/{user}', 'update')->middleware('auth:sanctum');
+    Route::delete('users/{user}', 'destroy')->middleware('auth:sanctum');
 });
 
 //Route hotels
 Route::controller(AccomodationController::class)->group(function () {
     Route::get('accomodations/{accomodation}', 'show');
     Route::get('accomodations', 'index');
-    Route::post('accomodations', 'store')->middleware('auth:api');
-    Route::post('accomodations/{accomodation}', 'update')->middleware('auth:api');
-    Route::delete('accomodations/{accomodation}', 'destroy')->middleware('auth:api');
+    Route::post('accomodations', 'store')->middleware('auth:sanctum');
+    Route::post('accomodations/{accomodation}', 'update')->middleware('auth:sanctum');
+    Route::delete('accomodations/{accomodation}', 'destroy')->middleware('auth:sanctum');
 });
 
 //Route évènements
 Route::controller(EventController::class)->group(function () {
     Route::get('events/{event}', 'show');
     Route::get('events', 'index');
-    Route::post('events', 'store')->middleware('auth:api');
-    Route::post('events/{event}', 'update')->middleware('auth:api');
-    Route::delete('events/{event}', 'destroy')->middleware('auth:api');
+    Route::post('events', 'store')->middleware('auth:sanctum');
+    Route::post('events/{event}', 'update')->middleware('auth:sanctum');
+    Route::delete('events/{event}', 'destroy')->middleware('auth:sanctum');
 });
 
 //Route images
 Route::controller(ImageController::class)->group(function () {
     Route::get('imagesHeadband', 'headband');
-    Route::delete('images/{image}', 'destroy')->middleware('auth:api');
+    Route::delete('images/{image}', 'destroy')->middleware('auth:sanctum');
 });
 
 //Route planetes
@@ -74,8 +74,8 @@ Route::controller(PlanetController::class)->group(function () {
     Route::get('planets/{planet}', 'show');
     Route::get('planets', 'index');
     Route::post('planets', 'store');
-    Route::post('planets/{planet}', 'update')->middleware('auth:api');
-    Route::delete('planets/{planet}', 'destroy')->middleware('auth:api');
+    Route::post('planets/{planet}', 'update')->middleware('auth:sanctum');
+    Route::delete('planets/{planet}', 'destroy')->middleware('auth:sanctum');
 });
 
 
@@ -83,18 +83,18 @@ Route::controller(PlanetController::class)->group(function () {
 Route::controller(ReviewController::class)->group(function () {
     Route::get('reviews/{review}', 'show');
     Route::get('reviews', 'index');
-    Route::post('reviews', 'store')->middleware('auth:api');
-    Route::post('reviews/{review}', 'update')->middleware('auth:api');
-    Route::delete('reviews/{review}', 'destroy')->middleware('auth:api');
+    Route::post('reviews', 'store')->middleware('auth:sanctum');
+    Route::post('reviews/{review}', 'update')->middleware('auth:sanctum');
+    Route::delete('reviews/{review}', 'destroy')->middleware('auth:sanctum');
 });
 
 //Route des sites
 Route::controller(SiteController::class)->group(function () {
     Route::get('sites/{site}', 'show');
     Route::get('sites', 'index');
-    Route::post('sites', 'store')->middleware('auth:api');
-    Route::post('sites/{site}', 'update')->middleware('auth:api');
-    Route::delete('sites/{site}', 'destroy')->middleware('auth:api');
+    Route::post('sites', 'store')->middleware('auth:sanctum');
+    Route::post('sites/{site}', 'update')->middleware('auth:sanctum');
+    Route::delete('sites/{site}', 'destroy')->middleware('auth:sanctum');
 });
 
 
@@ -102,7 +102,7 @@ Route::controller(SiteController::class)->group(function () {
 Route::controller(TypeController::class)->group(function () {
     Route::get('types/{type}', 'show');
     Route::get('types', 'index');
-    Route::post('types', 'store')->middleware('auth:api');
-    Route::post('types/{type}', 'update')->middleware('auth:api');
-    Route::delete('types/{type}', 'destroy')->middleware('auth:api');
+    Route::post('types', 'store')->middleware('auth:sanctum');
+    Route::post('types/{type}', 'update')->middleware('auth:sanctum');
+    Route::delete('types/{type}', 'destroy')->middleware('auth:sanctum');
 });

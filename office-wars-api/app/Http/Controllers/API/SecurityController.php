@@ -40,6 +40,7 @@ class SecurityController extends Controller
             return response()->json([
                 "status" => true,
                 "message" => "User connecté",
+                "user" => $user,
                 //plainTextToken  => token en forme de string
                 "token" => $user->createToken("API TOKEN")->plainTextToken
             ], 200);

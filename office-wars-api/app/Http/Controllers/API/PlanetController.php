@@ -111,13 +111,6 @@ class PlanetController extends Controller
         }
     }
 
-
-
-
-
-
-
-
     /**
      * Update the specified resource in storage.
      */
@@ -130,8 +123,8 @@ class PlanetController extends Controller
                 'planetDescription' => 'nullable|string',
                 'galacticCoordinates' => 'nullable|string',
                 'population' => 'nullable|integer',
-                'slug' => 'required|min:1|string|unique:planets,slug,' . $planet,
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image de la planète
+
+                'imagePlanet' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image de la planète
             ]);
 
             if ($validator->fails()) {
@@ -142,33 +135,33 @@ class PlanetController extends Controller
             }
 
             // Récupération de la planète
-            $planet_single = Planet::findOrFail($planet);
+            $planet = Planet::findOrFail($planet);
 
             // Logique de chargement d'image
-            if ($request->hasFile('image')) {
-                $filenameWithExt = $request->file('image')->getClientOriginalName();
+            if ($request->hasFile('imagePlanet')) {
+                $filenameWithExt = $request->file('imagePlanet')->getClientOriginalName();
                 $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('image')->getClientOriginalExtension();
+                $extension = $request->file('imagePlanet')->getClientOriginalExtension();
                 $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-                $request->file('image')->storeAs('public/uploads', $filename);
+                $request->file('imagePlanet')->storeAs('public/uploads', $filename);
 
                 // Mise à jour de l'image liée à la planète
-                $planet_single->image = $filename;
+                $planet->imagePlanet = $filename;
             }
 
             // Mise à jour des données
-            $planet_single->update([
+            $planet->update([
                 'planetName' => $request->planetName,
                 'planetDescription' => $request->planetDescription,
                 'galacticCoordinates' => $request->galacticCoordinates,
                 'population' => $request->population,
-                'slug' => $request->slug,
+
             ]);
 
             return response()->json([
                 'status' => true,
                 'message' => 'Planète mise à jour avec succès',
-                'data' => $planet_single
+                'data' => $planet
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
