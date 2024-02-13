@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\PlanetController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\SecurityController;
 use App\Http\Controllers\Api\AccomodationController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +25,16 @@ use App\Http\Controllers\Api\AccomodationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
+
+Route::get('/me', function () {
+    return Auth::user();
+})->middleware('auth:sanctum');
 //Route users
 Route::prefix('/security')->group(function () {
     Route::post('/register', [SecurityController::class, 'register'])->middleware('guest')->name('security.register');
     Route::post('/login', [SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
-    Route::post('/logout', [SecurityController::class, 'logout'])->middleware('auth');
+    Route::post('/logout', [SecurityController::class, 'logout'])->middleware('auth:sanctum');
 });
 
 //Route users

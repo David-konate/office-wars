@@ -22,10 +22,6 @@ class Image extends Model
             ]
         ];
     }
-    public function planet()
-    {
-        return $this->belongsTo(Planet::class, 'planet_id');
-    }
 
     public function site()
     {
@@ -35,14 +31,5 @@ class Image extends Model
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id');
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($image) {
-            $image->slug = Str::slug($image->imageName);
-        });
     }
 }

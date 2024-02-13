@@ -96,8 +96,8 @@ class SecurityController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->user()->tokens()->delete();
+        // Auth::logout();
+        // $request->user()->tokens()->delete();
 
         return response()->json(['message' => 'Deconnexion']);
     }

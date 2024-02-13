@@ -39,8 +39,7 @@ class PlanetController extends Controller
                 'planetDescription' => 'nullable|string',
                 'galacticCoordinates' => 'nullable|string',
                 'population' => 'nullable|integer',
-                'slug' => 'required|min:1|string|unique:planets',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image de la planète
+                // 'imagePlanet' => 'nullable|image|mimes:jpeg,png,jpg,gif,', // Ajout de règles pour l'image de la planète
             ]);
 
             if ($validator->fails()) {
@@ -53,12 +52,12 @@ class PlanetController extends Controller
 
             // Logique de chargement de l'image de la planète
             $filename = null;
-            if ($request->hasFile('image')) {
-                $filenameWithExt = $request->file('image')->getClientOriginalName();
+            if ($request->hasFile('imagePlanet')) {
+                $filenameWithExt = $request->file('imagePlanet')->getClientOriginalName();
                 $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('image')->getClientOriginalExtension();
+                $extension = $request->file('imagePlanet')->getClientOriginalExtension();
                 $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-                $request->file('image')->storeAs('public/uploads', $filename);
+                $request->file('imagePlanet')->storeAs('public/uploads', $filename);
             }
 
             // Création de la planète
@@ -67,8 +66,7 @@ class PlanetController extends Controller
                 'planetDescription' => request('planetDescription'),
                 'galacticCoordinates' => request('galacticCoordinates'),
                 'population' => request('population'),
-                'slug' => request('slug'),
-                'image' => $filename, // Ajout du champ de l'image de la planète
+                'imagePlanet' => $filename, // Ajout du champ de l'image de la planète
             ]);
 
             return response()->json([

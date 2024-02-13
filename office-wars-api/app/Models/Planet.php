@@ -12,7 +12,7 @@ class Planet extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = [
-        'planetName', 'planetDescription', 'galacticCoordinates', 'population', 'slug',
+        'planetName', 'planetDescription', 'galacticCoordinates', 'population', 'slug', 'imagePlanet'
     ];
     public function sluggable(): array
     {
