@@ -5,13 +5,14 @@ import React, { createContext, useContext, useState } from "react";
 const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   function authentification() {
     axios
       .get(`/me`)
       .then((res) => {
-        setUser(res);
+        setUser(res.data);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);

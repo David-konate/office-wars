@@ -7,6 +7,7 @@ import LoginForm from "../LoginForm";
 import Dashboard from "../DashBoard";
 import IndexEvents from "../events/IndexEvents";
 import Event from "../events/Event";
+import AdminRouteGuard from "./AdminRouteGuard";
 
 const RouterOutlet = () => {
   return (
@@ -18,7 +19,10 @@ const RouterOutlet = () => {
       <Route path="/evenements" element={<IndexEvents />} />
       <Route path="/evenements/:slug" element={<Event />} />
       <Route path={`/login`} element={<LoginForm />} />
-      <Route path={`/admin`} element={<Dashboard />} />v
+      <Route
+        path={`/admin`}
+        element={<AdminRouteGuard element={<Dashboard />} />}
+      />
     </Routes>
   );
 };

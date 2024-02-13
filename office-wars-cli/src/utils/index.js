@@ -5,7 +5,7 @@ export const IMAGE_PATH = process.env.REACT_APP_BASE_URL + "/storage/images/";
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const BASE_URL_API = process.env.REACT_APP_BASE_URL_API;
 
-export const links = [
+export const linksUserLoged = [
   {
     label: "planetes",
     path: "/planetes",
@@ -31,6 +31,47 @@ export const links = [
     path: "/logout",
   },
 ];
+export const linksLogged = [
+  {
+    label: "planetes",
+    path: "/planetes",
+  },
+  {
+    label: "évenements",
+    path: "/evenements",
+  },
+  {
+    label: "sites",
+    path: "/sites",
+  },
+  {
+    label: "profil",
+    path: "/profil",
+  },
+  {
+    label: "logout",
+    path: "/logout",
+  },
+];
+export const linksUnlogged = [
+  {
+    label: "planetes",
+    path: "/planetes",
+  },
+  {
+    label: "évenements",
+    path: "/evenements",
+  },
+  {
+    label: "sites",
+    path: "/sites",
+  },
+  {
+    label: "login",
+    path: "/login",
+  },
+];
+
 export const linksAcceuil = [
   {
     label: "Planetes",

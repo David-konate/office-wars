@@ -37,7 +37,6 @@ const CreatePlanetForm = () => {
     try {
       // Requête Axios pour les sites
       const sitesResponse = await axios.get(`sites`);
-      console.log(sitesResponse);
       setSites(sitesResponse.data);
 
       // Requête Axios pour les hébergements
@@ -60,26 +59,15 @@ const CreatePlanetForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDat = new FormData(e.target);
 
     try {
       // Effectuer la requête POST vers l'URL de création de planète dans votre backend Laravel
-      const response = await axios.post(`planets`, formData);
-
-      // Vérifier la réponse du backend (vous pouvez ajuster cela selon votre API)
-      if (response.status === 200) {
-        console.log("Planète créée avec succès !", response.data);
-        // Vous pouvez également effectuer des actions supplémentaires après la création réussie
-      } else {
-        console.error(
-          "Erreur lors de la création de la planète :",
-          response.data
-        );
-      }
+      const response = await axios.post(`planets`, formDat);
     } catch (error) {
       console.error("Erreur lors de la requête POST :", error);
     }
   };
-  console.log(sites);
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>

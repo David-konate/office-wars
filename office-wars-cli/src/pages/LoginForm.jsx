@@ -1,43 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Typography, TextField, Button, Box } from "@mui/material";
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useUserContext } from "../context/UserProvider";
 
 const LoginForm = () => {
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleemailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleConfirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value);
-  };
+  const { setUser } = useUserContext();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target);
 
     try {
-      const response = await axios.post("/security/login", {
-        email,
-        password,
-        confirmPassword,
-      });
+      const response = await axios.post("/security/login", formData);
 
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      setRedirectToReferrer(true);
+      setUser(response.data.user);
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      console.error(error.response?.data || "Erreur lors de la connexion.");
+      // Ajoutez ici une logique pour gérer les erreurs côté client
     }
   };
 
@@ -64,8 +48,6 @@ const LoginForm = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
-            onChange={handleemailChange}
           />
           <TextField
             margin="normal"
@@ -76,19 +58,6 @@ const LoginForm = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="confirmPassword"
-            label="Confirmer le mot de passe"
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
           />
 
           <Button
@@ -96,7 +65,6 @@ const LoginForm = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={handleSubmit}
           >
             Connexion
           </Button>

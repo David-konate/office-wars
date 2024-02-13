@@ -18,7 +18,6 @@ const ImagesHandle = ({ route, customText }) => {
     try {
       const res = await axios.get(`imagesHeadband`);
       setImages(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     } finally {

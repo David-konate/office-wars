@@ -9,13 +9,19 @@ import {
   Grid,
   Container,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+
 import axios from "axios";
 import ImagesHandle from "../../components/ImagesHandle";
+import { useUserContext } from "../../context/UserProvider";
+import UpdatePlanetForm from "../../components/forms/UpdatePlanetForm";
 
 const IndexPlanets = () => {
   const navigate = useNavigate();
   const [isBusy, setIsBusy] = useState(true);
   const [planets, setPlanets] = useState([]);
+
+  // Utilisez le contexte utilisateur pour obtenir les informations sur l'utilisateur
 
   useEffect(() => {
     fetchData();
@@ -31,7 +37,23 @@ const IndexPlanets = () => {
       setIsBusy(false);
     }
   };
+  const { user } = useUserContext();
+  console.log(user);
 
+  // Vérifiez si l'utilisateur est un administrateur
+  const isAdmin = user && user.role === "admin";
+
+  const [isUpdateFormVisible, setIsUpdateFormVisible] = useState(false);
+  const [selectedPlanetId, setSelectedPlanetId] = useState(null);
+  const handleUpdateClick = (planetId) => {
+    setIsUpdateFormVisible(true);
+    setSelectedPlanetId(planetId);
+  };
+
+  const handleFormClose = () => {
+    setIsUpdateFormVisible(false);
+    setSelectedPlanetId(null);
+  };
   return isBusy ? (
     <Box sx={{ display: "flex" }}>
       <CircularProgress />
@@ -65,13 +87,28 @@ const IndexPlanets = () => {
                   justifyContent="center"
                 >
                   <Typography variant="h4">{planet.planetName}</Typography>
-                  <Box mt={3} className="img-planetes-index">
+                  <Box
+                    mt={3}
+                    className="img-planetes-index"
+                    sx={{ maxWidth: "65%", maxHeight: "65%" }}
+                  >
                     <img
-                      style={{ borderRadius: "10px" }}
-                      src={`https://upload.wikimedia.org/wikipedia/commons/e/ec/Coruscant.jpg`}
-                      alt={planet.name}
+                      style={{
+                        borderRadius: "10px",
+                        width: "auto",
+                        height: "auto",
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                      }}
+                      src={
+                        planet.imagePlanet
+                          ? `http://127.0.0.1:8000/storage/uploads/${planet.imagePlanet}`
+                          : `http://127.0.0.1:8000/storage/images/notImage.png`
+                      }
+                      alt={planet.planetName}
                     />
                   </Box>
+
                   <Typography
                     pl={5}
                     pr={5}
@@ -81,7 +118,7 @@ const IndexPlanets = () => {
                       display: "-webkit-box",
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
-                      WebkitLineClamp: 3, // Limite le nombre de lignes à afficher
+                      WebkitLineClamp: 3,
                       textOverflow: "ellipsis",
                       position: "relative",
                     }}
@@ -102,12 +139,36 @@ const IndexPlanets = () => {
                       {"EN SAVOIR PLUS"}
                     </Link>
                   </Box>
+                  {isAdmin && (
+                    <Link
+                      className="custom-link"
+                      component="button"
+                      variant="body2"
+                      onClick={() => handleUpdateClick(planet.id)}
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        color: "var(--primary-color)",
+                      }}
+                    >
+                      <EditIcon />
+                    </Link>
+                  )}
                 </Box>
               </Grid>
             ))}
           </Grid>
         </Container>
       </Box>
+
+      {/* Afficher le formulaire de mise à jour conditionnellement */}
+      {isUpdateFormVisible && (
+        <UpdatePlanetForm
+          planetId={selectedPlanetId}
+          handleClose={handleFormClose}
+        />
+      )}
     </Box>
   );
 };

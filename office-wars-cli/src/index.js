@@ -10,6 +10,7 @@ import moment from "moment";
 import "moment/locale/fr";
 import App from "./App";
 import "./App.scss";
+import { UserProvider } from "./context/UserProvider";
 
 moment.locale("fr");
 
@@ -23,13 +24,13 @@ if (TOKEN) {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <MainThemeProvider>
-      <CustomThemeProvider>
+  <MainThemeProvider>
+    <CustomThemeProvider>
+      <UserProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </CustomThemeProvider>
-    </MainThemeProvider>
-  </React.StrictMode>
+      </UserProvider>
+    </CustomThemeProvider>
+  </MainThemeProvider>
 );
