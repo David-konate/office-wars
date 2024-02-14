@@ -26,7 +26,7 @@ class EventFactory extends Factory
             'dateTime' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'slug' => Str::slug($this->faker->words(2, true)),
             'planet_id' => $randomPlanetId,
-            'site_id' => $randomSiteId,
+
         ];
     }
 }

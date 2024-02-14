@@ -63,7 +63,12 @@ const Dashboard = () => {
     },
   });
 
-  const [tabSelected, setTabSelected] = useState(tabs["planetForm"]);
+  const [tabSelected, setTabSelected] = useState(tabs["planetList"]);
+
+  const handleCreatePlanetFormSubmit = () => {
+    // Mettez à jour l'état pour ouvrir l'onglet "Liste des planètes"
+    setTabSelected(tabs["planetList"]);
+  };
 
   return (
     <Container
@@ -103,7 +108,7 @@ const Dashboard = () => {
       </Box>
 
       <Box>
-        <tabSelected.component />
+        <tabSelected.component onFormSubmit={handleCreatePlanetFormSubmit} />
       </Box>
     </Container>
   );

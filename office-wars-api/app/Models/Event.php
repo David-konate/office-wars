@@ -15,6 +15,8 @@ class Event extends Model
         'eventName',
         'eventDescription',
         'dateTime',
+        'planet_id',
+        'photoEvent',
         'slug',
 
     ];
@@ -47,10 +49,6 @@ class Event extends Model
     /**
      * Relation avec la table Sites
      */
-    public function site()
-    {
-        return $this->belongsTo(Site::class, 'site_id');
-    }
 
     protected static function boot()
     {

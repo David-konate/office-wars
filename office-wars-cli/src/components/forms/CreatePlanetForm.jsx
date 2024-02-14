@@ -1,6 +1,6 @@
 // src/components/CreatePlanetForm.js
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   TextField,
@@ -12,62 +12,47 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { margin } from "@mui/system";
+import { useNavigate } from "react-router-dom";
+import MessageDialog from "../message/MessageDialog";
 
 const CreatePlanetForm = () => {
-  const [isBusy, setIsBusy] = useState(true);
-
-  const [sites, setSites] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [accomodations, setAccomodations] = useState([]);
   const [formData, setFormData] = useState({
     planetName: "",
     planetDescription: "",
     galacticCoordinates: "",
     population: "",
-    selectedSite: [], // Utilisez un tableau pour la sélection multiple
-    selectedEvent: [], // Utilisez un tableau pour la sélection multiple
-    selectedAccommodation: [], // Utilisez un tableau pour la sélection multiple
   });
-  useEffect(() => {
-    fetchData();
-  }, []); //
 
-  const fetchData = async () => {
-    try {
-      // Requête Axios pour les sites
-      const sitesResponse = await axios.get(`sites`);
-      setSites(sitesResponse.data);
-
-      // Requête Axios pour les hébergements
-      const accommodationsResponse = await axios.get(`accomodations`);
-      setAccomodations(accommodationsResponse.data);
-
-      // Requête Axios pour les événements
-      const eventsResponse = await axios.get(`events`);
-      setEvents(eventsResponse.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsBusy(false);
-    }
-  };
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogTitle, setDialogTitle] = useState("");
+  const [dialogMessage, setDialogMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDat = new FormData(e.target);
-
     try {
-      // Effectuer la requête POST vers l'URL de création de planète dans votre backend Laravel
       const response = await axios.post(`planets`, formDat);
+      // Si la requête est réussie, afficher le dialogue avec le message de retour
+      setDialogTitle("Succès");
+      setDialogMessage(response.data.message);
+      setOpenDialog(true);
     } catch (error) {
-      console.error("Erreur lors de la requête POST :", error);
+      // En cas d'erreur, afficher le dialogue avec le message d'erreur
+      setDialogTitle("Erreur");
+      setDialogMessage(error.response.data.message);
+      setOpenDialog(true);
     }
   };
+
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>
@@ -123,64 +108,6 @@ const CreatePlanetForm = () => {
           required
         />
 
-        <InputLabel htmlFor="selectedSite">
-          Sélectionnez un/des site(s)
-        </InputLabel>
-        <Select
-          style={{ margin: 4 }}
-          id="selectedSite"
-          name="selectedSite"
-          value={formData.selectedSite}
-          onChange={handleChange}
-          fullWidth
-          multiple
-        >
-          {sites.map((site) => (
-            <MenuItem key={site.id} value={site.id}>
-              {site.siteName}
-            </MenuItem>
-          ))}
-        </Select>
-
-        {/* Select pour les événements */}
-        <InputLabel htmlFor="selectedEvent">
-          Sélectionnez un/des événement(s)
-        </InputLabel>
-        <Select
-          style={{ margin: 4 }}
-          id="selectedEvent"
-          name="selectedEvent"
-          value={formData.selectedEvent}
-          onChange={handleChange}
-          fullWidth
-          multiple
-        >
-          {events.map((event) => (
-            <MenuItem key={event.id} value={event.id}>
-              {event.eventName}
-            </MenuItem>
-          ))}
-        </Select>
-
-        {/* Select pour les hébergements */}
-        <InputLabel htmlFor="selectedAccommodation">
-          Sélectionnez un/des hébergement(s)
-        </InputLabel>
-        <Select
-          style={{ margin: 4 }}
-          id="selectedAccommodation"
-          name="selectedAccommodation"
-          value={formData.selectedAccommodation}
-          onChange={handleChange}
-          fullWidth
-          multiple
-        >
-          {accomodations.map((accommodation) => (
-            <MenuItem key={accommodation.id} value={accommodation.id}>
-              {accommodation.accomodationName}
-            </MenuItem>
-          ))}
-        </Select>
         <InputLabel style={{ margin: 4 }} htmlFor="imagePlanet">
           Image de la planète
         </InputLabel>
@@ -205,6 +132,13 @@ const CreatePlanetForm = () => {
           Créer la planète
         </Button>
       </form>
+
+      <MessageDialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        title={dialogTitle}
+        message={dialogMessage}
+      />
     </Container>
   );
 };

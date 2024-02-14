@@ -16,6 +16,7 @@ class Site extends Model
         'touristActivities',
         'attractionType',
         'shops',
+        'planet_id',
         'slug',
     ];
     public function sluggable(): array

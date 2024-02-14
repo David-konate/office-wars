@@ -22,7 +22,7 @@ class EventSeeder extends Seeder
             'dateTime' => now(),
             'slug' => Str::slug('Course de la Bounta'),
             'planet_id' => Planet::inRandomOrder()->first()->id,
-            'site_id' => Site::inRandomOrder()->first()->id,
+
         ]);
         // Créer des images pour l'événement 1
         // $this->createEventImages($event1, 3);
@@ -34,7 +34,7 @@ class EventSeeder extends Seeder
             'dateTime' => now(),
             'slug' => Str::slug('GeoArena'),
             'planet_id' => Planet::inRandomOrder()->first()->id,
-            'site_id' => Site::inRandomOrder()->first()->id,
+
         ]);
 
         // Créer des images pour l'événement 2
@@ -47,7 +47,6 @@ class EventSeeder extends Seeder
             'dateTime' => now(),
             'slug' => Str::slug('Naboo Light'),
             'planet_id' => Planet::inRandomOrder()->first()->id,
-            'site_id' => Site::inRandomOrder()->first()->id,
         ]);
 
         // Créer des images pour l'événement 3
@@ -68,7 +67,6 @@ class EventSeeder extends Seeder
                 'imageName' => "Event {$event->id} Image $i",
                 'planet_id' => $event->planet_id,
                 'site_id' => $event->site_id,
-                'event_id' => $event->id,
                 'slug' => Str::slug("Event {$event->id} Image $i"),
             ]);
         }

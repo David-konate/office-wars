@@ -7,58 +7,61 @@ import {
   Container,
   InputLabel,
   Input,
-  MenuItem,
-  Select,
   CircularProgress,
   Box,
+  IconButton,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+
 import ConfirmationDialog from "../message/messageValidate";
+import { useNavigate } from "react-router-dom";
 
 const UpdatePlanetForm = ({ planetId }) => {
   const [isBusy, setIsBusy] = useState(true);
+  const navigate = useNavigate();
 
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     useState(false);
 
-  const [sites, setSites] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [accomodations, setAccomodations] = useState([]);
   const [formData, setFormData] = useState({
     planetName: "",
     planetDescription: "",
     galacticCoordinates: "",
     population: "",
-    selectedSite: [],
-    selectedEvent: [],
-    selectedAccommodation: [],
+    site: [],
+    event: [],
+    accommodation: [],
   });
   const [image, setImage] = useState(null);
+  const [currentSite, setCurrentSite] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState([]);
+  const [currentAccommodation, setCurrentAccommodation] = useState([]);
 
   useEffect(() => {
-    fetchPlanetData();
     fetchData();
   }, [planetId]);
 
   const fetchData = async () => {
     try {
       const planetResponse = await axios.get(`planets/${planetId}`);
+      console.log(planetResponse);
       const planetData = planetResponse.data.data;
+      setCurrentAccommodation(planetResponse.data.accommodations);
+      console.log(planetResponse.data.accommodations);
+      setCurrentEvent(planetResponse.data.events);
+      setCurrentSite(planetResponse.data.sites);
 
       setFormData({
         planetName: planetData.planetName,
         planetDescription: planetData.planetDescription,
         galacticCoordinates: planetData.galacticCoordinates,
         population: planetData.population,
-        selectedSite: planetData.sites.map((site) => site.id),
-        selectedEvent: planetData.events.map((event) => event.id),
-        selectedAccommodation: planetData.accommodations.map(
+        site: planetData.sites.map((site) => site.id),
+        event: planetData.events.map((event) => event.id),
+        accommodation: planetData.accommodations.map(
           (accommodation) => accommodation.id
         ),
       });
-
-      setSites(planetData.sites);
-      setAccomodations(planetData.accommodations);
-      setEvents(planetData.events);
 
       setImage(
         planetData.imagePlanet
@@ -72,19 +75,6 @@ const UpdatePlanetForm = ({ planetId }) => {
     }
   };
 
-  const fetchPlanetData = async () => {
-    try {
-      const sitesResponse = await axios.get(`sites`);
-      const accommodationsResponse = await axios.get(`accomodations`);
-      const eventsResponse = await axios.get(`events`);
-
-      setSites(sitesResponse.data);
-      setAccomodations(accommodationsResponse.data);
-      setEvents(eventsResponse.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -93,30 +83,13 @@ const UpdatePlanetForm = ({ planetId }) => {
     setImage(URL.createObjectURL(file));
   };
 
-  const handleSiteChange = (event) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      selectedSite: [event.target.value],
-    }));
-  };
-
-  const handleEventChange = (event) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      selectedEvent: [event.target.value],
-    }));
-  };
-
-  const handleAccommodationChange = (event) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      selectedAccommodation: [event.target.value],
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
     try {
       const response = await axios.post(`planets/${planetId}`, formData);
@@ -220,64 +193,6 @@ const UpdatePlanetForm = ({ planetId }) => {
             required
           />
 
-          <InputLabel htmlFor="selectedSite">
-            Sélectionnez un/des site(s)
-          </InputLabel>
-          <Select
-            style={{ margin: 4 }}
-            id="selectedSite"
-            name="selectedSite"
-            value={formData.selectedSite}
-            onChange={handleChange}
-            fullWidth
-            multiple
-          >
-            {sites.map((site) => (
-              <MenuItem key={site.id} value={site.id}>
-                {site.siteName}
-              </MenuItem>
-            ))}
-          </Select>
-
-          {/* Select pour les événements */}
-          <InputLabel htmlFor="selectedEvent">
-            Sélectionnez un/des événement(s)
-          </InputLabel>
-          <Select
-            style={{ margin: 4 }}
-            id="selectedEvent"
-            name="selectedEvent"
-            value={formData.selectedEvent}
-            onChange={handleChange}
-            fullWidth
-            multiple
-          >
-            {events.map((event) => (
-              <MenuItem key={event.id} value={event.id}>
-                {event.eventName}
-              </MenuItem>
-            ))}
-          </Select>
-
-          {/* Select pour les hébergements */}
-          <InputLabel htmlFor="selectedAccommodation">
-            Sélectionnez un/des hébergement(s)
-          </InputLabel>
-          <Select
-            style={{ margin: 4 }}
-            id="selectedAccommodation"
-            name="selectedAccommodation"
-            value={formData.selectedAccommodation}
-            onChange={handleChange}
-            fullWidth
-            multiple
-          >
-            {accomodations.map((accommodation) => (
-              <MenuItem key={accommodation.id} value={accommodation.id}>
-                {accommodation.accomodationName}
-              </MenuItem>
-            ))}
-          </Select>
           <InputLabel style={{ margin: 4 }} htmlFor="imagePlanet">
             Image de la planète
           </InputLabel>
@@ -286,7 +201,7 @@ const UpdatePlanetForm = ({ planetId }) => {
             type="file"
             id="imagePlanet"
             name="imagePlanet"
-            onChange={handleChange}
+            onChange={handleImageChange}
             accept="image/*"
             fullWidth
             margin="none"
@@ -299,9 +214,108 @@ const UpdatePlanetForm = ({ planetId }) => {
             color="primary"
             fullWidth
           >
-            Créer la planète
+            Modifier la planète
           </Button>
         </form>
+      </Box>{" "}
+      <Typography mt={5} mb={3} variant="h5" align="center" gutterBottom>
+        Éléments liés à la planète {formData.planetName}
+      </Typography>
+      <Box
+        className="tableContainer"
+        style={{ overflowX: "auto", display: "flex" }}
+      >
+        {/* Tableau des sites */}
+        <Box style={{ width: "33%", display: "flex", flexDirection: "column" }}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Sites
+          </Typography>
+          {currentSite.map((site, index) => (
+            <Box
+              key={index}
+              className="tableRow"
+              padding={1}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box className="boxText" width={"85%"}>
+                <Typography className="typoGr">{site.siteName}</Typography>
+              </Box>
+              <Box className="iconButton">
+                <IconButton
+                  onClick={() =>
+                    navigate(`/sites/edit/${site.slug}`, {
+                      state: { planetId: site.id },
+                    })
+                  }
+                >
+                  <EditIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+
+        {/* Tableau des événements */}
+        <Box style={{ width: "33%", display: "flex", flexDirection: "column" }}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Événements
+          </Typography>
+          {currentEvent.map((event, index) => (
+            <Box
+              key={index}
+              className="tableRow"
+              padding={1}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box className="boxText" width={"85%"}>
+                <Typography className="typoGr">{event.eventName}</Typography>
+              </Box>
+              <Box className="iconButton">
+                <IconButton
+                  onClick={() =>
+                    navigate(`/events/edit/${event.slug}`, {
+                      state: { planetId: event.id },
+                    })
+                  }
+                >
+                  <EditIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+
+        {/* Tableau des hébergements */}
+        <Box style={{ width: "33%", display: "flex", flexDirection: "column" }}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Hébergements
+          </Typography>
+          {currentAccommodation.map((accomodation, index) => (
+            <Box
+              key={index}
+              className="tableRow"
+              padding={1}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box className="boxText" width={"85%"}>
+                <Typography className="typoGr">
+                  {accomodation.accomodationName}
+                </Typography>
+              </Box>
+              <Box className="iconButton">
+                <IconButton
+                  onClick={() =>
+                    navigate(`/accomodations/edit/${accomodation.slug}`, {
+                      state: { planetId: accomodation.id },
+                    })
+                  }
+                >
+                  <EditIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Container>
   );

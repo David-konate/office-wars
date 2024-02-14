@@ -101,7 +101,11 @@ class PlanetController extends Controller
 
             return response()->json([
                 'status' => true,
-                'data' => $planet
+                'data' => $planet,
+                'accommodations' => $planet->accommodations,
+                'events' => $planet->events,
+                'sites' => $planet->sites,
+
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([

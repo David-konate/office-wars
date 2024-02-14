@@ -49,9 +49,8 @@ class EventController extends Controller
                 'eventName' => 'required|min:1|string',
                 'eventDescription' => 'nullable|string',
                 'dateTime' => 'required|date',
-                'slug' => 'required|min:1|string|unique:events',
-                'site_id' => 'required|exists:sites,id',
-                'photoEvent.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour les images
+                'planet_id' => 'required|exists:planets,id',
+                // 'photoEvent.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             if ($validator->fails()) {
@@ -67,26 +66,11 @@ class EventController extends Controller
                 'eventName' => request('eventName'),
                 'eventDescription' => request('eventDescription'),
                 'dateTime' => request('dateTime'),
-                'slug' => request('slug'),
-                'site_id' => request('site_id'),
+                'planet_id' => request('planet_id'),
             ]);
 
             // Logique de chargement des images
-            if ($request->hasFile('photoEvent')) {
-                foreach ($request->file('photoEvent') as $file) {
-                    $filenameWithExt = $file->getClientOriginalName();
-                    $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-                    $file->storeAs('public/uploads', $filename);
 
-                    // Création de l'image liée à l'événement
-                    Image::create([
-                        'imageName' => $filename,
-                        'event_id' => $event->id,
-                    ]);
-                }
-            }
 
             return response()->json([
                 'data' => $event,
@@ -100,6 +84,8 @@ class EventController extends Controller
             ], 403);
         }
     }
+
+
 
 
     /**
