@@ -8,6 +8,7 @@ import Dashboard from "../DashBoard";
 import IndexEvents from "../events/IndexEvents";
 import Event from "../events/Event";
 import AdminRouteGuard from "./AdminRouteGuard";
+import EditEvent from "../events/EditEvent";
 
 const RouterOutlet = () => {
   return (
@@ -18,6 +19,7 @@ const RouterOutlet = () => {
       <Route path={`/planetes/edit/:slug`} element={<EditPlanet />} />
       <Route path="/evenements" element={<IndexEvents />} />
       <Route path="/evenements/:slug" element={<Event />} />
+      <Route path="/evenements/edit/:slug" element={<EditEvent />} />
       <Route path={`/login`} element={<LoginForm />} />
       <Route
         path={`/admin`}

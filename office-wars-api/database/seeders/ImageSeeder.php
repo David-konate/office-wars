@@ -51,7 +51,6 @@ class ImageSeeder extends Seeder
                 'site_id' => $entity instanceof Site ? $entity->id : null,
                 'planet_id' => $entity instanceof Planet ? $entity->id : null,
                 'imagePath' => $imagePath, // Vous pouvez également conserver le chemin de l'image dans 'imagePath' si nécessaire
-                'slug' => Str::slug("Image $i"),
             ]);
         }
     }

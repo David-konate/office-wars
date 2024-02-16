@@ -2,26 +2,16 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Image extends Model
 {
-    use HasFactory, Sluggable;
-
+    use HasFactory;
     // Image.php (modèle Eloquent)
-    protected $fillable = ['imageName', 'planet_id', 'site_id', 'event_id', 'updated_at', 'slug', 'created_at', 'imagePlanet'];
+    protected $fillable = ['imageName', 'site_id', 'event_id', 'updated_at', 'created_at', 'imagePath'];
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'imageName'
-            ]
-        ];
-    }
+
 
     public function site()
     {

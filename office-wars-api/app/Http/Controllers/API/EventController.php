@@ -40,17 +40,16 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
     public function store(Request $request)
     {
         try {
             // Validation des données
-            $validator = Validator::make(request()->all(), [
+            $validator = Validator::make($request->all(), [
                 'eventName' => 'required|min:1|string',
                 'eventDescription' => 'nullable|string',
                 'dateTime' => 'required|date',
                 'planet_id' => 'required|exists:planets,id',
-                // 'photoEvent.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photoEvent.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|', // Ajout de règles pour les images
             ]);
 
             if ($validator->fails()) {
@@ -63,14 +62,30 @@ class EventController extends Controller
 
             // Création de l'événement
             $event = Event::create([
-                'eventName' => request('eventName'),
-                'eventDescription' => request('eventDescription'),
-                'dateTime' => request('dateTime'),
-                'planet_id' => request('planet_id'),
+                'eventName' => $request->input('eventName'),
+                'eventDescription' => $request->input('eventDescription'),
+                'dateTime' => $request->input('dateTime'),
+                'planet_id' => $request->input('planet_id'),
             ]);
 
             // Logique de chargement des images
+            if ($request->hasFile('photoEvent')) {
+                $images = $request->file('photoEvent');
+                foreach ($images as $file) {
+                    $filenameWithExt = $file->getClientOriginalName();
+                    $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
 
+                    $file->storeAs('public_uploads', $filename);
+
+                    // Création de l'image liée à l'événement
+                    $eventImage = new Image();
+                    $eventImage->imageName = $event->eventName;
+                    $eventImage->imagePath = $filename;
+                    $event->images()->save($eventImage);
+                }
+            }
 
             return response()->json([
                 'data' => $event,
@@ -84,6 +99,7 @@ class EventController extends Controller
             ], 403);
         }
     }
+
 
 
 
@@ -138,20 +154,21 @@ class EventController extends Controller
 
             // Logique de chargement d'image
             if ($request->hasFile('photoEvent')) {
-                $filenameWithExt = $request->file('photoEvent')->getClientOriginalName();
-                $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('photoEvent')->getClientOriginalExtension();
-                $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-                $request->file('photoEvent')->storeAs('public/uploads', $filename);
+                $images = $request->file('photoEvent');
+                foreach ($images as $file) {
+                    $filenameWithExt = $file->getClientOriginalName();
+                    $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
 
-                // Création de l'image liée à l'événement
-                $image = Image::create([
-                    'filename' => $filename,
-                    'event_id' => $event_single->id,
-                ]);
+                    $file->storeAs('public_uploads', $filename);
 
-                // Attribuez l'ID de l'image à l'événement
-                $event_single->image_id = $image->id;
+                    // Création de l'image liée à l'événement
+                    $eventImage = new Image();
+                    $eventImage->imageName = $event->eventName;
+                    $eventImage->imagePath = $filename;
+                    $event->images()->save($eventImage);
+                }
             }
 
             // Mise à jour des données

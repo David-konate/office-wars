@@ -45,16 +45,6 @@ const CreateEventForm = () => {
     }
   };
 
-  // const [formData, setFormData] = useState({
-  //   eventName: "",
-  //   eventDescription: "",
-  //   dateTime: "",
-  // });
-
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -127,7 +117,8 @@ const CreateEventForm = () => {
         <Input
           type="file"
           id="photoEvent"
-          name="photoEvent"
+          name="photoEvent[]"
+          multiple
           endAdornment={
             <InputAdornment position="end">
               <PhotoCamera />

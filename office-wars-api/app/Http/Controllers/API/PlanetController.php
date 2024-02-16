@@ -141,6 +141,7 @@ class PlanetController extends Controller
             // Récupération de la planète
             $planet = Planet::findOrFail($planet);
 
+            $imageUrls = [];
             // Logique de chargement d'image
             if ($request->hasFile('imagePlanet')) {
                 $filenameWithExt = $request->file('imagePlanet')->getClientOriginalName();

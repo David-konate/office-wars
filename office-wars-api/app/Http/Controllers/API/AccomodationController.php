@@ -16,7 +16,7 @@ class AccomodationController extends Controller
     public function index()
     {
         try {
-            $accomodations = Accomodation::all();
+            $accomodations = Accomodation::with(['planet'])->get();
 
             return response()->json($accomodations);
         } catch (\Throwable $e) {

@@ -65,6 +65,7 @@ Route::controller(EventController::class)->group(function () {
 
 //Route images
 Route::controller(ImageController::class)->group(function () {
+    Route::get('images/eventslist', 'eventsList');
     Route::get('imagesHeadband', 'headband');
     Route::delete('images/{image}', 'destroy')->middleware('auth:sanctum');
 });

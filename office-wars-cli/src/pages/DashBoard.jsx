@@ -7,11 +7,11 @@ import WhiteButton from "../components/buttons/WhiteButton";
 import CreateSiteForm from "../components/forms/CreateSiteForm";
 import AccommodationCreateForm from "../components/forms/CreateAccommodationForm";
 import PlanetList from "../components/lists/Planetslist";
+import EventList from "../components/lists/EventsList";
+import AccomodationsList from "../components/lists/AccomodationsList";
+import SitesList from "../components/lists/SitesList";
 
 const Dashboard = () => {
-  const [showPlanetForm, setShowPlanetForm] = useState(false);
-  const [showEventForm, setShowEventForm] = useState(false);
-
   const [tabs, setTabs] = useState({
     planetList: {
       id: 1,
@@ -23,19 +23,19 @@ const Dashboard = () => {
       id: 2,
       isOpen: false,
       buttonLabel: "Liste des évènements",
-      component: CreateEventForm,
+      component: EventList,
     },
     siteList: {
       id: 3,
       isOpen: false,
       buttonLabel: "Liste des sites",
-      component: CreateSiteForm,
+      component: SitesList,
     },
     accomodationList: {
       id: 4,
       isOpen: false,
       buttonLabel: "Liste des lieux de vie",
-      component: AccommodationCreateForm,
+      component: AccomodationsList,
     },
     planetForm: {
       id: 5,

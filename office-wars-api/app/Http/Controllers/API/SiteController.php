@@ -17,8 +17,7 @@ class SiteController extends Controller
     public function index()
     {
         try {
-            $site = Site::all();
-
+            $site = Site::with(['planet'])->get();
             return response()->json($site);
         } catch (\Throwable $e) {
             return response()->json([
@@ -101,7 +100,7 @@ class SiteController extends Controller
     {
         try {
 
-            return  Site::findOrFail($site);
+            return  Site::with('planet')->findOrFail($site);
 
             return response()->json([
                 'status' => true,

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Typography, TextField, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUserContext } from "../context/UserProvider";
+import MessageDialog from "../components/message/MessageDialog";
 
 const LoginForm = () => {
   const { setUser } = useUserContext();
   const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogTitle, setDialogTitle] = useState("");
+  const [dialogMessage, setDialogMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,11 +22,20 @@ const LoginForm = () => {
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
+      setDialogTitle("Succès");
+      setDialogMessage("connexion reussite");
+      setOpenDialog(true);
       navigate("/");
     } catch (error) {
+      setDialogTitle("Erreur");
+      setDialogMessage(error.response.data.message);
+      setOpenDialog(true);
       console.error(error.response?.data || "Erreur lors de la connexion.");
       // Ajoutez ici une logique pour gérer les erreurs côté client
     }
+  };
+  const handleDialogClose = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -70,6 +83,12 @@ const LoginForm = () => {
           </Button>
         </Box>
       </Box>
+      <MessageDialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        title={dialogTitle}
+        message={dialogMessage}
+      />
     </Container>
   );
 };

@@ -64,10 +64,10 @@ class EventSeeder extends Seeder
     {
         for ($i = 1; $i <= $count; $i++) {
             Image::create([
-                'imageName' => "Event {$event->id} Image $i",
+                'imagePath' => "Event {$event->id} Image $i",
                 'planet_id' => $event->planet_id,
                 'site_id' => $event->site_id,
-                'slug' => Str::slug("Event {$event->id} Image $i"),
+
             ]);
         }
     }

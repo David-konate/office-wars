@@ -6,8 +6,6 @@ import { useLocation } from "react-router-dom";
 import UpdatePlanetForm from "../../components/forms/UpdatePlanetForm";
 
 const EditPlanet = () => {
-  const [planet, setPlanet] = useState([]);
-  const [isBusy, setIsBusy] = useState(true);
   const location = useLocation();
   const planetId = location.state ? location.state.planetId : null;
 
@@ -16,20 +14,16 @@ const EditPlanet = () => {
   }, []);
 
   const fetchData = async () => {
-    try {
-      const res = await axios.get(`planets/${planetId}`);
-      setPlanet(res.data.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsBusy(false);
-    }
+    // try {
+    //   const res = await axios.get(`planets/${planetId}`);
+    //   setPlanet(res.data.data);
+    // } catch (error) {
+    //   console.error(error);
+    // } finally {
+    //   setIsBusy(false);
+    // }
   };
-  return isBusy ? (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress />
-    </Box>
-  ) : (
+  return (
     <Container>
       <UpdatePlanetForm planetId={planetId} />
     </Container>
