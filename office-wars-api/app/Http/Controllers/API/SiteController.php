@@ -17,7 +17,7 @@ class SiteController extends Controller
     public function index()
     {
         try {
-            $site = Site::with(['planet'])->get();
+            $site = Site::with(['planet', 'images'])->get();
             return response()->json($site);
         } catch (\Throwable $e) {
             return response()->json([
@@ -37,11 +37,11 @@ class SiteController extends Controller
             $validator = Validator::make(request()->all(), [
                 'siteName' => 'required|min:1|string',
                 'siteDescription' => 'nullable|string',
-                'touristActivities' => 'nullable|string',
-                'attractionType' => 'nullable|string',
-                'shops' => 'nullable|string',
-                'slug' => 'required|min:1|string|unique:sites',
-                'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour les images
+                'planet_id' => 'required|exists:planets,id',
+                // 'touristActivities' => 'nullable|string',
+                // 'attractionType' => 'nullable|string',
+                // 'shops' => 'nullable|string',
+                'photoSite.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour les images
             ]);
 
             if ($validator->fails()) {
@@ -56,15 +56,15 @@ class SiteController extends Controller
             $site = Site::create([
                 'siteName' => request('siteName'),
                 'siteDescription' => request('siteDescription'),
-                'touristActivities' => request('touristActivities'),
-                'attractionType' => request('attractionType'),
+                'planet_id' => $request->input('planet_id'),
+                // 'touristActivities' => request('touristActivities'),
+                // 'attractionType' => request('attractionType'),
                 'shops' => request('shops'),
-                'slug' => request('slug'),
             ]);
 
             // Logique de chargement des images
-            if ($request->hasFile('image')) {
-                foreach ($request->file('image') as $file) {
+            if ($request->hasFile('photoSite')) {
+                foreach ($request->file('photoSite') as $file) {
                     $filenameWithExt = $file->getClientOriginalName();
                     $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $file->getClientOriginalExtension();
@@ -72,10 +72,10 @@ class SiteController extends Controller
                     $file->storeAs('public/uploads', $filename);
 
                     // Création de l'image liée au site
-                    Image::create([
-                        'imageName' => $filename,
-                        'site_id' => $site->id,
-                    ]);
+                    $siteImage = new Image();
+                    $siteImage->imageName = $site->siteName;
+                    $siteImage->imagePath = $filename;
+                    $site->images()->save($siteImage);
                 }
             }
 
@@ -135,7 +135,7 @@ class SiteController extends Controller
                 'attractionType' => 'nullable|string',
                 'shops' => 'nullable|string',
                 'slug' => 'required|min:1|string|unique:sites,slug,' . $site,
-                'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour les images
+                'photoSite.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour les images
             ]);
 
             if ($validator->fails()) {
@@ -149,8 +149,8 @@ class SiteController extends Controller
             $site_single = Site::findOrFail($site);
 
             // Logique de chargement d'image
-            if ($request->hasFile('image')) {
-                foreach ($request->file('image') as $file) {
+            if ($request->hasFile('photoSite')) {
+                foreach ($request->file('photoSite') as $file) {
                     $filenameWithExt = $file->getClientOriginalName();
                     $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $file->getClientOriginalExtension();
@@ -158,10 +158,11 @@ class SiteController extends Controller
                     $file->storeAs('public/uploads', $filename);
 
                     // Création de l'image liée au site
-                    Image::create([
-                        'imageName' => $filename,
-                        'site_id' => $site_single->id,
-                    ]);
+                    // Création de l'image liée au site
+                    $siteImage = new Image();
+                    $siteImage->imageName = $site->siteName;
+                    $siteImage->imagePath = $filename;
+                    $site->images()->save($siteImage);
                 }
             }
 

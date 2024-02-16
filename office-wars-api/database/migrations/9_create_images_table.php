@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('imageName', 50)->nullable();
-            $table->string('image_path',);
+            $table->string('imagePath',);
 
 
             $table->timestamps();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('planet_id')->nullable()->constrained('planets');
             $table->foreignId('site_id')->nullable()->constrained('sites');
             $table->foreignId('event_id')->nullable()->constrained('events');
+            $table->foreignId('accomodation_id')->nullable()->constrained('accomodations');
         });
     }
 

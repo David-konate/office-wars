@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
     // Image.php (modèle Eloquent)
-    protected $fillable = ['imageName', 'site_id', 'event_id', 'updated_at', 'created_at', 'imagePath'];
+    protected $fillable = ['imageName', 'site_id', 'event_id', 'accomodation_id', 'updated_at', 'created_at', 'imagePath'];
 
 
 
@@ -21,5 +21,9 @@ class Image extends Model
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id');
+    }
+    public function accomodation()
+    {
+        return $this->belongsTo(Event::class, 'accomodation_id');
     }
 }

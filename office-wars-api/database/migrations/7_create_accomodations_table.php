@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Ajoutez la colonne 'site_id' pour la relation
-            $table->foreignId('site_id')->constrained('sites');
+
             $table->foreignId('planet_id')->constrained('planets');
         });
     }

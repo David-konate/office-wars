@@ -77,7 +77,7 @@ class EventController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
 
-                    $file->storeAs('public_uploads', $filename);
+                    $file->storeAs('public/uploads', $filename);
 
                     // Création de l'image liée à l'événement
                     $eventImage = new Image();
@@ -161,7 +161,7 @@ class EventController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
 
-                    $file->storeAs('public_uploads', $filename);
+                    $file->storeAs('public/uploads', $filename);
 
                     // Création de l'image liée à l'événement
                     $eventImage = new Image();

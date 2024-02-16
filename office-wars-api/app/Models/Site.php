@@ -13,9 +13,6 @@ class Site extends Model
     protected $fillable = [
         'siteName',
         'siteDescription',
-        'touristActivities',
-        'attractionType',
-        'shops',
         'planet_id',
         'slug',
     ];
@@ -36,13 +33,13 @@ class Site extends Model
         return $this->belongsTo(Planet::class, 'planet_id'); //
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class); // Assurez-vous de remplacer 'Image' par le nom de votre modèle Image
+    }
 
 
     /**
      * Relation avec la table Accomodations (One-to-Many)
      */
-    public function accomodations()
-    {
-        return $this->hasMany(Accomodation::class, 'site_id');
-    }
 }

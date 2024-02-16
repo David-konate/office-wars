@@ -26,7 +26,6 @@ class AccomodationFactory extends Factory
             'rates' => $this->faker->randomFloat(2, 50, 500),
             'slug' => $this->faker->word,
             "planet_id" =>  $planet->id,
-            'site_id' => $site->id,
         ];
     }
 }

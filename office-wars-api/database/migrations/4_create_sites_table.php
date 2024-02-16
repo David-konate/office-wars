@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('siteName', 50);
             $table->text('siteDescription');
-            $table->text('touristActivities');
-            $table->string('attractionType', 50);
+            // $table->text('touristActivities');
+            // $table->string('attractionType', 50);
             $table->string('slug')->unique();
-            $table->string('shops', 50);
+            // $table->string('shops', 50);
             $table->timestamps();
 
 

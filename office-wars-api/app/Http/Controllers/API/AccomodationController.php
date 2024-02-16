@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 
 use App\Models\Accomodation;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class AccomodationController extends Controller
     public function index()
     {
         try {
-            $accomodations = Accomodation::with(['planet'])->get();
+            $accomodations = Accomodation::with(['planet', 'images'])->get();
 
             return response()->json($accomodations);
         } catch (\Throwable $e) {
@@ -31,16 +32,15 @@ class AccomodationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(Request $request)
     {
         try {
-            $validationAccomodation = Validator::make(request()->all(), [
+            $validationAccomodation = Validator::make($request->all(), [
                 'accomodationName' => 'required|min:1|string',
                 'accomodationType' => 'required|min:1|string',
                 'numberOfRoom' => 'required|integer',
                 'rates' => 'required|numeric',
-                'slug' => 'required|min:1|string|unique:accomodations',
-                'site_id' => 'required|exists:sites,id',
+                'planet_id' => 'required|exists:planets,id',
             ]);
 
             if ($validationAccomodation->fails()) {
@@ -56,9 +56,28 @@ class AccomodationController extends Controller
                 'accomodationType' => request('accomodationType'),
                 'numberOfRoom' => request('numberOfRoom'),
                 'rates' => request('rates'),
-                'slug' => request('slug'),
-                'site_id' => request('site_id'),
+                'planet_id' => request('planet_id'),
             ]);
+
+            // Logique de chargement des images
+            if ($request->hasFile('photoAccomodation')) {
+                $images = $request->file('photoAccomodation');
+                foreach ($images as $file) {
+                    $filenameWithExt = $file->getClientOriginalName();
+                    $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+
+                    $file->storeAs('public/uploads', $filename);
+
+                    // Création de l'image liée à l'événement
+                    $accomodationtImage = new Image();
+                    $accomodationtImage->imageName = $accomodation->accomodationName;
+                    $accomodationtImage->imagePath = $filename;
+                    $accomodation->images()->save($accomodationtImage);
+                }
+            }
+
 
             return response()->json([
                 'data' => $accomodation,
@@ -108,7 +127,7 @@ class AccomodationController extends Controller
                 'numberOfRoom' => 'required|integer',
                 'rates' => 'required|numeric',
                 'slug' => 'required|min:1|string|unique:accomodations,slug,' . $accomodation,
-                'site_id' => 'required|exists:sites,id',
+                'planet_id' => 'required|exists:planets,id',
             ]);
 
             if ($validator->fails()) {
@@ -128,7 +147,7 @@ class AccomodationController extends Controller
                 'numberOfRoom' => request('numberOfRoom'),
                 'rates' => request('rates'),
                 'slug' => request('slug'),
-                'site_id' => request('site_id'),
+                'planet-id' => request('planet_id'),
             ]);
 
             return response()->json([
