@@ -36,16 +36,16 @@ const RegisterFormComponent = () => {
       setUser(response.data.user);
       setDialogTitle("Succès");
       setDialogMessage("Inscription réussie");
-      setOpenDialog(true);
-      navigate("/");
     } catch (error) {
       setDialogTitle("Erreur");
       setDialogMessage(
         error.response?.data.message || "Erreur lors de l'inscription."
       );
-      setOpenDialog(true);
       console.error(error.response?.data || "Erreur lors de l'inscription.");
       // Ajoutez ici une logique pour gérer les erreurs côté client
+    } finally {
+      setOpenDialog(true); // Exécuté après le bloc try-catch, indépendamment du succès ou de l'échec
+      navigate("/"); // Redirection vers la page d'accueil
     }
   };
 

@@ -10,6 +10,7 @@ import Event from "../events/Event";
 import AdminRouteGuard from "./AdminRouteGuard";
 import EditEvent from "../events/EditEvent";
 import Welcome from "../quizz/Welcome";
+import Profil from "../users/Profil";
 
 const RouterOutlet = () => {
   return (
@@ -37,6 +38,8 @@ const RouterOutlet = () => {
         path={`/admin`}
         element={<AdminRouteGuard element={<Dashboard />} />}
       />
+
+      <Route path="/profil" element={<Profil />} />
     </Routes>
   );
 };

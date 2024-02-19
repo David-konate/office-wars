@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SiteController;
 use App\Http\Controllers\Api\TypeController;
@@ -10,9 +12,10 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\PlanetController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\RankingController;
 use App\Http\Controllers\Api\SecurityController;
 use App\Http\Controllers\Api\AccomodationController;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Ranking;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,36 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-
 Route::get('/me', function () {
-    return Auth::user();
+    // Assurez-vous que l'utilisateur est authentifié
+    $user = Auth::user();
+
+    // Charger l'utilisateur avec la relation "rankings"
+    $userWithRankings = User::with('rankings')->find($user->id);
+
+    // Récupérer les 3 meilleurs classements pour l'utilisateur spécifié
+    $topRankings = Ranking::where('user_id', $user->id)
+        ->orderByDesc('resultQuizz')
+        ->limit(3)
+        ->get();
+
+    // Récupérer les 3 derniers résultats triés par ordre croissant de 'resultQuizz' pour l'utilisateur spécifié
+    $latestRankings = Ranking::where('user_id', $user->id)
+        ->orderBy('resultQuizz')
+        ->limit(3)
+        ->get();
+
+    // Compter le nombre total de classements de l'utilisateur
+    $totalRankingsCount = Ranking::where('user_id', $user->id)->count();
+
+    // Retourner les données sous forme de tableau associatif
+    return [
+        'user' => $user,
+        'rankings' => $userWithRankings->rankings,
+        'topRankings' => $topRankings,
+        'latestRankings' => $latestRankings,
+        'totalRankingsCount' => $totalRankingsCount,
+    ];
 })->middleware('auth:sanctum');
 //Route users
 Route::prefix('/security')->group(function () {
@@ -68,6 +98,10 @@ Route::controller(ImageController::class)->group(function () {
     Route::get('images/eventslist', 'eventsList');
     Route::get('imagesHeadband', 'headband');
     Route::delete('images/{image}', 'destroy')->middleware('auth:sanctum');
+});
+//Route rankings
+Route::controller(RankingController::class)->group(function () {
+    Route::get('rankings/{user}', 'userProfil');
 });
 
 //Route planetes

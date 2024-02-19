@@ -6,12 +6,18 @@ const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userRankings, setUserRankings] = useState(null);
+  const [userTopRankings, setUserTopRankings] = useState(null);
+  const [userRankingsCount, setUserRankingsCount] = useState(null);
 
   function authentification() {
     axios
       .get(`/me`)
       .then((res) => {
-        setUser(res.data);
+        setUser(res.data.user);
+        setUserRankings(res.data.rankings);
+        setUserTopRankings(res.data.topRankings);
+        setUserRankingsCount(res.data.totalRankingsCount);
         console.log(res.data);
       })
       .catch((e) => {
@@ -20,7 +26,16 @@ export const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, authentification }}>
+    <UserContext.Provider
+      value={{
+        userRankingsCount,
+        userTopRankings,
+        userRankings,
+        user,
+        setUser,
+        authentification,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
