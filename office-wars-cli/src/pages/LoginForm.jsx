@@ -1,94 +1,44 @@
+// VotrePage.js
+
+import LoginFormComponent from "../components/LoginFormComponent";
+import RegisterFormComponent from "../components/RegisterFormComponent";
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useUserContext } from "../context/UserProvider";
-import MessageDialog from "../components/message/MessageDialog";
+import { Box, Container } from "@mui/material";
+import WhiteButton from "../components/buttons/WhiteButton";
 
 const LoginForm = () => {
-  const { setUser } = useUserContext();
-  const navigate = useNavigate();
-  const [openDialog, setOpenDialog] = useState(false);
-  const [dialogTitle, setDialogTitle] = useState("");
-  const [dialogMessage, setDialogMessage] = useState("");
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    try {
-      const response = await axios.post("/security/login", formData);
-
-      console.log(response.data);
-      localStorage.setItem("token", response.data.token);
-      setUser(response.data.user);
-      setDialogTitle("Succès");
-      setDialogMessage("connexion reussite");
-      setOpenDialog(true);
-      navigate("/");
-    } catch (error) {
-      setDialogTitle("Erreur");
-      setDialogMessage(error.response.data.message);
-      setOpenDialog(true);
-      console.error(error.response?.data || "Erreur lors de la connexion.");
-      // Ajoutez ici une logique pour gérer les erreurs côté client
-    }
-  };
-  const handleDialogClose = () => {
-    setOpenDialog(false);
-  };
-
+  const [tabSelected, setTabSelected] = useState("loginForm");
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography component="h1" variant="h5">
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        margin: "1rem auto",
+      }}
+    >
+      <Box>
+        <WhiteButton
+          onClick={() => setTabSelected("loginForm")}
+          isActive={tabSelected === "loginForm"}
+          style={{ margin: "0 8px 2px 0" }}
+        >
           Connexion
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Adresse e-email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Mot de passe"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
+        </WhiteButton>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Connexion
-          </Button>
-        </Box>
+        <WhiteButton
+          onClick={() => setTabSelected("registerForm")}
+          isActive={tabSelected === "registerForm"}
+          style={{ margin: "0 0 2px 0" }}
+        >
+          Inscription
+        </WhiteButton>
       </Box>
-      <MessageDialog
-        open={openDialog}
-        onClose={handleDialogClose}
-        title={dialogTitle}
-        message={dialogMessage}
-      />
+
+      <Box>
+        {tabSelected === "loginForm" && <LoginFormComponent />}
+        {tabSelected === "registerForm" && <RegisterFormComponent />}
+      </Box>
     </Container>
   );
 };

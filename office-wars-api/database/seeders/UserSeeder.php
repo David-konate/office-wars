@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'userImage' => 'resources/images/users/r2d2.jpg',
             'role' => 'admin',
             'slug' => Str::slug('administrateur'),
-            'eemail_verified_at' => now(),
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'userImage' => 'resources/images/users/mara.jpg',
             'role' => 'user',
             'slug' => Str::slug('utilisateur'),
-            'eemail_verified_at' => now(),
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 

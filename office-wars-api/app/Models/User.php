@@ -55,6 +55,11 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'eemail_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
+
+    public function ranking()
+    {
+        return $this->hasOne(Ranking::class, 'user_id');
+    }
 }

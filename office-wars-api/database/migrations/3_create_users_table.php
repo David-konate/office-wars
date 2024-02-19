@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('userImage', 50)->nullable();
             $table->string('slug')->unique();
 
-            $table->timestamp('eemail_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
 
 
             $table->rememberToken();
