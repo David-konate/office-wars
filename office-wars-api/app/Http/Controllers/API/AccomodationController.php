@@ -150,6 +150,28 @@ class AccomodationController extends Controller
                 'planet-id' => request('planet_id'),
             ]);
 
+
+            // Logique de chargement des images
+            if ($request->hasFile('photoAccomodation')) {
+                $images = $request->file('photoAccomodation');
+                foreach ($images as $file) {
+                    $filenameWithExt = $file->getClientOriginalName();
+                    $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+
+                    $file->storeAs('public/uploads', $filename);
+
+                    // Création de l'image liée à l'événement
+                    $accomodationtImage = new Image();
+                    $accomodationtImage->imageName = $accomodation->accomodationName;
+                    $accomodationtImage->imagePath = $filename;
+                    $accomodation->images()->save($accomodationtImage);
+                }
+            }
+
+
+
             return response()->json([
                 'status' => true,
                 'message' => 'Hébergement mis à jour avec succès',

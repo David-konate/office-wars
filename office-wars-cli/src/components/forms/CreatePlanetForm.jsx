@@ -9,8 +9,6 @@ import {
   Container,
   InputLabel,
   Input,
-  MenuItem,
-  Select,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MessageDialog from "../message/MessageDialog";
@@ -26,7 +24,6 @@ const CreatePlanetForm = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("");
   const [dialogMessage, setDialogMessage] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -50,9 +50,9 @@ const CreateEventForm = () => {
     const formData = new FormData(e.target);
     formData.set("planet", selectedPlanet);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
     try {
       const res = await axios.post("events", formData, {
         headers: {
@@ -105,7 +105,7 @@ const CreateEventForm = () => {
         />
         <TextField
           label="Date et heure de l'événement"
-          type="datetime-local"
+          type="date"
           variant="outlined"
           fullWidth
           margin="normal"

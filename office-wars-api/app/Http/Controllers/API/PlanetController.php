@@ -128,7 +128,7 @@ class PlanetController extends Controller
                 'galacticCoordinates' => 'nullable|string',
                 'population' => 'nullable|integer',
 
-                'imagePlanet' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image de la planète
+                // 'imagePlanet' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image de la planète
             ]);
 
             if ($validator->fails()) {

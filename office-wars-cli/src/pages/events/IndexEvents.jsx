@@ -70,7 +70,11 @@ const IndexEvents = () => {
                   <Box mt={3} className="img-planetes-index">
                     <img
                       style={{ borderRadius: "10px" }}
-                      src={`https://www.anakinworld.com/_next/image?url=https%3A%2F%2Fmedia.anakinworld.com%2Fuploads%2Fentries%2Fpage_full%2Fculture-podracer.jpg%3Fts%3D1649010167&w=1920&q=75`}
+                      src={
+                        event.image
+                          ? `http://127.0.0.1:8000/storage/uploads/${event.image.imagePath}`
+                          : "storage/images/notImage.png"
+                      }
                       alt={event.eventName}
                     />
                   </Box>

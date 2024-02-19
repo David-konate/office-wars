@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 const AccomodationsList = () => {
   const [isBusy, setIsBusy] = useState(true);
   const [accomodations, setAccomodations] = useState();
-  const [images, setImages] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +25,6 @@ const AccomodationsList = () => {
     try {
       const res = await axios.get(`accomodations`);
       setAccomodations(res.data);
-      const resImg = await axios.get(`images`);
-      setImages(resImg);
     } catch (error) {
       console.log(error);
     } finally {

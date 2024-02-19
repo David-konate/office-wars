@@ -57,11 +57,10 @@ const ImagesHandle = ({ route, customText }) => {
           {images.slice(0, 4).map((image, index) => (
             <Grid item key={index} xs={3}>
               <img
+                className="img-handle"
                 style={{
-                  height: "100%",
-                  objectFit: "cover",
                   width: "100%",
-                  filter: "blur(5px) brightness(1)",
+                  objectFit: "cover",
                 }}
                 alt={`baniere ${index + 1}`}
                 src={

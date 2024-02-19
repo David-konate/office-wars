@@ -111,7 +111,7 @@ class EventController extends Controller
     {
         try {
 
-            return  Event::with(['planet', 'site'])->findOrFail($event);
+            return  Event::with(['planet', 'images'])->findOrFail($event);
 
             return response()->json([
                 'status' => true,
@@ -138,8 +138,8 @@ class EventController extends Controller
                 'eventDescription' => 'nullable|string',
                 'dateTime' => 'required|date',
                 'slug' => 'required|min:1|string|unique:events,slug,' . $event,
-                'site_id' => 'required|exists:sites,id',
-                'photoEvent' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de règles pour l'image
+                'planet_id' => 'required|exists:planets,id',
+                'photoEvent.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp', // Ajout de règles pour les nouvelles images
             ]);
 
             if ($validator->fails()) {
@@ -150,12 +150,13 @@ class EventController extends Controller
             }
 
             // Récupération de l'événement
-            $event_single = Event::findOrFail($event);
+            $event = Event::findOrFail($event);
 
-            // Logique de chargement d'image
+            // // Logique de chargement des nouvelles images uniquement si de nouvelles images sont fournies
             if ($request->hasFile('photoEvent')) {
                 $images = $request->file('photoEvent');
                 foreach ($images as $file) {
+                    // Logique de création des nouvelles images
                     $filenameWithExt = $file->getClientOriginalName();
                     $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                     $extension = $file->getClientOriginalExtension();
@@ -171,8 +172,8 @@ class EventController extends Controller
                 }
             }
 
-            // Mise à jour des données
-            $event_single->update([
+            // Mise à jour des données de l'événement
+            $event->update([
                 'eventName' => $request->eventName,
                 'eventDescription' => $request->eventDescription,
                 'dateTime' => $request->dateTime,
@@ -183,7 +184,7 @@ class EventController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Événement mis à jour avec succès',
-                'data' => $event_single
+                'data' => $event
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
@@ -192,6 +193,7 @@ class EventController extends Controller
             ], 500);
         }
     }
+
 
 
 

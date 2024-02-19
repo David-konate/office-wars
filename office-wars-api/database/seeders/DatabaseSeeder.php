@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             AccomodationSeeder::class,
             ImageSeeder::class,
+            CategorySeeder::class,
+            LevelSeeder::class,
+            QuestionSeeder::class,
+            AnswerSeeder::class,
         ]);
     }
 }

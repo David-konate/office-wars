@@ -26,9 +26,9 @@ const EventList = () => {
     try {
       const res = await axios.get(`events`);
       setEvents(res.data);
-      const resImg = await axios.get(`images/eventslist`);
-      setImages(resImg.data);
-      console.log(resImg.data);
+      // const resImg = await axios.get(`images/eventslist`);
+      // setImages(resImg.data);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -58,8 +58,8 @@ const EventList = () => {
                 objectFit: "cover",
               }}
               src={
-                event.imageEvent
-                  ? `http://127.0.0.1:8000/storage/uploads/${event.imageEvent}`
+                event.image
+                  ? `http://127.0.0.1:8000/storage/uploads/${event.image.imagePath}`
                   : `http://127.0.0.1:8000/storage/images/notImage.png`
               }
               alt={event.imageEvent}
@@ -76,7 +76,7 @@ const EventList = () => {
           <Box width="10%" ml={2}>
             <IconButton
               onClick={() =>
-                navigate(`/events/edit/${event.slug}`, {
+                navigate(`/evenements/edit/${event.slug}`, {
                   state: { eventId: event.id },
                 })
               }

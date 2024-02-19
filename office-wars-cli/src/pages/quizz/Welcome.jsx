@@ -4,10 +4,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Container } from "@mui/system";
-import { linksAcceuil } from "../utils";
-import Logo from "../components/Logo";
-import CardAcceuil from "../components/cards/CardAcceuil";
-const Home = () => {
+import { linksAcceuilQuiz } from "../../utils";
+import CardAcceuil from "../../components/cards/CardAcceuil";
+const Welcome = () => {
   const [isBusy, setIsBusy] = useState(true);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -35,7 +34,7 @@ const Home = () => {
         sx={{
           padding: 5,
           position: "absolute",
-          top: 0,
+          top: 5,
           left: 0,
           width: "100%",
           height: "100%",
@@ -57,25 +56,17 @@ const Home = () => {
           color={"#ffe436"}
           mt={5}
           className="textAcceuil"
-          variant="h3"
+          variant="h2"
         >
-          Bienvenue !
+          Holocron Trivia
         </Typography>
         <Typography
           color={"#ffe436"}
-          mt={3}
+          mt={5}
           className="textAcceuil"
           variant="h3"
         >
-          Voyageons ensemble, dans une lointaine...
-        </Typography>
-        <Typography
-          color={"#ffe436"}
-          mt={1}
-          className="textAcceuil"
-          variant="h3"
-        >
-          Très lointaine galaxie...
+          Alliance des Connaissances : Maîtrisez-vous la force ?
         </Typography>
       </Box>
       <Box
@@ -83,12 +74,12 @@ const Home = () => {
         ml={5}
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-evenly",
           alignItems: isSmallScreen ? "center" : "flex-start",
           flexDirection: isSmallScreen ? "column" : "row",
         }}
       >
-        {linksAcceuil.map((link, index) => (
+        {linksAcceuilQuiz.map((link, index) => (
           <Link key={index} to={link.path} style={{ textDecoration: "none" }}>
             <CardAcceuil label={link.label} path={link.path} src={link.src} />
           </Link>
@@ -98,4 +89,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Welcome;

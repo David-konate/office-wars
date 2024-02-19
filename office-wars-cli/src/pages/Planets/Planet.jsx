@@ -70,12 +70,16 @@ const Planet = () => {
           </Link>
         </Breadcrumbs>
         <Box mt={5}>
-          <Typography p={1} variant="h3" className="titre-planet-detail">
+          <Typography p={1} variant="h3" className="titre-detail">
             {planet.planetName}
           </Typography>
           <Box className="img-planet-detail">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Coruscant.jpg"
+              src={
+                planet.imagePlanet
+                  ? `http://127.0.0.1:8000/storage/uploads/${planet.imagePlanet}`
+                  : "storage/images/notImage.png"
+              }
               alt=""
             />
           </Box>

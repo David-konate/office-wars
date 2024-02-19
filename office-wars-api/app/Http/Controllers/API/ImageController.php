@@ -29,100 +29,30 @@ class ImageController extends Controller
             ], 403);
         }
     }
-    public function eventsList()
-    {
-        try {
-            $uniqueImages = Image::whereNotNull('event_id')
-                ->groupBy('event_id')
-                ->select('event_id', DB::raw('MIN(id) as min_id'))
-                ->get();
-
-            $result = [];
-            foreach ($uniqueImages as $uniqueImage) {
-                $image = Image::find($uniqueImage->min_id);
-                if ($image) {
-                    $result[] = $image;
-                }
-            }
-
-            return response()->json([
-                'status' => true,
-                'data' => $result,
-            ]);
-        } catch (\Throwable $e) {
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage(),
-            ], 403);
-        }
-    }
-    public function sitesList()
-    {
-        try {
-            $uniqueImages = Image::whereNotNull('site_id')
-                ->groupBy('site_id')
-                ->select('site_id', DB::raw('MIN(id) as min_id'))
-                ->get();
-
-            $result = [];
-            foreach ($uniqueImages as $uniqueImage) {
-                $image = Image::find($uniqueImage->min_id);
-                if ($image) {
-                    $result[] = $image;
-                }
-            }
-
-            return response()->json([
-                'status' => true,
-                'data' => $result,
-            ]);
-        } catch (\Throwable $e) {
-            return response()->json([
-                'status' => false,
-                'message' => $e->getMessage(),
-            ], 403);
-        }
-    }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Recherchez l'enregistrement d'image par ID
+            $image = Image::findOrFail($id);
+
+            // Supprimez le fichier associé à l'image s'il existe
+            if ($image->imagePath) {
+                $imagePath = public_path("storage/uploads/{$image->imagePath}");
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
+            // Supprimez l'enregistrement de la base de données
+            $image->delete();
+
+            return response()->json(['message' => 'Image supprimée avec succès']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erreur lors de la suppression de l\'image'], 500);
+        }
     }
 }
