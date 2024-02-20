@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Accomodation;
 use App\Models\Site;
+use App\Models\Planet;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class AccomodationFactory extends Factory
 {
@@ -17,16 +17,15 @@ class AccomodationFactory extends Factory
     public function definition(): array
     {
         $site = Site::inRandomOrder()->first(); // Sélectionnez un site aléatoire
-
-        $accommodationName = $this->faker->word;
+        $planet = Planet::inRandomOrder()->first();
+        $accomodationName = $this->faker->word;
         return [
-            'accommodationName' => $accommodationName,
-            'accommodationType' => $this->faker->word,
+            'accomodationName' => $accomodationName,
+            'accomodationType' => $this->faker->word,
             'numberOfRoom' => $this->faker->numberBetween(1, 10),
             'rates' => $this->faker->randomFloat(2, 50, 500),
             'slug' => $this->faker->word,
-
-            'site_id' => $site->id,
+            "planet_id" =>  $planet->id,
         ];
     }
 }

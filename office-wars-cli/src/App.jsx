@@ -1,28 +1,38 @@
 // App.js
-import React from "react";
-import { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import RouterOutlet from "./pages/components/RouterOutlet";
+import { CircularProgress } from "@mui/material";
+import { useUserContext } from "./context/UserProvider";
 
 function App() {
-  // function load() {
-  //     try {
-
-  //     } catch (error) {
-
-  //     }
-  // }
+  const { authentification } = useUserContext();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      // authentification();
+    loadApplication();
+    authentification();
+  }, []);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  async function loadApplication() {
+    try {
+      await authentification();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoaded(true);
     }
-  }, [localStorage.getItem("token")]);
-  return (
+  }
+
+  return isLoaded ? (
     <>
       <NavBar />
       <RouterOutlet />
+    </>
+  ) : (
+    <>
+      <CircularProgress />
     </>
   );
 }

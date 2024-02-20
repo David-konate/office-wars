@@ -2,22 +2,32 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'eventName',
         'eventDescription',
         'dateTime',
+        'planet_id',
+        'photoEvent',
         'slug',
 
     ];
-
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'eventName'
+            ]
+        ];
+    }
     /**
      * Relation avec la table Images
      */
@@ -39,10 +49,6 @@ class Event extends Model
     /**
      * Relation avec la table Sites
      */
-    public function site()
-    {
-        return $this->belongsTo(Site::class, 'site_id');
-    }
 
     protected static function boot()
     {

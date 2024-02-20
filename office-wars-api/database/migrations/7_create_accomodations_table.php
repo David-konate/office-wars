@@ -16,15 +16,16 @@ return new class extends Migration
     {
         Schema::create('accomodations', function (Blueprint $table) {
             $table->id();
-            $table->string('accommodationName'); // Correction du nom de la colonne
-            $table->string('accommodationType');
+            $table->string('accomodationName'); // Correction du nom de la colonne
+            $table->string('accomodationType');
             $table->integer('numberOfRoom');
             $table->decimal('rates', 8, 2);
             $table->string('slug');
             $table->timestamps();
 
             // Ajoutez la colonne 'site_id' pour la relation
-            $table->foreignId('site_id')->constrained('sites');
+
+            $table->foreignId('planet_id')->constrained('planets');
         });
     }
 

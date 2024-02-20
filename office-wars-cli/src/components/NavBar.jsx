@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+
 import {
   Typography,
   AppBar,
@@ -8,31 +10,41 @@ import {
   Switch,
 } from "@mui/material/";
 import BlackButton from "./buttons/BlackButton";
-import { NavLink } from "react-router-dom";
-import { firstLetterUppercase, links } from "../utils";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  firstLetterUppercase,
+  links,
+  linksLogged,
+  linksUnlogged,
+} from "../utils";
 import { useTheme } from "../context/ThemeContext";
+import Logo from "./Logo";
+import { useUserContext } from "../context/UserProvider"; // Importez le hook
 
 function NavBar() {
-  const [activePage, setActivePage] = useState(""); // État pour suivre la page active
+  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const handleLinkClick = (page) => {
-    setActivePage(page);
+  const { user } = useUserContext(); // Utilisez le hook useUserContext pour obtenir l'état d'authentification
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("/security/logout", {
+        Headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      localStorage.removeItem("token");
+      navigate("/login");
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion :", error);
+    }
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "var(--secondary-color)",
-      }}
-    >
-      <Container maxWidth="lg" sx={{ display: "flex" }}>
+    <AppBar position="sticky" sx={{ top: 0 }}>
+      <Container maxWidth="xl" sx={{ display: "flex" }}>
+        <Logo />
         <Toolbar className="toolbar" sx={{ width: "100%" }}>
-          <Switch
-            checked={theme === "dark"}
-            onChange={toggleTheme}
-            inputProps={{ "aria-label": "toggle theme" }}
-          />
           <Box
             className="Box"
             sx={{
@@ -40,22 +52,44 @@ function NavBar() {
               justifyContent: "center",
               flex: 1,
               height: "100%",
+              width: "70%",
             }}
           >
-            {links.map((link) => {
-              return (
-                <NavLink
-                  className="navbar_link"
-                  key={link.label}
-                  to={link.path}
-                >
-                  {firstLetterUppercase(link.label)}
-                </NavLink>
-              );
-            })}
+            {(user ? linksLogged : linksUnlogged).map((link) => (
+              <NavLink
+                className="navbar_link"
+                key={link.label}
+                to={link.label === "logout" ? "#" : link.path}
+                onClick={link.label === "logout" ? handleLogout : null}
+              >
+                {firstLetterUppercase(link.label)}
+              </NavLink>
+            ))}
           </Box>
-          <Box>
-            <BlackButton>Nous contacter</BlackButton>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+            >
+              Jedi
+            </Typography>
+            <Switch
+              checked={theme === "dark"}
+              onChange={toggleTheme}
+              inputProps={{ "aria-label": "toggle theme" }}
+            />
+            <Typography
+              variant="body2"
+              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+            >
+              Sith
+            </Typography>
           </Box>
         </Toolbar>
       </Container>

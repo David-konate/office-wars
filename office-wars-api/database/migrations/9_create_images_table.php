@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('imageName', 50);
-            $table->string('imagePath',)->nullable();
-            $table->string('slug');
+            $table->string('imageName', 50)->nullable();
+            $table->string('imagePath',);
+
 
             $table->timestamps();
 
             $table->foreignId('planet_id')->nullable()->constrained('planets');
             $table->foreignId('site_id')->nullable()->constrained('sites');
             $table->foreignId('event_id')->nullable()->constrained('events');
+            $table->foreignId('accomodation_id')->nullable()->constrained('accomodations');
         });
     }
 

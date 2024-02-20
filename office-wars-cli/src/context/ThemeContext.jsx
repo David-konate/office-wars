@@ -1,14 +1,26 @@
 // ThemeContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useLayoutEffect,
+} from "react";
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light"); // 'light' ou 'dark'
+  // Lire la valeur du thème depuis le localStorage au chargement initial
+  const storedTheme = localStorage.getItem("theme") || "light";
+  const [theme, setTheme] = useState(storedTheme);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
+
+  useLayoutEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

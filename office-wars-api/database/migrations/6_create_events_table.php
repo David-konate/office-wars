@@ -22,7 +22,6 @@ return new class extends Migration
 
 
             $table->foreignId('planet_id')->constrained('planets');
-            $table->foreignId('site_id')->constrained('sites');
         });
     }
 

@@ -2,22 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Image extends Model
 {
     use HasFactory;
-
     // Image.php (modèle Eloquent)
-    protected $fillable = ['imageName', 'planet_id', 'site_id', 'event_id', 'updated_at', 'slug', 'created_at'];
+    protected $fillable = ['imageName', 'site_id', 'event_id', 'accomodation_id', 'updated_at', 'created_at', 'imagePath'];
 
 
-    public function planet()
-    {
-        return $this->belongsTo(Planet::class, 'planet_id');
-    }
 
     public function site()
     {
@@ -28,13 +22,8 @@ class Image extends Model
     {
         return $this->belongsTo(Event::class, 'event_id');
     }
-
-    protected static function boot()
+    public function accomodation()
     {
-        parent::boot();
-
-        static::creating(function ($image) {
-            $image->slug = Str::slug($image->imageName);
-        });
+        return $this->belongsTo(Event::class, 'accomodation_id');
     }
 }

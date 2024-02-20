@@ -2,29 +2,42 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Accomodation extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
-        'accommodationName', 'accommodationType', 'numberOfRoom', 'rates', 'slug', 'site_id',
+        'accomodationName', 'accomodationType', 'numberOfRoom', 'rates', 'slug', 'planet_id'
     ];
 
-
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'accomodationName'
+            ]
+        ];
+    }
     /**
      * Relation avec la table Images (Many-to-Many)
      */
 
     /**
-     * Relation avec la table Sites
      */
-    public function site()
+
+    public function planet()
     {
-        return $this->belongsTo(Site::class, 'site_id');
+        return $this->belongsTo(Planet::class, 'planet_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class); // Assurez-vous de remplacer 'Image' par le nom de votre modèle Image
     }
 
     protected static function boot()
@@ -32,7 +45,7 @@ class Accomodation extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = Str::slug($model->accommodationName);
+            $model->slug = Str::slug($model->accomodationName);
         });
     }
 }
