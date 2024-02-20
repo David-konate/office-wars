@@ -8,34 +8,59 @@ use App\Http\Controllers\Controller;
 use App\Models\Ranking;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RankingController extends Controller
 {
-    public function userProfil(User $user)
+    /**
+     * Display a listing of the resource.
+     */
+
+    public function index()
     {
-        // Pas besoin de vérifier si l'utilisateur existe, Laravel le fait automatiquement
-        // Récupérer les 3 meilleurs résultats triés par ordre décroissant de 'resultQuizz' pour l'utilisateur spécifié
-        $topRankings = Ranking::where('user_id', $user->id)
-            ->orderByDesc('resultQuizz')
-            ->limit(3)
-            ->get();
+        try {
+            $rankings = Ranking::with('user')->get();
+            return response()->json([
+                'rankings' => $rankings,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 403);
+        }
+    }
 
-        // Récupérer les 3 derniers résultats triés par ordre croissant de 'resultQuizz' pour l'utilisateur spécifié
-        $latestRankings = Ranking::where('user_id', $user->id)
-            ->orderBy('resultQuizz')
-            ->limit(3)
-            ->get();
 
-        // Compter le nombre total de classements de l'utilisateur
-        $totalRankingsCount = Ranking::where('user_id', $user->id)->count();
+    public function welcome()
+    {
+        try {
 
-        return response()->json([
-            'status' => true,
-            'data' => [
-                'top_rankings' => $topRankings,
-                'latest_rankings' => $latestRankings,
-                'total_rankings_count' => $totalRankingsCount,
-            ],
-        ]);
+
+            $latestRankings = DB::table('rankings')
+                ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
+                ->join('users', 'rankings.user_id', '=', 'users.id')
+                ->orderBy('rankings.created_at', 'desc')
+                ->take(5)
+                ->get();
+
+
+            $topRankings = DB::table('rankings')
+                ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
+                ->join('users', 'rankings.user_id', '=', 'users.id')
+                ->orderBy('rankings.resultQuizz', 'desc')
+                ->take(10)
+                ->get();
+
+            return response()->json([
+                'latestRankings' => $latestRankings,
+                'topRankings' => $topRankings,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 403);
+        }
     }
 }

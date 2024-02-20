@@ -44,7 +44,7 @@ Route::get('/me', function () {
 
     // Récupérer les 3 derniers résultats triés par ordre croissant de 'resultQuizz' pour l'utilisateur spécifié
     $latestRankings = Ranking::where('user_id', $user->id)
-        ->orderBy('resultQuizz')
+        ->orderByDesc('created_at') // Utilisation de orderByDesc pour trier par ordre décroissant
         ->limit(3)
         ->get();
 
@@ -70,6 +70,7 @@ Route::prefix('/security')->group(function () {
 //Route users
 Route::controller(UserController::class)->group(function () {
     Route::get('users/{user}', 'show');
+    Route::get('users/{users}', 'multi');
     Route::get('users', 'index');
     Route::post('users/{user}', 'update')->middleware('auth:sanctum');
     Route::delete('users/{user}', 'destroy')->middleware('auth:sanctum');
@@ -101,7 +102,8 @@ Route::controller(ImageController::class)->group(function () {
 });
 //Route rankings
 Route::controller(RankingController::class)->group(function () {
-    Route::get('rankings/{user}', 'userProfil');
+    Route::get('rankings', 'index');
+    Route::get('rankings-welcome', 'welcome');
 });
 
 //Route planetes

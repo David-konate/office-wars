@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [userRankings, setUserRankings] = useState(null);
   const [userTopRankings, setUserTopRankings] = useState(null);
   const [userRankingsCount, setUserRankingsCount] = useState(null);
+  const [userLatestRankings, setUserLastetRankings] = useState(null);
 
   function authentification() {
     axios
@@ -17,6 +18,7 @@ export const UserProvider = ({ children }) => {
         setUser(res.data.user);
         setUserRankings(res.data.rankings);
         setUserTopRankings(res.data.topRankings);
+        setUserLastetRankings(res.data.latestRankings);
         setUserRankingsCount(res.data.totalRankingsCount);
         console.log(res.data);
       })
@@ -28,6 +30,7 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        userLatestRankings,
         userRankingsCount,
         userTopRankings,
         userRankings,

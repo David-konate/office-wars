@@ -166,3 +166,11 @@ h6 {
   max-width: 400px; /* Définissez une largeur maximale si nécessaire */
   max-height: 350px; /* Définissez une hauteur maximale si nécessaire */
 }
+
+.rankin-user-top-scrore {
+  display: inline-block; /* Permet au fond de s'adapter à la largeur du texte */
+  background-color: var(--primary-color);
+  color: var(--color-text);
+  border-radius: 5px;
+  padding: 0.1em 0.3em; /* Ajoutez un peu de marge intérieure pour un meilleur aspect */
+}

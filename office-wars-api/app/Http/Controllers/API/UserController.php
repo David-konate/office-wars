@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-
 use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,6 +54,41 @@ class UserController extends Controller
                 'data' => [
                     'user' => $user,
                     // 'latestReview' => $latestReview
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Erreur : ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function multi($userIds)
+    {
+        try {
+            $userIds = array_map('intval', explode(',', $userIds));
+
+
+            // Ajoutez ces lignes pour déboguer
+            Log::info('IDs reçus:', $userIds);
+
+            $users = User::whereIn('id', $userIds)->get(); // Assurez-vous que cette requête retourne des résultats
+
+            if ($users->isEmpty()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Aucun utilisateur trouvé pour les IDs donnés'
+                ], 404);
+            }
+
+            // $latestReviews = $users->flatMap->receiverReviews->first(); // Obtient la première revue pour chaque utilisateur
+
+            return response()->json([
+                'status' => true,
+                'data' => [
+                    'users' => $users,
+                    // 'latestReviews' => $latestReviews,
                 ]
             ], 200);
         } catch (\Exception $e) {

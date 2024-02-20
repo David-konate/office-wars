@@ -66,7 +66,6 @@ const Dashboard = () => {
   const [tabSelected, setTabSelected] = useState(tabs["planetList"]);
 
   const handleCreatePlanetFormSubmit = () => {
-    // Mettez à jour l'état pour ouvrir l'onglet "Liste des planètes"
     setTabSelected(tabs["planetList"]);
   };
 

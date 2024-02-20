@@ -148,7 +148,7 @@ export const linksAcceuil = [
 export const linksAcceuilQuiz = [
   {
     label: "Défie les joueurs",
-    path: "/",
+    path: "/holocron-trivia/public",
     src: "/images/vasVsobi.jpg",
   },
   {

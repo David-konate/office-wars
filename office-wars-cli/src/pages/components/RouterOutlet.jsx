@@ -11,6 +11,9 @@ import AdminRouteGuard from "./AdminRouteGuard";
 import EditEvent from "../events/EditEvent";
 import Welcome from "../quizz/Welcome";
 import Profil from "../users/Profil";
+import Ranked from "../quizz/Ranked";
+import Game from "../quizz/GameRanked";
+import GameRanked from "../quizz/GameRanked";
 
 const RouterOutlet = () => {
   return (
@@ -31,7 +34,12 @@ const RouterOutlet = () => {
         element={<AdminRouteGuard element={<EditEvent />} />}
       />
       {/* Quizz */}
-      <Route path="/quizz" element={<Welcome />} />
+      <Route path="/holocron-trivia" element={<Welcome />} />
+      <Route path="/holocron-trivia/public" element={<Ranked />} />
+      <Route
+        path="/holocron-trivia/public/nouvelle-partie"
+        element={<GameRanked />}
+      />
 
       <Route path={`/login`} element={<LoginForm />} />
       <Route
