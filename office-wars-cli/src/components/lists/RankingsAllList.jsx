@@ -115,7 +115,7 @@ const RankingsAllList = () => {
           <TableBody>
             {sortedRankings.length > 0 ? (
               sortedRankings.map((ranking, index) => (
-                <TableRow key={ranking.id}>
+                <TableRow key={index}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{ranking.resultQuizz}%</TableCell>
                   <TableCell>{ranking.user.userPseudo}</TableCell>

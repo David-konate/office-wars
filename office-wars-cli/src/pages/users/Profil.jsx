@@ -20,16 +20,16 @@ import WhiteButton from "../../components/buttons/WhiteButton";
 
 const Profil = () => {
   const [isBusy, setIsBusy] = useState(true);
-  const [tabs, setTabs] = useState({
-    ranginksList: {
-      id: 1,
+
+  const [tabs, setTabs] = useState([
+    {
+      name: "rankingsList",
       isOpen: false,
       buttonLabel: "Liste résultats",
       component: RankingsList,
     },
-  });
+  ]);
   const [tabSelected, setTabSelected] = useState(tabs["ranginksList"]); // Définissez la valeur initiale selon votre logique
-  const TabSelected = tabSelected.component;
 
   const {
     userLatestRankings,
@@ -65,6 +65,10 @@ const Profil = () => {
   const handleCreateRankingsFormSubmit = () => {
     // Mettez à jour l'état pour ouvrir l'onglet "Liste des résultats"
     setTabSelected(tabs["ranginksList"]);
+  };
+
+  const closeAllComponants = () => {
+    setTabs((prevTabs) => prevTabs.map((tab) => ({ ...tab, isOpen: false })));
   };
 
   return (
@@ -117,7 +121,7 @@ const Profil = () => {
                         ) : (
                           <img
                             height="300"
-                            src={`http://127.0.0.1:8000/storage/images/notImage.png}`}
+                            src={`http://127.0.0.1:8000/storage/images/notImage.png`}
                             alt={"Utilisateur sans avatar"}
                             loading="lazy"
                             style={{ borderRadius: 10 }}
@@ -271,9 +275,7 @@ const Profil = () => {
                 </Box>
               </Box>
               <Box>
-                {Array.from({
-                  length: Math.ceil(Object.keys(tabs).length / 4),
-                }).map((row, rowIndex) => (
+                {tabs.map((row, rowIndex) => (
                   <Box
                     key={rowIndex}
                     display="flex"
@@ -282,25 +284,35 @@ const Profil = () => {
                     alignItems="center"
                     mb={2}
                   >
-                    {Object.keys(tabs)
-                      .slice(rowIndex * 4, rowIndex * 4 + 4)
-                      .map((index) => (
-                        <WhiteButton
-                          key={index}
-                          onClick={() => setTabSelected(tabs[index])}
-                          isActive={tabs[index].id === tabSelected.id}
-                          style={{ margin: "2" }}
-                        >
-                          {tabs[index].buttonLabel}
-                        </WhiteButton>
-                      ))}
+                    {tabs.map((tab) => (
+                      <WhiteButton
+                        key={tab.name}
+                        style={{ margin: "2" }}
+                        onClick={() => {
+                          closeAllComponants();
+                          setTabs((prevTabs) =>
+                            prevTabs.map((t) =>
+                              t.name === tab.name
+                                ? { ...t, isOpen: true }
+                                : { ...t, isOpen: false }
+                            )
+                          );
+                        }}
+                      >
+                        {tab.buttonLabel}
+                      </WhiteButton>
+                    ))}
                   </Box>
                 ))}
               </Box>
 
               <Box>
-                {/* Composant sélectionné */}
-                <TabSelected userRankings={handleCreateRankingsFormSubmit} />
+                {tabs.find((tab) => tab.isOpen) &&
+                  tabs
+                    .find((tab) => tab.isOpen)
+                    .component({
+                      userRankings: handleCreateRankingsFormSubmit,
+                    })}
               </Box>
             </Container>
           ) : (

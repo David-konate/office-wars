@@ -9,7 +9,7 @@ export const BASE_URL_API = process.env.REACT_APP_BASE_URL_API;
 export const QUESTION_TIMER_DURATION = 25000;
 
 // Délai avant de commencer à déduire des points (en secondes)
-export const POINTS_DEDUCTION_DELAY = 5000;
+export const LIMITE_ALL_POINT = QUESTION_TIMER_DURATION - 5000;
 
 // Niveaux de réponse et leurs points respectifs
 export const LEVELS = {
@@ -19,39 +19,30 @@ export const LEVELS = {
 };
 
 // Fonction pour calculer les points en fonction du temps
+
 export const calculatePoints = (userTime, userLevel) => {
-  // Vérifier si le temps mis par l'utilisateur est supérieur à la durée POINTS_DEDUCTION_DELAY
-  if (userTime > POINTS_DEDUCTION_DELAY) {
-    // Calculer la durée de déduction en soustrayant le délai de déduction du temps total
-    const deductionTime = userTime - POINTS_DEDUCTION_DELAY;
+  console.log(userTime);
+  userTime = userTime * 1000;
+  const pointsMax = LEVELS[userLevel];
 
-    // Calculer le nombre de points maximum en fonction du niveau de réponse
-    const maxPoints = LEVELS[userLevel];
-
-    // Calculer le taux de décroissance des points par seconde
-    const decayRate =
-      maxPoints / (QUESTION_TIMER_DURATION - POINTS_DEDUCTION_DELAY);
-
-    // Calculer le nombre de points après déduction
-    const deductedPoints = maxPoints - decayRate * deductionTime;
-
-    // Assurer que le nombre de points ne devient pas négatif
-    return Math.max(deductedPoints, 0);
+  // Vérifier si le temps mis par l'utilisateur est inférieur à la durée LIMITE_ALL_POINT
+  if (userTime < LIMITE_ALL_POINT) {
+    const pointsPerdus =
+      Math.round((pointsMax / userTime) * LIMITE_ALL_POINT * 0.1 * 100) / 100;
+    console.log({ pointsPerdus });
+    const points = pointsMax - pointsPerdus;
+    return points;
   } else {
-    // Si le temps est inférieur à POINTS_DEDUCTION_DELAY, attribuer le nombre maximum de points
-    return LEVELS[userLevel];
+    console.log("full point", LEVELS[userLevel]);
+    // Si le temps est supérieur à POINTS_LIMITE_ALL_POINT, attribuer le nombre maximum de points
+    return pointsMax;
   }
 };
 
 export const calculatePercentage = (currentPoints, totalPoints) => {
-  // Calculer le pourcentage en fonction du nombre de points actuel et du nombre total de points
-  const percentage = (currentPoints / totalPoints) * 100;
-
-  // Arrondir le pourcentage à deux décimales
-  const roundedPercentage = Math.round(percentage * 100) / 100;
-
-  // Assurer que le pourcentage est compris entre 0 et 100
-  return Math.min(Math.max(roundedPercentage, 0), 100);
+  const percentage =
+    totalPoints !== 0 ? (currentPoints / totalPoints) * 100 : 0;
+  return parseFloat(percentage.toFixed(2));
 };
 
 // // Utilisation de la fonction
@@ -160,4 +151,20 @@ export const linksAcceuilQuiz = [
 
 export const firstLetterUppercase = (value) => {
   return value.charAt(0).toUpperCase() + value.slice(1);
+};
+
+export const convertToRoman = (num) => {
+  const romanNumerals = ["I", "II", "III"];
+  const values = [1, 2, 3];
+
+  let result = "";
+
+  for (let i = values.length - 1; i >= 0; i--) {
+    while (num >= values[i]) {
+      result += romanNumerals[i];
+      num -= values[i];
+    }
+  }
+
+  return result;
 };

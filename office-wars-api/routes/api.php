@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RankingController;
 use App\Http\Controllers\Api\SecurityController;
 use App\Http\Controllers\Api\AccomodationController;
+use App\Http\Controllers\Api\QuestionController;
 use App\Models\Ranking;
 
 /*
@@ -105,7 +106,10 @@ Route::controller(RankingController::class)->group(function () {
     Route::get('rankings', 'index');
     Route::get('rankings-welcome', 'welcome');
 });
-
+//Route questions
+Route::controller(QuestionController::class)->group(function () {
+    Route::get('new-game', 'index');
+});
 //Route planetes
 Route::controller(PlanetController::class)->group(function () {
     Route::get('planets/{planet}', 'show');

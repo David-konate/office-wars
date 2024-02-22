@@ -11,6 +11,8 @@ import "moment/locale/fr";
 import App from "./App";
 import "./App.scss";
 import { UserProvider } from "./context/UserProvider";
+import { QuestionProvider } from "./context/QuestionProvider";
+import { FilterProvider } from "./context/FilterProvider";
 
 moment.locale("fr");
 
@@ -25,12 +27,16 @@ if (TOKEN) {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <MainThemeProvider>
-    <CustomThemeProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </UserProvider>
-    </CustomThemeProvider>
+    <BrowserRouter>
+      <CustomThemeProvider>
+        <FilterProvider>
+          <UserProvider>
+            <QuestionProvider>
+              <App />
+            </QuestionProvider>
+          </UserProvider>
+        </FilterProvider>
+      </CustomThemeProvider>
+    </BrowserRouter>
   </MainThemeProvider>
 );
