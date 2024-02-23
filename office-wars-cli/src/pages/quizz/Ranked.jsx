@@ -1,6 +1,5 @@
 import {
   Breadcrumbs,
-  Button,
   CircularProgress,
   Container,
   Link,
@@ -17,6 +16,8 @@ import { useTheme } from "../../context/ThemeContext";
 import RulesJedi from "../../components/rules/RulesJedi";
 import RulesSith from "../../components/rules/RulesSith";
 import RankingsAllList from "../../components/lists/RankingsAllList";
+import moment from "moment";
+import { firstLetterUppercase } from "../../utils";
 
 const Ranked = () => {
   const [isBusy, setIsBusy] = useState(true);
@@ -194,7 +195,9 @@ const Ranked = () => {
             }}
           >
             <Box style={{ textAlign: "center" }}>
-              <Typography variant="h6">Melleurs résultats</Typography>
+              <Typography variant="h6">
+                {firstLetterUppercase(moment().format("MMMM"))}
+              </Typography>
             </Box>
 
             <Box marginTop={2}>
@@ -328,7 +331,7 @@ const Ranked = () => {
               }}
             >
               <img
-                src={`http://127.0.0.1:8000/storage/images/${user.userImage}`}
+                src={`http://127.0.0.1:8000/storage/uploads/${user.userImage}`}
                 alt="Avatar"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />

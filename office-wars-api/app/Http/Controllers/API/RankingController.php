@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 
 use App\Models\Ranking;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class RankingController extends Controller
 {
@@ -34,6 +34,10 @@ class RankingController extends Controller
 
     public function welcome()
     {
+        $now = Carbon::now();
+        $firstDayOfMonth = $now->firstOfMonth()->toDateTimeString();
+        $lastDayOfMonth = $now->lastOfMonth()->toDateTimeString();
+
         try {
 
 
@@ -48,6 +52,7 @@ class RankingController extends Controller
             $topRankings = DB::table('rankings')
                 ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
                 ->join('users', 'rankings.user_id', '=', 'users.id')
+                ->whereBetween('rankings.created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filtrer par le mois actuel
                 ->orderBy('rankings.resultQuizz', 'desc')
                 ->take(10)
                 ->get();
@@ -55,6 +60,35 @@ class RankingController extends Controller
             return response()->json([
                 'latestRankings' => $latestRankings,
                 'topRankings' => $topRankings,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 403);
+        }
+    }
+
+    public function saveStats(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'resultQuizz' => 'required',
+                'timeQuizz' => 'required',
+                'user_id' => 'required',
+            ]);
+
+            // Créer une nouvelle entrée dans la table rankings
+            $ranking = Ranking::create([
+                'resultQuizz' => $data['resultQuizz'],
+                'timeQuizz' => $data['timeQuizz'],
+                'user_id' => $data['user_id'],
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Résultat enregistré avec succès !',
+                $ranking,
             ]);
         } catch (\Throwable $e) {
             return response()->json([

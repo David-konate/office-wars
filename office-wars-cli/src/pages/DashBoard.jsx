@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CreatePlanetForm from "../components/forms/CreatePlanetForm";
 import CreateEventForm from "../components/forms/CreateEventForm";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import WhiteButton from "../components/buttons/WhiteButton";
 import CreateSiteForm from "../components/forms/CreateSiteForm";
 import AccommodationCreateForm from "../components/forms/CreateAccommodationForm";
