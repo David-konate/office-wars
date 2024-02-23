@@ -1,5 +1,6 @@
 import {
   Breadcrumbs,
+  Button,
   CircularProgress,
   Container,
   Link,
@@ -58,8 +59,6 @@ const Ranked = () => {
       const res = await axios.get(`rankings-welcome`);
       setLastRankings(res.data.latestRankings);
       setTopRankings(res.data.topRankings);
-
-      console.log("rank", res.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -274,7 +273,7 @@ const Ranked = () => {
                 to="/holocron-trivia/public/nouvelle-partie"
                 style={{ textDecoration: "none" }}
               >
-                <WhiteButton>Nouvelle partie</WhiteButton>
+                <Button>Nouvelle partie</Button>
               </RouterLink>
             </Box>
 

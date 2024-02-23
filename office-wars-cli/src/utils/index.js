@@ -21,7 +21,6 @@ export const LEVELS = {
 // Fonction pour calculer les points en fonction du temps
 
 export const calculatePoints = (userTime, userLevel) => {
-  console.log(userTime);
   userTime = userTime * 1000;
   const pointsMax = LEVELS[userLevel];
 
@@ -29,7 +28,7 @@ export const calculatePoints = (userTime, userLevel) => {
   if (userTime < LIMITE_ALL_POINT) {
     const pointsPerdus =
       Math.round((pointsMax / userTime) * LIMITE_ALL_POINT * 0.1 * 100) / 100;
-    console.log({ pointsPerdus });
+
     const points = pointsMax - pointsPerdus;
     return points;
   } else {
@@ -44,13 +43,6 @@ export const calculatePercentage = (currentPoints, totalPoints) => {
     totalPoints !== 0 ? (currentPoints / totalPoints) * 100 : 0;
   return parseFloat(percentage.toFixed(2));
 };
-
-// // Utilisation de la fonction
-// const userTime = 15; // par exemple, l'utilisateur a mis 15 secondes
-// const userLevel = 2; // par exemple, l'utilisateur a choisi le niveau 2
-
-// const points = calculatePoints(userTime, userLevel);
-// console.log('Points attribués:', points);
 
 export const linksUserLoged = [
   {
@@ -134,6 +126,11 @@ export const linksAcceuil = [
     label: "Evénements",
     path: "/evenements",
     src: "/images/module.jpg",
+  },
+  {
+    label: "Holocron-Trivia",
+    path: "/holocron-trivia",
+    src: "/images/holocron.jpg",
   },
 ];
 export const linksAcceuilQuiz = [

@@ -24,7 +24,7 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 1)
-                ->inRandomOrder(8)
+                ->inRandomOrder()
                 ->limit(1)
                 ->get();
 
@@ -35,7 +35,7 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 2)
-                ->inRandomOrder(7)
+                ->inRandomOrder()
                 ->limit(1)
                 ->get();
 
@@ -46,7 +46,7 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 3)
-                ->inRandomOrder(5)
+                ->inRandomOrder()
                 ->limit(1)
                 ->get();
 
