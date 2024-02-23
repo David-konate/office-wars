@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 import {
@@ -9,14 +8,8 @@ import {
   Toolbar,
   Switch,
 } from "@mui/material/";
-import BlackButton from "./buttons/BlackButton";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  firstLetterUppercase,
-  links,
-  linksLogged,
-  linksUnlogged,
-} from "../utils";
+import { firstLetterUppercase, linksLogged, linksUnlogged } from "../utils";
 import { useTheme } from "../context/ThemeContext";
 import Logo from "./Logo";
 import { useUserContext } from "../context/UserProvider"; // Importez le hook

@@ -104,6 +104,7 @@ Route::controller(ImageController::class)->group(function () {
 //Route rankings
 Route::controller(RankingController::class)->group(function () {
     Route::get('rankings', 'index');
+    Route::post('rankings', 'saveStats');
     Route::get('rankings-welcome', 'welcome');
 });
 //Route questions

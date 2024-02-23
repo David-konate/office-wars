@@ -1,16 +1,14 @@
 import {
   Box,
   Container,
-  CircularProgress,
   Typography,
-  Checkbox,
   RadioGroup,
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
-import { QUESTION_TIMER_DURATION, convertToRoman, LEVELS } from "../utils";
+import React, { useEffect, useState } from "react";
+
+import { QUESTION_TIMER_DURATION, convertToRoman } from "../utils";
 import { useQuestionContext } from "../context/QuestionProvider";
 import WhiteButton from "./buttons/WhiteButton";
 import ConfirmationDialog from "./message/messageValidate";
@@ -19,7 +17,6 @@ import LightSideCompletionMessage from "./message/LightSideCompletionMessage ";
 
 const Game = (rute) => {
   const {
-    resultat,
     questions,
     setSelectedAnswer,
     selectedAnswer,
@@ -29,7 +26,6 @@ const Game = (rute) => {
     onCalculPoint,
     timeRemaining,
     setTimeRemaining,
-    badAnswers,
     setCheater,
   } = useQuestionContext();
 

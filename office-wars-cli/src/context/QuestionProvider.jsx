@@ -1,19 +1,15 @@
 // CustomThemeProvider.jsx
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { calculatePercentage, calculatePoints } from "../utils";
 import MessageDialog from "../components/message/MessageDialog";
 import { QUESTION_TIMER_DURATION } from "../utils";
+import { useUserContext } from "./UserProvider";
 const QuestionContext = createContext({});
 
 export const QuestionProvider = ({ children }) => {
+  const { user } = useUserContext();
   const [questions, setQuestions] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(3);
@@ -24,6 +20,9 @@ export const QuestionProvider = ({ children }) => {
   const [timeRemaining, setTimeRemaining] = useState(
     QUESTION_TIMER_DURATION / 1000
   );
+  const [questionsCount, setQuestionsCount] = useState(0); // Ajoutez le state pour suivre le nombre de questions
+  const navigate = useNavigate();
+
   const [points, setPoints] = useState(0);
   const [pointsMax, setPointsMax] = useState(0);
   const [resultat, setResultat] = useState(0);
@@ -31,6 +30,7 @@ export const QuestionProvider = ({ children }) => {
   const [isBusy, setIsBusy] = useState(false);
   const [cheater, setCheater] = useState(false);
   const location = useLocation();
+  const [totalTime, setTotalTime] = useState(0);
   const [level, setLevel] = useState({
     level3: {
       un: 7,
@@ -66,6 +66,7 @@ export const QuestionProvider = ({ children }) => {
       setIsBusy(true);
       const res = await axios.get(`new-game`);
       setQuestions(res.data);
+      setQuestionsCount(res.data.length);
     } catch (error) {
       console.log(error);
     } finally {
@@ -73,6 +74,22 @@ export const QuestionProvider = ({ children }) => {
     }
   };
 
+  const gameFinished = async () => {
+    try {
+      setIsBusy(true);
+      const res = await axios.post(`rankings`, {
+        resultQuizz: resultat,
+        timeQuizz: totalTime,
+        user_id: user.id,
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsBusy(false);
+      navigate("/holocron-trivia/public");
+    }
+  };
   const onCalculPoint = () => {
     const currentQuestionData = questions[currentQuestion];
     const answers = currentQuestionData.answers;
@@ -102,6 +119,12 @@ export const QuestionProvider = ({ children }) => {
           setPointsMax((prevPointsMax) => prevPointsMax + 6);
           break;
       }
+
+      // Ajoutez le temps écoulé au temps total
+      setTotalTime(
+        (prevTotalTime) =>
+          prevTotalTime + (QUESTION_TIMER_DURATION / 1000 - timeRemaining)
+      );
     } else {
       setBadAnswers((prevBadAnswers) => [
         ...prevBadAnswers,
@@ -111,6 +134,12 @@ export const QuestionProvider = ({ children }) => {
           goodAnswer: currentQuestionData.answers,
         },
       ]);
+
+      // Ajoutez le temps écoulé au temps total
+      setTotalTime(
+        (prevTotalTime) =>
+          prevTotalTime + (QUESTION_TIMER_DURATION / 1000 - timeRemaining)
+      );
 
       setPointsMax(
         (prevPointsMax) => prevPointsMax + currentQuestionData.level_id * 2
@@ -123,9 +152,10 @@ export const QuestionProvider = ({ children }) => {
     }
 
     // Vérifie si toutes les questions ont été répondues
-    if (count + 1 === 10) {
+    if (count + 1 === questionsCount) {
       // Si oui, définissez setIsQuizFinished(true)
       setIsQuizFinished(true);
+      gameFinished();
     }
   };
 
@@ -150,6 +180,7 @@ export const QuestionProvider = ({ children }) => {
         isQuizFinished,
         resultat,
         badAnswers,
+        gameFinished,
         setTimeRemaining,
         setCurrentLevel,
         setCurrentQuestion,

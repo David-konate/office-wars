@@ -24,8 +24,8 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 1)
-                ->inRandomOrder()
-                ->limit(7)
+                ->inRandomOrder(8)
+                ->limit(1)
                 ->get();
 
             // Récupérer 7 questions pour le niveau 2 avec les informations de la catégorie, du niveau et les réponses
@@ -35,8 +35,8 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 2)
-                ->inRandomOrder()
-                ->limit(7)
+                ->inRandomOrder(7)
+                ->limit(1)
                 ->get();
 
             // Récupérer 6 questions pour le niveau 3 avec les informations de la catégorie, du niveau et les réponses
@@ -46,8 +46,8 @@ class QuestionController extends Controller
                 ->join('levels', 'questions.level_id', '=', 'levels.id')
                 ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
                 ->where('questions.level_id', 3)
-                ->inRandomOrder()
-                ->limit(6)
+                ->inRandomOrder(5)
+                ->limit(1)
                 ->get();
 
             // Fusionner les résultats dans un seul tableau

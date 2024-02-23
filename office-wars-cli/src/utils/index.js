@@ -9,7 +9,7 @@ export const BASE_URL_API = process.env.REACT_APP_BASE_URL_API;
 export const QUESTION_TIMER_DURATION = 25000;
 
 // Délai avant de commencer à déduire des points (en secondes)
-export const LIMITE_ALL_POINT = QUESTION_TIMER_DURATION - 5000;
+export const LIMITE_ALL_POINT = QUESTION_TIMER_DURATION - 2000;
 
 // Niveaux de réponse et leurs points respectifs
 export const LEVELS = {
