@@ -109,8 +109,9 @@ Route::controller(RankingController::class)->group(function () {
 });
 //Route questions
 Route::controller(QuestionController::class)->group(function () {
-    Route::get('new-game', 'index');
+    Route::get('new-game/{currentLevel}', 'index');
 });
+
 //Route planetes
 Route::controller(PlanetController::class)->group(function () {
     Route::get('planets/{planet}', 'show');

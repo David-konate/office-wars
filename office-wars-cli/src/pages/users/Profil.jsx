@@ -20,16 +20,17 @@ import WhiteButton from "../../components/buttons/WhiteButton";
 
 const Profil = () => {
   const [isBusy, setIsBusy] = useState(true);
-
-  const [tabs, setTabs] = useState([
-    {
-      name: "rankingsList",
+  const [tabs, setTabs] = useState({
+    ranginksList: {
+      id: 1,
       isOpen: false,
       buttonLabel: "Liste résultats",
       component: RankingsList,
     },
-  ]);
+  });
   const [tabSelected, setTabSelected] = useState(tabs["ranginksList"]); // Définissez la valeur initiale selon votre logique
+  const TabSelected = tabSelected.component;
+  const [isListOpen, setIsListOpen] = useState(false);
 
   const {
     userLatestRankings,
@@ -65,10 +66,6 @@ const Profil = () => {
   const handleCreateRankingsFormSubmit = () => {
     // Mettez à jour l'état pour ouvrir l'onglet "Liste des résultats"
     setTabSelected(tabs["ranginksList"]);
-  };
-
-  const closeAllComponants = () => {
-    setTabs((prevTabs) => prevTabs.map((tab) => ({ ...tab, isOpen: false })));
   };
 
   return (
@@ -205,7 +202,7 @@ const Profil = () => {
                       >
                         {userTopRankings.map((topRanking, index) => (
                           <Box
-                            key={topRanking.id}
+                            key={index}
                             sx={{
                               display: "flex",
                               alignItems: "center",
@@ -254,9 +251,9 @@ const Profil = () => {
                           justifyContent: "center",
                         }}
                       >
-                        {userLatestRankings.map((latestRanking) => (
+                        {userLatestRankings.map((latestRanking, index) => (
                           <Box
-                            key={latestRanking.id}
+                            key={index}
                             sx={{
                               display: "flex",
                               alignItems: "center",
@@ -274,45 +271,32 @@ const Profil = () => {
                   </Box>
                 </Box>
               </Box>
-              <Box>
-                {tabs.map((row, rowIndex) => (
-                  <Box
-                    key={rowIndex}
-                    display="flex"
-                    flexDirection="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    mb={2}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Box mt={2} mb={2}>
+                  {" "}
+                  <WhiteButton
+                    onClick={() => {
+                      setIsListOpen((prevState) => !prevState);
+                    }}
                   >
-                    {tabs.map((tab) => (
-                      <WhiteButton
-                        key={tab.name}
-                        style={{ margin: "2" }}
-                        onClick={() => {
-                          closeAllComponants();
-                          setTabs((prevTabs) =>
-                            prevTabs.map((t) =>
-                              t.name === tab.name
-                                ? { ...t, isOpen: true }
-                                : { ...t, isOpen: false }
-                            )
-                          );
-                        }}
-                      >
-                        {tab.buttonLabel}
-                      </WhiteButton>
-                    ))}
-                  </Box>
-                ))}
-              </Box>
+                    {isListOpen ? "Fermer" : "Vos resultats"}
+                  </WhiteButton>
+                </Box>
 
-              <Box>
-                {tabs.find((tab) => tab.isOpen) &&
-                  tabs
-                    .find((tab) => tab.isOpen)
-                    .component({
-                      userRankings: handleCreateRankingsFormSubmit,
-                    })}
+                {isListOpen && (
+                  <Box>
+                    {/* Composant sélectionné */}
+                    <TabSelected
+                      userRankings={handleCreateRankingsFormSubmit}
+                    />
+                  </Box>
+                )}
               </Box>
             </Container>
           ) : (

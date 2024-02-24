@@ -135,6 +135,11 @@ export const linksAcceuil = [
     path: "/evenements",
     src: "/images/module.jpg",
   },
+  {
+    label: "Holocron-Trivia",
+    path: "/holocron-trivia",
+    src: "/images/holocron.jpg",
+  },
 ];
 export const linksAcceuilQuiz = [
   {

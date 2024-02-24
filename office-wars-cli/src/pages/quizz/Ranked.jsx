@@ -1,12 +1,17 @@
 import {
+  Avatar,
   Breadcrumbs,
+  Button,
   CircularProgress,
   Container,
+  FormControlLabel,
   Link,
   Paper,
+  Radio,
+  RadioGroup,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Stack } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import WhiteButton from "../../components/buttons/WhiteButton";
@@ -18,13 +23,14 @@ import RulesSith from "../../components/rules/RulesSith";
 import RankingsAllList from "../../components/lists/RankingsAllList";
 import moment from "moment";
 import { firstLetterUppercase } from "../../utils";
-
+import { useQuestionContext } from "../../context/QuestionProvider";
 const Ranked = () => {
   const [isBusy, setIsBusy] = useState(true);
   const [lastRankings, setLastRankings] = useState();
   const [topRankings, setTopRankings] = useState();
   const { userTopRankings, user } = useUserContext();
   const { theme } = useTheme();
+  const { niveau, currentLevel, setCurrentLevel } = useQuestionContext();
 
   const [tabs, setTabs] = useState({
     jediRules: {
@@ -52,6 +58,9 @@ const Ranked = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  const handleLevelChange = (event) => {
+    setCurrentLevel(parseInt(event.target.value));
+  };
 
   const fetchData = async () => {
     try {
@@ -112,7 +121,12 @@ const Ranked = () => {
         </Breadcrumbs>
       </Box>
       <Box mt={5} display={"flex"}>
-        <Box width={"25%"}>
+        <Box
+          width={{ xs: "100%", sm: "25%" }}
+          sx={{
+            display: { xs: "none", sm: "none", md: "block" },
+          }}
+        >
           <Paper
             elevation={3}
             sx={{
@@ -122,61 +136,61 @@ const Ranked = () => {
               paddingRight: 4,
               paddingBottom: 1,
               marginRight: 5,
+              display: "flex", // Utilisez une disposition flex
+              flexDirection: "column", // Arrangez les éléments en colonne
+              alignItems: "flex-end", // Alignez les éléments à l'extrémité droite
             }}
           >
-            <Box style={{ textAlign: "center" }}>
-              <Typography variant="h6">Derniers résultats</Typography>
+            <Box style={{ textAlign: "center", width: "100%" }}>
+              <Typography width={"100%"} variant="h6">
+                Derniers résultats
+              </Typography>
             </Box>
 
-            <Box marginTop={2}>
+            <Box marginTop={2} sx={{ width: "100%" }}>
               {lastRankings.map((ranking, index) => (
                 <Box
+                  key={index}
                   marginTop={2}
                   display={"flex"}
-                  key={index}
                   alignItems="center"
+                  justifyContent="space-evenly"
+                  sx={{ width: "100%" }}
                 >
                   {/* Votre contenu pour chaque élément de latestRankings ici */}
                   {/* Par exemple, pour accéder à la propriété resultQuizz, vous pouvez utiliser ranking.resultQuizz */}
-                  <Box display="flex" alignItems="center">
+
+                  <Box display={"flex"} sx={{ width: "100%" }}>
                     <Typography
-                      width={"40%"}
                       variant="body2"
                       mt={1}
-                      style={{ marginRight: "2px" }}
+                      style={{ marginRight: "2px", width: "80%" }}
                     >
                       {ranking.resultQuizz} %
                     </Typography>
                     <Typography
-                      width={"40%"}
                       variant="body2"
                       mt={1}
+                      ml={1}
                       style={{
                         marginRight: "8px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
+                        width: "50%", // Cacher le pseudo en format xs
                       }}
                     >
                       {ranking.userPseudo}
                     </Typography>
-                    <Box
-                      style={{
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        maxWidth: "20%",
-                        margin: "0 auto", // Pour centrer horizontalement
+                  </Box>
+                  <Box>
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
                       }}
-                    >
-                      <img
-                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
-                        alt="User Avatar"
-                        style={{
-                          maxWidth: "100%",
-                          display: "block", // Pour éviter l'espace sous l'image
-                        }}
-                      />
-                    </Box>
+                      src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                    />
                   </Box>
                 </Box>
               ))}
@@ -185,77 +199,76 @@ const Ranked = () => {
           <Paper
             elevation={3}
             sx={{
-              marginTop: 3,
               border: "1px solid var(--primary-color)",
               paddingTop: 2,
               paddingLeft: 4,
               paddingRight: 4,
               paddingBottom: 1,
               marginRight: 5,
+              marginTop: 3,
+              display: "flex", // Utilisez une disposition flex
+              flexDirection: "column", // Arrangez les éléments en colonne
+              alignItems: "flex-end", // Alignez les éléments à l'extrémité droite
             }}
           >
-            <Box style={{ textAlign: "center" }}>
-              <Typography variant="h6">
+            <Box style={{ textAlign: "center", width: "100%" }}>
+              <Typography width={"100%"} variant="h6">
                 {firstLetterUppercase(moment().format("MMMM"))}
               </Typography>
             </Box>
 
-            <Box marginTop={2}>
+            <Box marginTop={2} sx={{ width: "100%" }}>
               {topRankings.map((ranking, index) => (
                 <Box
+                  key={index}
                   marginTop={2}
                   display={"flex"}
-                  key={index}
                   alignItems="center"
+                  justifyContent="space-evenly"
+                  sx={{ width: "100%" }}
                 >
                   {/* Votre contenu pour chaque élément de latestRankings ici */}
                   {/* Par exemple, pour accéder à la propriété resultQuizz, vous pouvez utiliser ranking.resultQuizz */}
-                  <Box display="flex" alignItems="center">
+
+                  <Box display={"flex"} sx={{ width: "100%" }}>
                     <Typography
-                      width={"40%"}
                       variant="body2"
                       mt={1}
-                      style={{ marginRight: "2px" }}
+                      style={{ marginRight: "2px", width: "80%" }}
                     >
                       {ranking.resultQuizz} %
                     </Typography>
                     <Typography
-                      width={"40%"}
                       variant="body2"
                       mt={1}
+                      ml={1}
                       style={{
                         marginRight: "8px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
+                        width: "50%", // Cacher le pseudo en format xs
                       }}
                     >
                       {ranking.userPseudo}
                     </Typography>
-                    <Box
-                      style={{
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        maxWidth: "20%",
-                        margin: "0 auto", // Pour centrer horizontalement
+                  </Box>
+                  <Box>
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
                       }}
-                    >
-                      <img
-                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
-                        alt="User Avatar"
-                        style={{
-                          maxWidth: "100%",
-                          display: "block", // Pour éviter l'espace sous l'image
-                        }}
-                      />
-                    </Box>
+                      src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                    />
                   </Box>
                 </Box>
               ))}
             </Box>
           </Paper>
         </Box>
-        <Box width={"50%"}>
+
+        <Box width={{ xs: "100%", sm: "50%" }}>
           <Box
             className="img-gp-rangk"
             style={{
@@ -274,7 +287,7 @@ const Ranked = () => {
                 to="/holocron-trivia/public/nouvelle-partie"
                 style={{ textDecoration: "none" }}
               >
-                <WhiteButton>Nouvelle partie</WhiteButton>
+                <Button>Nouvelle partie</Button>
               </RouterLink>
             </Box>
 
@@ -287,6 +300,21 @@ const Ranked = () => {
               }}
             />
           </Box>
+          <Box mt={3} display="flex" justifyContent="center">
+            <RadioGroup
+              row // Cette propriété "row" permet d'aligner horizontalement
+              aria-label="Niveau"
+              name="level"
+              value={currentLevel}
+              onChange={handleLevelChange}
+            >
+              <FormControlLabel value="1" control={<Radio />} label="1" />
+              <FormControlLabel value="2" control={<Radio />} label="2" />
+
+              <FormControlLabel value="3" control={<Radio />} label="Classé" />
+            </RadioGroup>
+          </Box>
+
           <Box
             style={{
               marginBottom: "10px",
@@ -309,9 +337,164 @@ const Ranked = () => {
             )}
             {tabs.rankingsList.isOpen && <RankingsAllList />}
           </Box>
+          <Box
+            sx={{
+              display: {
+                xs: "block", // Afficher sur les écrans xs
+                sm: "block", // Afficher sur les écrans sm
+                md: "none", // Cacher sur les écrans md et plus grands
+                lg: "none",
+                xl: "none",
+              },
+            }}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                border: "1px solid var(--primary-color)",
+                paddingTop: 2,
+                paddingLeft: 4,
+                paddingRight: 4,
+                paddingBottom: 1,
+
+                display: "flex", // Utilisez une disposition flex
+                flexDirection: "column", // Arrangez les éléments en colonne
+                alignItems: "flex-end", // Alignez les éléments à l'extrémité droite
+              }}
+            >
+              <Box style={{ textAlign: "center", width: "100%" }}>
+                <Typography width={"100%"} variant="h6">
+                  Derniers résultats
+                </Typography>
+              </Box>
+
+              <Box marginTop={2} sx={{ width: "100%" }}>
+                {lastRankings.map((ranking, index) => (
+                  <Box
+                    key={index}
+                    marginTop={2}
+                    display={"flex"}
+                    alignItems="center"
+                    justifyContent="space-evenly"
+                    sx={{ width: "100%" }}
+                  >
+                    {/* Votre contenu pour chaque élément de latestRankings ici */}
+                    {/* Par exemple, pour accéder à la propriété resultQuizz, vous pouvez utiliser ranking.resultQuizz */}
+
+                    <Box display={"flex"} sx={{ width: "100%" }}>
+                      <Typography
+                        variant="body2"
+                        mt={1}
+                        style={{ marginRight: "2px", width: "80%" }}
+                      >
+                        {ranking.resultQuizz} %
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        mt={1}
+                        ml={1}
+                        style={{
+                          marginRight: "8px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          width: "50%", // Cacher le pseudo en format xs
+                        }}
+                      >
+                        {ranking.userPseudo}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Avatar
+                        sx={{
+                          width: 40,
+                          height: 40,
+                        }}
+                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                      />
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Paper>
+            <Paper
+              elevation={3}
+              sx={{
+                border: "1px solid var(--primary-color)",
+                paddingTop: 2,
+                paddingLeft: 4,
+                paddingRight: 4,
+                paddingBottom: 1,
+                marginTop: 2,
+                display: "flex", // Utilisez une disposition flex
+                flexDirection: "column", // Arrangez les éléments en colonne
+                alignItems: "flex-end", // Alignez les éléments à l'extrémité droite
+              }}
+            >
+              <Box style={{ textAlign: "center", width: "100%" }}>
+                <Typography width={"100%"} variant="h6">
+                  Meilleurs résultats
+                </Typography>
+              </Box>
+
+              <Box marginTop={2} sx={{ width: "100%" }}>
+                {topRankings.map((ranking, index) => (
+                  <Box
+                    key={index}
+                    marginTop={2}
+                    display={"flex"}
+                    alignItems="center"
+                    justifyContent="space-evenly"
+                    sx={{ width: "100%" }}
+                  >
+                    {/* Votre contenu pour chaque élément de latestRankings ici */}
+                    {/* Par exemple, pour accéder à la propriété resultQuizz, vous pouvez utiliser ranking.resultQuizz */}
+
+                    <Box display={"flex"} sx={{ width: "100%" }}>
+                      <Typography
+                        variant="body2"
+                        mt={1}
+                        style={{ marginRight: "2px", width: "80%" }}
+                      >
+                        {ranking.resultQuizz} %
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        mt={1}
+                        ml={1}
+                        style={{
+                          marginRight: "8px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          width: "50%", // Cacher le pseudo en format xs
+                        }}
+                      >
+                        {ranking.userPseudo}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Avatar
+                        sx={{
+                          width: 40,
+                          height: 40,
+                        }}
+                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                      />
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Paper>
+          </Box>
         </Box>
 
-        <Box width={"25%"}>
+        <Box
+          width={{ xs: "100%", sm: "25%" }}
+          sx={{
+            display: { xs: "none", sm: "block" },
+          }}
+        >
           <Paper
             elevation={3}
             sx={{
@@ -320,33 +503,22 @@ const Ranked = () => {
               marginLeft: 5,
             }}
           >
-            <Box
-              className="img-user-holocron"
-              style={{
-                borderRadius: "50%",
-                overflow: "hidden",
-                width: "100px",
-                height: "100px",
-                margin: "auto",
-              }}
-            >
-              <img
+            <Stack spacing={2} justifyContent={"center"} alignItems={"center"}>
+              <Avatar
+                sx={{
+                  width: 100,
+                  height: 100,
+                }}
                 src={`http://127.0.0.1:8000/storage/uploads/${user.userImage}`}
-                alt="Avatar"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
-            </Box>
-            <Box mt={2} textAlign={"center"}>
               <Typography>{user.userPseudo}</Typography>
-            </Box>
-            <Box mt={2} textAlign={"center"}>
-              <Typography variant="caption">Top score</Typography>
-              <Box>
+              <Stack justifyContent={"center"} alignItems={"center"}>
+                <Typography variant="caption">Top score</Typography>
                 <Typography className="rankin-user-top-scrore" mt={1}>
                   {userTopRankings[0].resultQuizz} %{" "}
                 </Typography>
-              </Box>
-            </Box>
+              </Stack>
+            </Stack>
           </Paper>
         </Box>
       </Box>

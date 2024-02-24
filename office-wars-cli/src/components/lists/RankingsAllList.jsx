@@ -29,7 +29,6 @@ const RankingsAllList = () => {
     try {
       const res = await axios.get(`rankings`);
       setRankings(res.data.rankings);
-      console.log(res.data.rankings);
     } catch (error) {
       console.error(error);
     } finally {

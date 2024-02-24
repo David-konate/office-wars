@@ -6,6 +6,7 @@ import { calculatePercentage, calculatePoints } from "../utils";
 import MessageDialog from "../components/message/MessageDialog";
 import { QUESTION_TIMER_DURATION } from "../utils";
 import { useUserContext } from "./UserProvider";
+
 const QuestionContext = createContext({});
 
 export const QuestionProvider = ({ children }) => {
@@ -20,7 +21,7 @@ export const QuestionProvider = ({ children }) => {
   const [timeRemaining, setTimeRemaining] = useState(
     QUESTION_TIMER_DURATION / 1000
   );
-  const [questionsCount, setQuestionsCount] = useState(0); // Ajoutez le state pour suivre le nombre de questions
+  const [questionsCount, setQuestionsCount] = useState(0);
   const navigate = useNavigate();
 
   const [points, setPoints] = useState(0);
@@ -31,40 +32,17 @@ export const QuestionProvider = ({ children }) => {
   const [cheater, setCheater] = useState(false);
   const location = useLocation();
   const [totalTime, setTotalTime] = useState(0);
-  const [level, setLevel] = useState({
-    level3: {
-      un: 7,
-      deux: 7,
-      trois: 6,
-    },
-    level2: {
-      un: 10,
-      deux: 10,
-      trois: 0,
-    },
-    level1: {
-      un: 10,
-      deux: 0,
-      trois: 0,
-    },
-  });
-
-  // const currentAnswer = useMemo(() => {
-  //   if (selectedAnswer) {
-  //     const answers = questions.answers;
-  //     return answers.find((answer) => answer.id === selectedAnswer);
-  //   }
-  //   return null;
-  // }, []);
 
   useEffect(() => {
     fetchData();
-  }, [location.search]);
+  }, [location.search, currentLevel]);
 
   const fetchData = async () => {
     try {
       setIsBusy(true);
-      const res = await axios.get(`new-game`);
+      console.log({ currentLevel });
+      const res = await axios.get(`/new-game/${currentLevel}`);
+      console.log(res.data);
       setQuestions(res.data);
       setQuestionsCount(res.data.length);
     } catch (error) {
@@ -77,19 +55,32 @@ export const QuestionProvider = ({ children }) => {
   const gameFinished = async () => {
     try {
       setIsBusy(true);
-      const res = await axios.post(`rankings`, {
-        resultQuizz: resultat,
-        timeQuizz: totalTime,
-        user_id: user.id,
-      });
-      console.log(res.data);
+      //Vérification d'une partie level 3 (classé )
+      if (currentLevel === 3) {
+        await axios.post(`rankings`, {
+          resultQuizz: resultat,
+          timeQuizz: totalTime,
+          user_id: user.id,
+        });
+      }
     } catch (error) {
       console.error(error);
     } finally {
       setIsBusy(false);
       navigate("/holocron-trivia/public");
+      resetGame();
     }
   };
+
+  const resetGame = () => {
+    setCurrentQuestion(0);
+    setIsQuizFinished(false);
+    setBadAnswers([]);
+    setTimeRemaining(QUESTION_TIMER_DURATION / 1000);
+    setQuestions();
+    fetchData();
+  };
+
   const onCalculPoint = () => {
     const currentQuestionData = questions[currentQuestion];
     const answers = currentQuestionData.answers;
@@ -98,27 +89,26 @@ export const QuestionProvider = ({ children }) => {
       selectedAnswer && answers.find((answer) => answer.id == selectedAnswer);
 
     if (currentAnswer && currentAnswer?.isCorrect === 1 && timeRemaining > 0) {
-      console.log(" tu as suivi la voie de la Force! Bonne réponse !");
+      console.log("Tu as suivi la voie de la Force! Bonne réponse!");
+      let res;
       switch (currentQuestionData.level_id) {
         case 1:
-          setCount(count + 1);
-          const res1 = calculatePoints(timeRemaining, 1);
-          setPoints((prevPoints) => prevPoints + res1);
-          setPointsMax((prevPointsMax) => prevPointsMax + 1);
+          res = calculatePoints(timeRemaining, 1);
           break;
         case 2:
-          setCount(count + 1);
-          const res2 = calculatePoints(timeRemaining, 2);
-          setPoints((prevPoints) => prevPoints + res2);
-          setPointsMax((prevPointsMax) => prevPointsMax + 4);
+          res = calculatePoints(timeRemaining, 2);
           break;
         default:
-          setCount(count + 1);
-          const res3 = calculatePoints(timeRemaining, 3);
-          setPoints((prevPoints) => prevPoints + res3);
-          setPointsMax((prevPointsMax) => prevPointsMax + 6);
+          res = calculatePoints(timeRemaining, 3);
           break;
       }
+
+      // Mise à jour des points et pointsMax
+      setCount((prevCount) => prevCount + 1);
+      setPoints((prevPoints) => prevPoints + res);
+      setPointsMax(
+        (prevPointsMax) => prevPointsMax + currentQuestionData.level_id * 2
+      );
 
       // Ajoutez le temps écoulé au temps total
       setTotalTime(
@@ -146,26 +136,27 @@ export const QuestionProvider = ({ children }) => {
       );
 
       console.log(
-        "Le côté obscur vous a dominé ! Mauvaise réponse / Temps dépassé  !"
+        "Le côté obscur vous a dominé ! Mauvaise réponse / Temps dépassé!"
       );
-      setCount(count + 1);
+      setCount((prevCount) => prevCount + 1);
     }
 
     // Vérifie si toutes les questions ont été répondues
-    if (count + 1 === questionsCount) {
-      // Si oui, définissez setIsQuizFinished(true)
+    if (currentQuestion + 1 < questionsCount) {
+      // Si oui, passez à la question suivante
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    } else {
+      // Si non, définissez setIsQuizFinished(true)
       setIsQuizFinished(true);
-      gameFinished();
     }
   };
 
   useEffect(() => {
     setResultat(calculatePercentage(points, pointsMax));
-    console.log("total points", points + " / " + pointsMax);
-    console.log("total : ", resultat, "%");
-  }, [points, pointsMax, resultat]); // Ajoutez 'resultat' comme dépendance
+    console.log("Total points", points + " / " + pointsMax);
+    console.log("Total : ", resultat, "%");
+  }, [points, pointsMax, resultat]);
 
-  // À l'extérieur du composant, définissez l'état pour contrôler l'affichage du MessageDialog
   const [showAllQuestionsAnsweredDialog, setShowAllQuestionsAnsweredDialog] =
     useState(false);
 
@@ -191,7 +182,7 @@ export const QuestionProvider = ({ children }) => {
         setIsQuizFinished,
       }}
     >
-      {isBusy ? "chargement" : children}
+      {isBusy ? "Chargement..." : children}
       <MessageDialog
         open={showAllQuestionsAnsweredDialog}
         onClose={() => setShowAllQuestionsAnsweredDialog(false)}

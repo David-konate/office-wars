@@ -20,8 +20,6 @@ const LoginFormComponent = () => {
 
     try {
       const response = await axios.post("/security/login", formData);
-
-      console.log(response.data);
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
       setDialogTitle("Succès");

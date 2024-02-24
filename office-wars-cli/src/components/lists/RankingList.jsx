@@ -16,7 +16,6 @@ import moment from "moment";
 
 const RankingsList = () => {
   const { userRankings } = useUserContext();
-  console.log("userRan", userRankings);
 
   const [orderBy, setOrderBy] = useState("id");
   const [order, setOrder] = useState("asc");

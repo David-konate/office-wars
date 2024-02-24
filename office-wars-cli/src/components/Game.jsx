@@ -74,7 +74,6 @@ const Game = (rute) => {
     // Appeler setCurrentAnswer avec la réponse sélectionnée
     setSelectedAnswer(selectedAnswer);
     onCalculPoint();
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
   };
 
   const handleTimeUpDialogClose = () => {

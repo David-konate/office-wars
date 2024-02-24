@@ -16,7 +16,7 @@ import { Container } from "@mui/system";
 import { useState } from "react";
 
 const LightSideCompletionMessage = ({ open, onClose }) => {
-  const { resultat, badAnswers, isBusy } = useQuestionContext();
+  const { resultat, badAnswers, isBusy, gameFinished } = useQuestionContext();
   const [showCorrection, setShowCorrection] = useState(false);
   const toggleCorrection = () => {
     setShowCorrection(!showCorrection);
@@ -27,6 +27,7 @@ const LightSideCompletionMessage = ({ open, onClose }) => {
     console.log("Merci d'avoir jouer a Holocron-Trivia");
     //appelez la fonction onClose fournie par les props pour fermer la boîte de dialogue
     onClose();
+    gameFinished();
   };
 
   return isBusy ? (
