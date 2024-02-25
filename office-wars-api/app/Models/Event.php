@@ -16,7 +16,7 @@ class Event extends Model
         'eventDescription',
         'dateTime',
         'planet_id',
-        'photoEvent',
+        'eventImage',
         'slug',
 
     ];

@@ -18,6 +18,7 @@ const ImagesHandle = ({ route, customText }) => {
     try {
       const res = await axios.get(`imagesHeadband`);
       setImages(res.data);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -60,12 +61,11 @@ const ImagesHandle = ({ route, customText }) => {
                 className="img-handle"
                 style={{
                   width: "100%",
+                  height: "100%",
                   objectFit: "cover",
                 }}
                 alt={`baniere ${index + 1}`}
-                src={
-                  "https://i.pinimg.com/736x/58/4d/ba/584dba31c8540b91611da7e2fb766ec8.jpg"
-                }
+                src={`http://127.0.0.1:8000/storage/uploads/${image.imagePath}`}
               />
             </Grid>
           ))}

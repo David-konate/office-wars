@@ -17,9 +17,11 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-
         $randomPlanetId = Planet::inRandomOrder()->value('id');
         $randomSiteId = Site::inRandomOrder()->value('id');
+
+        // Liste des noms de fichiers d'images possibles
+
         return [
             'eventName' => $this->faker->words(2, true),
             'eventDescription' => $this->faker->paragraph,

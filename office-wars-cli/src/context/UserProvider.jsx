@@ -1,6 +1,7 @@
 // UserProvider.jsx
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
+import { useQuestionContext } from "./QuestionProvider";
 
 const UserContext = createContext({});
 
@@ -10,10 +11,11 @@ export const UserProvider = ({ children }) => {
   const [userTopRankings, setUserTopRankings] = useState(null);
   const [userRankingsCount, setUserRankingsCount] = useState(null);
   const [userLatestRankings, setUserLastetRankings] = useState(null);
+  const { currentLevel } = useQuestionContext();
 
   function authentification() {
     axios
-      .get(`/me`)
+      .get(`/me/${currentLevel}`)
       .then((res) => {
         setUser(res.data.user);
         setUserRankings(res.data.rankings);

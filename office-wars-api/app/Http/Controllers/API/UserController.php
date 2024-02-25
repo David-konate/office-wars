@@ -28,6 +28,7 @@ class UserController extends Controller
             ], 403);
         }
     }
+
     /**
      * Store a newly created resource in storage.
      */

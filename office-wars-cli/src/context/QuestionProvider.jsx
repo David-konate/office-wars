@@ -13,7 +13,10 @@ export const QuestionProvider = ({ children }) => {
   const { user } = useUserContext();
   const [questions, setQuestions] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [currentLevel, setCurrentLevel] = useState(3);
+  const [currentLevel, setCurrentLevel] = useState(() => {
+    const storedLevel = localStorage.getItem("level");
+    return storedLevel ? parseInt(storedLevel) : 3;
+  });
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [badAnswers, setBadAnswers] = useState([]);
   const [count, setCount] = useState(0);

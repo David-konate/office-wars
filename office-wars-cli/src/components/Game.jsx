@@ -101,11 +101,11 @@ const Game = (rute) => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         // L'utilisateur est revenu sur la page
-        // const message =
-        //   "La Force est puissante en toi, mais trop jeune en elle tu es... ^^";
-        // console.log(message);
-        // setTimeRemaining(3);
-        // setCheater(true);
+        const message =
+          "La Force est puissante en toi, mais trop jeune en elle tu es... ^^";
+        console.log(message);
+        setTimeRemaining(3);
+        setCheater(true);
       } else {
         // L'utilisateur n'est pas revenu sur la page
       }

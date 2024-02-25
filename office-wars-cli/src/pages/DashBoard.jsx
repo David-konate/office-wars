@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CreatePlanetForm from "../components/forms/CreatePlanetForm";
 import CreateEventForm from "../components/forms/CreateEventForm";
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import WhiteButton from "../components/buttons/WhiteButton";
 import CreateSiteForm from "../components/forms/CreateSiteForm";
 import AccommodationCreateForm from "../components/forms/CreateAccommodationForm";
@@ -10,6 +10,8 @@ import PlanetList from "../components/lists/Planetslist";
 import EventList from "../components/lists/EventsList";
 import AccomodationsList from "../components/lists/AccomodationsList";
 import SitesList from "../components/lists/SitesList";
+import QuestionList from "../components/lists/QuestionList";
+import QuestionForm from "../components/forms/QuestionForm";
 
 const Dashboard = () => {
   const [tabs, setTabs] = useState({
@@ -37,29 +39,41 @@ const Dashboard = () => {
       buttonLabel: "Liste des lieux de vie",
       component: AccomodationsList,
     },
-    planetForm: {
+    questionList: {
       id: 5,
+      isOpen: false,
+      buttonLabel: "Liste des questions",
+      component: QuestionList,
+    },
+    planetForm: {
+      id: 6,
       isOpen: false,
       buttonLabel: "Créer une planete",
       component: CreatePlanetForm,
     },
     eventForm: {
-      id: 6,
+      id: 7,
       isOpen: false,
       buttonLabel: "Créer un évènement",
       component: CreateEventForm,
     },
     siteForm: {
-      id: 7,
+      id: 8,
       isOpen: false,
       buttonLabel: "Créer un site",
       component: CreateSiteForm,
     },
     accomodationForm: {
-      id: 8,
+      id: 9,
       isOpen: false,
       buttonLabel: "Créer un lieu de vie",
       component: AccommodationCreateForm,
+    },
+    accomodationForm: {
+      id: 10,
+      isOpen: false,
+      buttonLabel: "Créer une question",
+      component: QuestionForm,
     },
   });
 
@@ -90,16 +104,16 @@ const Dashboard = () => {
               mb={2}
             >
               {Object.keys(tabs)
-                .slice(rowIndex * 4, rowIndex * 4 + 4)
+                .slice(rowIndex * 5, rowIndex * 5 + 5)
                 .map((index) => (
-                  <WhiteButton
+                  <Button
                     key={index}
                     onClick={() => setTabSelected(tabs[index])}
                     isActive={tabs[index].id === tabSelected.id}
                     style={{ margin: "2" }}
                   >
                     {tabs[index].buttonLabel}
-                  </WhiteButton>
+                  </Button>
                 ))}
             </Box>
           )

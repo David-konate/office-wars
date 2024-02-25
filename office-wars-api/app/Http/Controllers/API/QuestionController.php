@@ -3,11 +3,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Question;
+use App\Models\Answer;
 
+use App\Models\Question;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 class QuestionController extends Controller
 {
@@ -17,7 +21,7 @@ class QuestionController extends Controller
      * @param int $currentLevel Niveau actuel (1, 2 ou 3)
      * @return \Illuminate\Http\JsonResponse Réponse JSON contenant les questions
      */
-    public function index($currentLevel)
+    public function newGame($currentLevel)
     {
         try {
             // Initialiser une collection vide pour stocker les questions
@@ -79,7 +83,19 @@ class QuestionController extends Controller
 
 
 
+    public function index()
+    {
+        try {
+            $questions = Question::with('category', 'answers')->get();
 
+            return response()->json($questions);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' =>  $e->getMessage(),
+            ], 403);
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -94,7 +110,67 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            // Validation des données
+            $validator = Validator::make($request->all(), [
+                'questionTitle' => 'required',
+                'level_id' => 'required',
+                'category_id' => 'required',
+                'imageQuestion' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+                'answers' => 'required|array|min:1', // Assurez-vous qu'il y a au moins une réponse
+                // 'answers.*.answerText' => 'required|string',
+                // 'answers.*.isCorrect' => 'required|boolean',
+            ]);
+
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Erreur de validation',
+                    'errors' => $validator->errors(),
+                ], 401);
+            }
+
+            // Logique de chargement de l'image de la question
+            $filename = null;
+            if ($request->hasFile('imageQuestion')) {
+                $filenameWithExt = $request->file('imageQuestion')->getClientOriginalName();
+                $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('imageQuestion')->getClientOriginalExtension();
+                $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+                $request->file('imageQuestion')->storeAs('public/uploads', $filename);
+            }
+
+            // Création de la question
+            $question = Question::create([
+                'questionTitle' => request('questionTitle'),
+                'level_id' => request('level_id'),
+                'category_id' => request('category_id'),
+                'imageQuestion' => $filename,
+            ]);
+
+            // Ajout des réponses à la question nouvellement créée
+            $answers = [];
+            foreach (request('answers') as $answerData) {
+                $answers[] = new Answer([
+                    'answerText' => $answerData['answerText'],
+                    'isCorrect' => $answerData['isCorrect'] ? 1 : 0, // Convertir en entier
+                ]);
+            }
+            $question->answers()->saveMany($answers);
+
+
+            return response()->json([
+                'data' => $question,
+                'status' => true,
+                'message' => 'Question créée avec succès'
+            ], 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Erreur lors de la création de la question : ' . $e->getMessage(),
+            ], 403);
+        }
     }
 
     /**
@@ -102,8 +178,18 @@ class QuestionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $question = Question::with('category', 'answers')->findOrFail($id);
+
+            return response()->json($question);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' =>  $e->getMessage(),
+            ], 403);
+        }
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -116,10 +202,72 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $questionId)
     {
-        //
+        try {
+            // Validation des données
+            $validator = Validator::make($request->all(), [
+                'questionTitle' => 'required|min:1|string',
+                'level_id' => 'required|integer',
+                'category_id' => 'required|integer',
+                // 'imageQuestion' => 'nullable|image|mimes:jpeg,png,jpg,gif,wep|max:2048', // Image de la question
+                'answers' => 'required|array|min:1', // Assurez-vous qu'il y a au moins une réponse
+
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors(),
+                ], 400);
+            }
+
+            // Récupération de la question
+            $question = Question::findOrFail($questionId);
+
+            // Logique de chargement d'image
+            if ($request->hasFile('imageQuestion')) {
+                $filenameWithExt = $request->file('imageQuestion')->getClientOriginalName();
+                $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('imageQuestion')->getClientOriginalExtension();
+                $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+                $request->file('imageQuestion')->storeAs('public/uploads', $filename);
+
+                // Mise à jour de l'image liée à la question
+                $question->imageQuestion = $filename;
+            }
+
+            // Mise à jour des données de la question
+            $question->update([
+                'questionTitle' => $request->questionTitle,
+                'level_id' => $request->level_id,
+                'category_id' => $request->category_id,
+            ]);
+
+            // Mise à jour des réponses de la question
+            $answers = [];
+            foreach ($request->answers as $answerData) {
+                $answers[] = [
+                    'answerText' => $answerData['answerText'],
+                    'isCorrect' => $answerData['isCorrect'] ? 1 : 0, // Convertir en entier
+                ];
+            }
+            $question->answers()->delete(); // Supprimer les réponses existantes
+            $question->answers()->createMany($answers);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Question et réponses mises à jour avec succès',
+                'data' => $question
+            ], 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Erreur lors de la mise à jour de la question et des réponses : ' . $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

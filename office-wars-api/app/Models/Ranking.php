@@ -17,6 +17,7 @@ class Ranking extends Model
         'resultQuizz',
         'timeQuizz',
         'user_id',
+        'level'
     ];
 
     public function user()

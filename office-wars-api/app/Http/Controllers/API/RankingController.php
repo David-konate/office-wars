@@ -32,26 +32,25 @@ class RankingController extends Controller
     }
 
 
-    public function welcome()
+    public function welcome($currentLevel)
     {
         $now = Carbon::now();
         $firstDayOfMonth = $now->firstOfMonth()->toDateTimeString();
         $lastDayOfMonth = $now->lastOfMonth()->toDateTimeString();
 
         try {
-
-
             $latestRankings = DB::table('rankings')
                 ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
                 ->join('users', 'rankings.user_id', '=', 'users.id')
+                ->where('rankings.level', $currentLevel) // Filtrer par le niveau actuel
                 ->orderBy('rankings.created_at', 'desc')
                 ->take(5)
                 ->get();
 
-
             $topRankings = DB::table('rankings')
                 ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
                 ->join('users', 'rankings.user_id', '=', 'users.id')
+                ->where('rankings.level', $currentLevel) // Filtrer par le niveau actuel
                 ->whereBetween('rankings.created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filtrer par le mois actuel
                 ->orderBy('rankings.resultQuizz', 'desc')
                 ->take(10)
@@ -68,6 +67,7 @@ class RankingController extends Controller
             ], 403);
         }
     }
+
 
     public function saveStats(Request $request)
     {

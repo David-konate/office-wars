@@ -17,6 +17,9 @@ class UserFactory extends Factory
     {
         $faker = Faker::create();
 
+        // Liste des noms de fichiers d'images possibles
+        $imageOptions = ['ajkbar.jpg', 'ashoka.jpg', 'mara.jpg', 'r2d2.jpg', 'obi.jpg'];
+
         return [
             'userPseudo' => $faker->userName,
             'userLastName' => $faker->lastName,
@@ -24,7 +27,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('Azerty@123'),
             'email' => $faker->unique()->safeEmail,
             'bookingHistory' => $faker->text(200),
-            'userImage' => '',
+            'userImage' => $faker->randomElement($imageOptions), // Choix aléatoire parmi les images disponibles
             'role' => 'user',
             'slug' => Str::slug($faker->userName),
             'remember_token' => Str::random(10),

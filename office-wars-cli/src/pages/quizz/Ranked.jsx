@@ -12,8 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Stack } from "@mui/system";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 import WhiteButton from "../../components/buttons/WhiteButton";
 import { useUserContext } from "../../context/UserProvider";
 import { Link as RouterLink } from "react-router-dom";
@@ -24,6 +26,7 @@ import RankingsAllList from "../../components/lists/RankingsAllList";
 import moment from "moment";
 import { firstLetterUppercase } from "../../utils";
 import { useQuestionContext } from "../../context/QuestionProvider";
+import LevelBox from "../../components/LevelBox";
 const Ranked = () => {
   const [isBusy, setIsBusy] = useState(true);
   const [lastRankings, setLastRankings] = useState();
@@ -60,11 +63,12 @@ const Ranked = () => {
   }, []);
   const handleLevelChange = (event) => {
     setCurrentLevel(parseInt(event.target.value));
+    localStorage.setItem("level", currentLevel);
   };
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`rankings-welcome`);
+      const res = await axios.get(`rankings-welcome/${currentLevel}`);
       setLastRankings(res.data.latestRankings);
       setTopRankings(res.data.topRankings);
 
@@ -189,7 +193,9 @@ const Ranked = () => {
                         width: 40,
                         height: 40,
                       }}
-                      src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                      src={`http://127.0.0.1:8000/storage/uploads/${
+                        ranking.userImage || "notImage.png"
+                      }`}
                     />
                   </Box>
                 </Box>
@@ -213,7 +219,8 @@ const Ranked = () => {
           >
             <Box style={{ textAlign: "center", width: "100%" }}>
               <Typography width={"100%"} variant="h6">
-                {firstLetterUppercase(moment().format("MMMM"))}
+                {firstLetterUppercase(moment().format("MMMM"))} - Top{" "}
+                {topRankings.length}
               </Typography>
             </Box>
 
@@ -259,7 +266,9 @@ const Ranked = () => {
                         width: 40,
                         height: 40,
                       }}
-                      src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                      src={`http://127.0.0.1:8000/storage/uploads/${
+                        ranking.userImage || "notImage.png"
+                      }`}
                     />
                   </Box>
                 </Box>
@@ -301,21 +310,14 @@ const Ranked = () => {
             />
           </Box>
           <Box mt={3} display="flex" justifyContent="center">
-            <RadioGroup
-              row // Cette propriété "row" permet d'aligner horizontalement
-              aria-label="Niveau"
-              name="level"
-              value={currentLevel}
-              onChange={handleLevelChange}
-            >
-              <FormControlLabel value="1" control={<Radio />} label="1" />
-              <FormControlLabel value="2" control={<Radio />} label="2" />
-
-              <FormControlLabel value="3" control={<Radio />} label="Classé" />
-            </RadioGroup>
+            <LevelBox
+              currentLevel={currentLevel}
+              handleLevelChange={handleLevelChange}
+            />
           </Box>
 
           <Box
+            mt={2}
             style={{
               marginBottom: "10px",
               display: "flex",
@@ -410,7 +412,9 @@ const Ranked = () => {
                           width: 40,
                           height: 40,
                         }}
-                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                        src={`http://127.0.0.1:8000/storage/uploads/${
+                          ranking.userImage || "notImage.png"
+                        }`}
                       />
                     </Box>
                   </Box>
@@ -433,7 +437,8 @@ const Ranked = () => {
             >
               <Box style={{ textAlign: "center", width: "100%" }}>
                 <Typography width={"100%"} variant="h6">
-                  Meilleurs résultats
+                  {firstLetterUppercase(moment().format("MMMM"))} - Top{" "}
+                  {topRankings.length}
                 </Typography>
               </Box>
 
@@ -479,7 +484,9 @@ const Ranked = () => {
                           width: 40,
                           height: 40,
                         }}
-                        src={`http://127.0.0.1:8000/storage/uploads/${ranking.userImage}`}
+                        src={`http://127.0.0.1:8000/storage/uploads/${
+                          ranking.userImage || "notImage.png"
+                        }`}
                       />
                     </Box>
                   </Box>
@@ -504,20 +511,29 @@ const Ranked = () => {
             }}
           >
             <Stack spacing={2} justifyContent={"center"} alignItems={"center"}>
-              <Avatar
-                sx={{
-                  width: 100,
-                  height: 100,
-                }}
-                src={`http://127.0.0.1:8000/storage/uploads/${user.userImage}`}
-              />
+              <RouterLink
+                to="/profil" // Mettez ici le chemin vers le profil de l'utilisateur
+                style={{ textDecoration: "none" }}
+              >
+                <Avatar
+                  sx={{
+                    width: 100,
+                    height: 100,
+                  }}
+                  src={`http://127.0.0.1:8000/storage/uploads/${
+                    user.userImage || "notImage.png"
+                  }`}
+                />
+              </RouterLink>
               <Typography>{user.userPseudo}</Typography>
-              <Stack justifyContent={"center"} alignItems={"center"}>
-                <Typography variant="caption">Top score</Typography>
-                <Typography className="rankin-user-top-scrore" mt={1}>
-                  {userTopRankings[0].resultQuizz} %{" "}
-                </Typography>
-              </Stack>
+              {userTopRankings[0]?.resultQuizz && (
+                <Stack justifyContent={"center"} alignItems={"center"}>
+                  <Typography variant="caption">Top score</Typography>
+                  <Typography className="rankin-user-top-scrore" mt={1}>
+                    {userTopRankings[0]?.resultQuizz} %
+                  </Typography>
+                </Stack>
+              )}
             </Stack>
           </Paper>
         </Box>

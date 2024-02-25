@@ -17,15 +17,23 @@ import { useUserContext } from "../context/UserProvider"; // Importez le hook
 function NavBar() {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const { user } = useUserContext(); // Utilisez le hook useUserContext pour obtenir l'état d'authentification
+  const { user, setUser } = useUserContext(); // Utilisez le hook useUserContext pour obtenir l'état d'authentification
 
   const handleLogout = async () => {
     try {
-      await axios.post("/security/logout", {
-        Headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      await axios.post(
+        "/security/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      // Réinitialiser l'utilisateur à null
+      setUser(null);
+
       localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {

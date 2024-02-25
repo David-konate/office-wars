@@ -32,7 +32,7 @@ body.dark {
   background: var(--secondary-color-dark);
   --bg-other-color: var(--bg-other-color-dark);
 
-  --filter: blur(5px) brightness(1);
+  --filter: blur(5px) brightness(1) brightness(0.5) grayscale(30%);
   --other-color: var(--other-color-dark);
   // --other-color : var(--other-color-dark)
 }

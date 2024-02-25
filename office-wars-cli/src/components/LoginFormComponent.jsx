@@ -78,7 +78,7 @@ const LoginFormComponent = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ color: "var(--color-text)", mt: 3, mb: 2 }}
           >
             Connexion
           </Button>

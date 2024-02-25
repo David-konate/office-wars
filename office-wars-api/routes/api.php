@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RankingController;
 use App\Http\Controllers\Api\SecurityController;
 use App\Http\Controllers\Api\AccomodationController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Models\Ranking;
 
@@ -30,27 +32,31 @@ use App\Models\Ranking;
 */
 
 
-Route::get('/me', function () {
+Route::get('/me/{currentLevel}', function ($currentLevel) {
     // Assurez-vous que l'utilisateur est authentifié
     $user = Auth::user();
 
     // Charger l'utilisateur avec la relation "rankings"
     $userWithRankings = User::with('rankings')->find($user->id);
 
-    // Récupérer les 3 meilleurs classements pour l'utilisateur spécifié
+    // Récupérer les 3 meilleurs classements pour l'utilisateur spécifié et le niveau actuel
     $topRankings = Ranking::where('user_id', $user->id)
+        ->where('level', $currentLevel)
         ->orderByDesc('resultQuizz')
         ->limit(3)
         ->get();
 
-    // Récupérer les 3 derniers résultats triés par ordre croissant de 'resultQuizz' pour l'utilisateur spécifié
+    // Récupérer les 3 derniers résultats triés par ordre croissant de 'resultQuizz' pour l'utilisateur spécifié et le niveau actuel
     $latestRankings = Ranking::where('user_id', $user->id)
+        ->where('level', $currentLevel)
         ->orderByDesc('created_at') // Utilisation de orderByDesc pour trier par ordre décroissant
         ->limit(3)
         ->get();
 
     // Compter le nombre total de classements de l'utilisateur
-    $totalRankingsCount = Ranking::where('user_id', $user->id)->count();
+    $totalRankingsCount = Ranking::where('user_id', $user->id)
+        ->where('level', $currentLevel)
+        ->count();
 
     // Retourner les données sous forme de tableau associatif
     return [
@@ -61,6 +67,7 @@ Route::get('/me', function () {
         'totalRankingsCount' => $totalRankingsCount,
     ];
 })->middleware('auth:sanctum');
+
 //Route users
 Route::prefix('/security')->group(function () {
     Route::post('/register', [SecurityController::class, 'register'])->middleware('guest')->name('security.register');
@@ -105,22 +112,30 @@ Route::controller(ImageController::class)->group(function () {
 Route::controller(RankingController::class)->group(function () {
     Route::get('rankings', 'index');
     Route::post('rankings', 'saveStats');
-    Route::get('rankings-welcome', 'welcome');
+    Route::get('rankings-welcome/{currentLevel}', 'welcome');
 });
 //Route questions
 Route::controller(QuestionController::class)->group(function () {
-    Route::get('new-game/{currentLevel}', 'index');
+    Route::get('new-game/{currentLevel}', 'newGame');
+    Route::get('questions', 'index');
+    Route::get('questions/{question}', 'show');
+    Route::post('questions/', 'store')->middleware('auth:sanctum');
+    Route::post('questions/{question}', 'update')->middleware('auth:sanctum');
 });
 
 //Route planetes
 Route::controller(PlanetController::class)->group(function () {
     Route::get('planets/{planet}', 'show');
     Route::get('planets', 'index');
-    Route::post('planets', 'store');
+    Route::post('planets', 'store')->middleware('auth:sanctum');
     Route::post('planets/{planet}', 'update')->middleware('auth:sanctum');
     Route::delete('planets/{planet}', 'destroy')->middleware('auth:sanctum');
 });
 
+Route::resource('categories', CategoryController::class)->middleware('auth:sanctum');
+
+// Routes pour le LevelController
+Route::resource('levels', LevelController::class)->middleware('auth:sanctum');
 
 //Route commentaires
 Route::controller(ReviewController::class)->group(function () {

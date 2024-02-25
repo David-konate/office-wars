@@ -23,6 +23,7 @@ class RankingFactory extends Factory
             'resultQuizz' => $this->faker->randomFloat(2, 0, 100),
             'timeQuizz' => $this->faker->randomFloat(2, 0, 100),
             'user_id' => $user->id,
+            'level'  => $this->faker->randomElement([1, 2, 3]),
         ];
     }
 }

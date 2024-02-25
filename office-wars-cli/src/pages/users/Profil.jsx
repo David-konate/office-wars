@@ -6,6 +6,7 @@ import {
   Paper,
   Container,
   Rating,
+  Button,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SellIcon from "@mui/icons-material/Sell";
@@ -17,8 +18,11 @@ import { Box } from "@mui/system";
 import moment from "moment";
 import RankingsList from "../../components/lists/RankingList";
 import WhiteButton from "../../components/buttons/WhiteButton";
+import LevelBox from "../../components/LevelBox";
+import { useQuestionContext } from "../../context/QuestionProvider";
 
 const Profil = () => {
+  const { currentLevel, setCurrentLevel } = useQuestionContext();
   const [isBusy, setIsBusy] = useState(true);
   const [tabs, setTabs] = useState({
     ranginksList: {
@@ -28,6 +32,11 @@ const Profil = () => {
       component: RankingsList,
     },
   });
+  const handleLevelChange = (event) => {
+    setCurrentLevel(parseInt(event.target.value));
+    localStorage.setItem("level", currentLevel);
+  };
+
   const [tabSelected, setTabSelected] = useState(tabs["ranginksList"]); // Définissez la valeur initiale selon votre logique
   const TabSelected = tabSelected.component;
   const [isListOpen, setIsListOpen] = useState(false);
@@ -109,21 +118,11 @@ const Profil = () => {
                       }}
                     >
                       <Box className="img-profil">
-                        {user.userImage ? (
-                          <img
-                            src={`http://127.0.0.1:8000/storage/images/${user.userImage}`}
-                            alt={"image : " + user.userImage}
-                            loading="lazy"
-                          />
-                        ) : (
-                          <img
-                            height="300"
-                            src={`http://127.0.0.1:8000/storage/images/notImage.png`}
-                            alt={"Utilisateur sans avatar"}
-                            loading="lazy"
-                            style={{ borderRadius: 10 }}
-                          />
-                        )}
+                        <img
+                          src={`http://127.0.0.1:8000/storage/uploads/${user.userImage} || notImage.png`}
+                          alt={"image : " + user.userImage}
+                          loading="lazy"
+                        />
                       </Box>
                     </Box>
                   </Box>
@@ -270,6 +269,10 @@ const Profil = () => {
                     </Box>
                   </Box>
                 </Box>
+                <LevelBox
+                  currentLevel={currentLevel}
+                  handleLevelChange={handleLevelChange}
+                />
               </Box>
               <Box
                 sx={{
@@ -280,13 +283,14 @@ const Profil = () => {
               >
                 <Box mt={2} mb={2}>
                   {" "}
-                  <WhiteButton
+                  <Button
+                    sx={{ color: "var(--color-text)" }}
                     onClick={() => {
                       setIsListOpen((prevState) => !prevState);
                     }}
                   >
                     {isListOpen ? "Fermer" : "Vos resultats"}
-                  </WhiteButton>
+                  </Button>
                 </Box>
 
                 {isListOpen && (
@@ -298,6 +302,18 @@ const Profil = () => {
                   </Box>
                 )}
               </Box>
+              {user.role === "admin" && (
+                <Box mt={2} mb={2}>
+                  <Button
+                    sx={{ color: "var(--color-text)" }}
+                    component={Link}
+                    to="/admin"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Aller à l'administration
+                  </Button>
+                </Box>
+              )}
             </Container>
           ) : (
             <Typography variant="body1">Aucun utilisateur connecté</Typography>

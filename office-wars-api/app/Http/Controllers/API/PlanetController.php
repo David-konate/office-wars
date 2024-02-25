@@ -143,7 +143,7 @@ class PlanetController extends Controller
 
             $imageUrls = [];
             // Logique de chargement d'image
-            if ($request->hasFile('imagePlanet')) {
+            if ($request->hasFile('imagePlanet') && !"") {
                 $filenameWithExt = $request->file('imagePlanet')->getClientOriginalName();
                 $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $request->file('imagePlanet')->getClientOriginalExtension();

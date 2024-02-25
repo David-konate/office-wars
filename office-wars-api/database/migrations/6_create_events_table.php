@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('eventName', 50)->nullable();
             $table->text('eventDescription');
             $table->date('dateTime')->default(now());
-
+            $table->string('eventImage')->nullable();
             $table->timestamps();
             $table->string('slug')->unique();
 

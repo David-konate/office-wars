@@ -30,11 +30,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <CustomThemeProvider>
         <FilterProvider>
-          <UserProvider>
-            <QuestionProvider>
+          <QuestionProvider>
+            <UserProvider>
               <App />
-            </QuestionProvider>
-          </UserProvider>
+            </UserProvider>
+          </QuestionProvider>
         </FilterProvider>
       </CustomThemeProvider>
     </BrowserRouter>

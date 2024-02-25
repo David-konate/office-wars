@@ -38,6 +38,9 @@ const RankingsList = () => {
       return isAsc
         ? a.created_at.localeCompare(b.created_at)
         : b.created_at.localeCompare(a.created_at);
+    } else if (orderBy === "level") {
+      // Ajout de la logique de tri pour la colonne "Niveau"
+      return isAsc ? a.level - b.level : b.level - a.level;
     }
     return 0;
   });
@@ -84,6 +87,16 @@ const RankingsList = () => {
                   Date
                 </TableSortLabel>
               </TableCell>
+              {/* Ajout de la colonne "Niveau" */}
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === "level"}
+                  direction={orderBy === "level" ? order : "asc"}
+                  onClick={() => handleSort("level")}
+                >
+                  Niveau
+                </TableSortLabel>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -93,8 +106,10 @@ const RankingsList = () => {
                 <TableCell>{ranking.resultQuizz}%</TableCell>
                 <TableCell>{ranking.timeQuizz}</TableCell>
                 <TableCell>
-                  {moment(ranking.created_at).format("dddd D MMMM YYYY")}
+                  {moment(ranking.created_at).format("D MMMM YYYY")}
                 </TableCell>
+                {/* Affichage du niveau dans la colonne "Niveau" */}
+                <TableCell>{ranking.level}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -8,17 +8,7 @@ const AdminRouteGuard = ({ element }) => {
 
   if (!user) {
     // Si l'utilisateur n'est pas encore disponible, effectuez l'authentification et renvoyez une boîte de chargement
-    authentification();
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <Navigate to="/login" />;
   }
 
   // Vérifiez si l'utilisateur a un rôle d'administrateur

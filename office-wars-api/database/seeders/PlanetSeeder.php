@@ -25,6 +25,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'naboo',
+            'imagePlanet' => '/Naboo.jpg'
         ]);
 
         // Création de la planète Tatooine
@@ -34,6 +35,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'tatooine',
+            'imagePlanet' => '/mustafar.jpg'
         ]);
 
         // Création de la planète Cantonica
@@ -43,6 +45,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'cantonica',
+            'imagePlanet' => '/mandalore.jpg'
         ]);
 
         // Création de la planète Coruscant
@@ -52,6 +55,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'coruscant',
+            'imagePlanet' => '/mustafar.jpg'
         ]);
 
         // Création de la planète Geonosis
@@ -61,6 +65,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'geonosis',
+            'imagePlanet' => '/mandalore.jpg'
         ]);
 
         // Création de la planète Mandalore
@@ -70,6 +75,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'mandalore',
+            'imagePlanet' => '/Naboo.jpg'
         ]);
 
         // Création de la planète Takodana
@@ -79,6 +85,7 @@ class PlanetSeeder extends Seeder
             'galacticCoordinates' => $faker->word,
             'population' => $faker->numberBetween(100000, 10000000),
             'slug' => 'takodana',
+            'imagePlanet' => '/mustafar.jpg'
 
         ]);
     }

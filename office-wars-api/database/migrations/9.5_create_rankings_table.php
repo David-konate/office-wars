@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('Id_Ranking');
             $table->decimal('resultQuizz', 5, 2);
             $table->decimal('timeQuizz', 20, 2);
+            $table->unsignedBigInteger('level');
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
             // Ajoutez d'autres colonnes ou contraintes si nécessaire
