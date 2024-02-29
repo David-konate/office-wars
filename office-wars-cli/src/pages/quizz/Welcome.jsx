@@ -2,26 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Container } from "@mui/system";
 import { linksAcceuilQuiz } from "../../utils";
 import CardAcceuil from "../../components/cards/CardAcceuil";
+
+import { useQuestionContext } from "../../context/QuestionProvider";
+import axios from "axios";
 const Welcome = () => {
-  const [isBusy, setIsBusy] = useState(true);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  useEffect(() => {
-    setIsBusy(false);
-  }, []);
+  useEffect(() => {}, []);
 
-  return isBusy ? (
-    <Container>
-      <Box sx={{ display: "flex" }}>
-        <CircularProgress />
-      </Box>
-    </Container>
-  ) : (
+  return (
     <Box
       sx={{
         position: "relative",
@@ -69,7 +63,7 @@ const Welcome = () => {
           Alliance des Connaissances : Maîtrisez-vous la force ?
         </Typography>
       </Box>
-      <Box
+      {/* <Box
         mt={5}
         ml={5}
         sx={{
@@ -84,7 +78,16 @@ const Welcome = () => {
             <CardAcceuil label={link.label} path={link.path} src={link.src} />
           </Link>
         ))}
-      </Box>
+      </Box> */}
+      <Grid container mt={10} gap={20} justifyContent={"center"}>
+        {linksAcceuilQuiz.map((link, index) => (
+          <Grid item key={index} md={2} xs={6}>
+            <Link key={index} to={link.path} style={{ textDecoration: "none" }}>
+              <CardAcceuil label={link.label} path={link.path} src={link.src} />
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

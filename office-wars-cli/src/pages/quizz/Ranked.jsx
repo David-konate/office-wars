@@ -4,10 +4,10 @@ import {
   Button,
   CircularProgress,
   Container,
-  FormControlLabel,
+  Autocomplete,
   Link,
   Paper,
-  Radio,
+  TextField,
   RadioGroup,
   Typography,
 } from "@mui/material";
@@ -28,12 +28,16 @@ import { firstLetterUppercase } from "../../utils";
 import { useQuestionContext } from "../../context/QuestionProvider";
 import LevelBox from "../../components/LevelBox";
 const Ranked = () => {
+  const [selectedUnivers, setSelectedUnivers] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState(null);
+
   const [isBusy, setIsBusy] = useState(true);
   const [lastRankings, setLastRankings] = useState();
   const [topRankings, setTopRankings] = useState();
   const { userTopRankings, user } = useUserContext();
   const { theme } = useTheme();
-  const { niveau, currentLevel, setCurrentLevel } = useQuestionContext();
+  const { currentLevel, setCurrentLevel, setCurrentUniver, currentUniver } =
+    useQuestionContext();
 
   const [tabs, setTabs] = useState({
     jediRules: {
@@ -57,27 +61,60 @@ const Ranked = () => {
   });
 
   const [isRulesOpen, setIsRulesOpen] = useState(false);
+  const [universQuestion, setUniversQuestion] = useState();
 
   useEffect(() => {
     fetchData();
-  }, []);
-  const handleLevelChange = (event) => {
-    setCurrentLevel(parseInt(event.target.value));
-    localStorage.setItem("level", currentLevel);
-  };
+    setSelectedUnivers((prevSelectedUnivers) => ({
+      ...prevSelectedUnivers,
+      univerTitle: currentUniver,
+    }));
+  }, [currentUniver]);
 
   const fetchData = async () => {
     try {
       const res = await axios.get(`rankings-welcome/${currentLevel}`);
       setLastRankings(res.data.latestRankings);
       setTopRankings(res.data.topRankings);
+      const res3 = await axios.get(`univers/`);
+      setUniversQuestion(res3.data);
 
-      console.log("rank", res.data);
+      setIsBusy(false);
     } catch (error) {
       console.log(error);
-    } finally {
       setIsBusy(false);
     }
+  };
+
+  const fetchThemes = async (universId) => {
+    try {
+      const res = await axios.get(`themes/${universId}`);
+      setUniversQuestion(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedUnivers) {
+      fetchThemes(selectedUnivers.id);
+    }
+  }, [selectedUnivers]);
+
+  const handleUniversChange = (event, newValue) => {
+    if (newValue) {
+      setCurrentUniver(newValue.univerTitle);
+      localStorage.setItem("UniversQuestion", newValue.univerTitle);
+    } else {
+      // Gérer le cas où newValue est null (champ d'autocomplétion effacé)
+      setCurrentUniver(""); // ou toute autre logique que vous souhaitez appliquer
+      localStorage.removeItem("UniversQuestion");
+    }
+  };
+
+  const handleLevelChange = (event) => {
+    setCurrentLevel(parseInt(event.target.value));
+    localStorage.setItem("level", currentLevel);
   };
   const handleTabClick = (tabId) => {
     setTabs((prevTabs) => {
@@ -276,7 +313,6 @@ const Ranked = () => {
             </Box>
           </Paper>
         </Box>
-
         <Box width={{ xs: "100%", sm: "50%" }}>
           <Box
             className="img-gp-rangk"
@@ -329,7 +365,7 @@ const Ranked = () => {
               {isRulesOpen ? "Fermer" : "Ouvrir"} Les règles
             </WhiteButton>
             <WhiteButton onClick={() => handleTabClick("rankingsList")}>
-              {tabs.rankingsList.isOpen ? "Fermer" : "Ouvrir"} Classements
+              {tabs.rankingsList.isOpen ? "Fermer" : "Ouvrir"} Classement
             </WhiteButton>
           </Box>
 
@@ -495,7 +531,6 @@ const Ranked = () => {
             </Paper>
           </Box>
         </Box>
-
         <Box
           width={{ xs: "100%", sm: "25%" }}
           sx={{
@@ -525,8 +560,9 @@ const Ranked = () => {
                   }`}
                 />
               </RouterLink>
-              <Typography>{user.userPseudo}</Typography>
-              {userTopRankings[0]?.resultQuizz && (
+              <Typography>{user?.userPseudo}</Typography>
+
+              {userTopRankings?.length && userTopRankings[0]?.resultQuizz && (
                 <Stack justifyContent={"center"} alignItems={"center"}>
                   <Typography variant="caption">Top score</Typography>
                   <Typography className="rankin-user-top-scrore" mt={1}>
@@ -536,6 +572,27 @@ const Ranked = () => {
               )}
             </Stack>
           </Paper>
+          <Box mt={5} ml={5}>
+            <Autocomplete
+              value={selectedUnivers}
+              onChange={(event, newValue) =>
+                handleUniversChange(event, newValue)
+              }
+              options={universQuestion || []}
+              getOptionLabel={(option) => option.univerTitle}
+              isOptionEqualToValue={(option, value) =>
+                option.univerTitle === value.univerTitle
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Select Univer"
+                />
+              )}
+            />
+          </Box>
+          <Box width={"100%"}></Box>
         </Box>
       </Box>
     </Container>

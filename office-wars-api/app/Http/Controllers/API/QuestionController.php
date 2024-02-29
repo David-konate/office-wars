@@ -7,8 +7,6 @@ use App\Models\Answer;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,8 +19,9 @@ class QuestionController extends Controller
      * @param int $currentLevel Niveau actuel (1, 2 ou 3)
      * @return \Illuminate\Http\JsonResponse Réponse JSON contenant les questions
      */
-    public function newGame($currentLevel)
+    public function newGame($currentLevel, Request $request)
     {
+        $currentUniver = $request->query('currentUniver');
         try {
             // Initialiser une collection vide pour stocker les questions
             $questions = collect();
@@ -45,16 +44,19 @@ class QuestionController extends Controller
             }
 
             // Niveaux à récupérer
-            $levelsToRetrieve = ($currentLevel == 2) ? [1, 2] : [$currentLevel];
+            $levelsToRetrieve = ($currentLevel == 2) ? [1, 3] : [$currentLevel];
 
             // Récupérer les questions pour chaque niveau spécifié
             foreach ($levelsToRetrieve as $lvl) {
-                $levelQuestions = Question::with(['answers'])
+                $levelQuestions = Question::with(['answers', 'univer'])
                     ->select('questions.*', 'categories.categoryName', 'levels.level', 'answers.answerText')
                     ->join('categories', 'questions.category_id', '=', 'categories.id')
                     ->join('levels', 'questions.level_id', '=', 'levels.id')
+                    ->join('univers', 'questions.univer_id', '=', 'univers.id')
                     ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
+
                     ->where('questions.level_id', $lvl)
+                    ->where('univerTitle', '=', $currentUniver)
                     ->inRandomOrder()
                     ->limit($count)
                     ->get();
@@ -80,6 +82,7 @@ class QuestionController extends Controller
             ], 500); // Utiliser le code 500 pour les erreurs internes du serveur
         }
     }
+
 
 
 
@@ -189,6 +192,34 @@ class QuestionController extends Controller
             ], 403);
         }
     }
+    public function random()
+    {
+        try {
+            // Obtenir une question aléatoire avec les réponses et la catégorie
+            $randomQuestion = Question::with(['category', 'answers'])
+                ->inRandomOrder()
+                ->first();
+
+            if (!$randomQuestion) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Aucune question disponible.',
+                ], 404);
+            }
+
+            // Mélanger aléatoirement les réponses de la question
+            $randomQuestion->answers = $randomQuestion->answers->shuffle();
+
+            // Retourner la question aléatoire avec les réponses et la catégorie en tant que réponse JSON
+            return response()->json($randomQuestion);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
 
 
     /**

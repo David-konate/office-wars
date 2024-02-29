@@ -45,13 +45,7 @@ export const calculatePercentage = (currentPoints, totalPoints) => {
   return parseFloat(percentage.toFixed(2));
 };
 
-// // Utilisation de la fonction
-// const userTime = 15; // par exemple, l'utilisateur a mis 15 secondes
-// const userLevel = 2; // par exemple, l'utilisateur a choisi le niveau 2
-
-// const points = calculatePoints(userTime, userLevel);
-// console.log('Points attribués:', points);
-
+// Navigation
 export const linksUserLoged = [
   {
     label: "planètes",
@@ -154,6 +148,7 @@ export const linksAcceuilQuiz = [
   },
 ];
 
+// Transformation
 export const firstLetterUppercase = (value) => {
   return value.charAt(0).toUpperCase() + value.slice(1);
 };

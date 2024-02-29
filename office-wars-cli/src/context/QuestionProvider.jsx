@@ -15,12 +15,19 @@ export const QuestionProvider = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(() => {
     const storedLevel = localStorage.getItem("level");
-    return storedLevel ? parseInt(storedLevel) : 3;
+    return storedLevel ? parseInt(storedLevel) : 2;
   });
+  const [currentTheme, setCurrentTheme] = useState("");
+  const [currentUniver, setCurrentUniver] = useState(() => {
+    const storedUniver = localStorage.getItem("UniversQuestion");
+    return storedUniver ? storedUniver : null;
+  });
+
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [badAnswers, setBadAnswers] = useState([]);
   const [count, setCount] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
+
   const [timeRemaining, setTimeRemaining] = useState(
     QUESTION_TIMER_DURATION / 1000
   );
@@ -38,13 +45,17 @@ export const QuestionProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  }, [location.search, currentLevel]);
+  }, [location.search, currentLevel, currentUniver]);
 
   const fetchData = async () => {
     try {
       setIsBusy(true);
-      console.log({ currentLevel });
-      const res = await axios.get(`/new-game/${currentLevel}`);
+      console.log({ currentLevel }, { currentUniver });
+      const res = await axios.get(`/new-game/${currentLevel}`, {
+        params: {
+          currentUniver: currentUniver,
+        },
+      });
       console.log(res.data);
       setQuestions(res.data);
       setQuestionsCount(res.data.length);
@@ -58,14 +69,12 @@ export const QuestionProvider = ({ children }) => {
   const gameFinished = async () => {
     try {
       setIsBusy(true);
-      //Vérification d'une partie level 3 (classé )
-      if (currentLevel === 3) {
-        await axios.post(`rankings`, {
-          resultQuizz: resultat,
-          timeQuizz: totalTime,
-          user_id: user.id,
-        });
-      }
+
+      await axios.post(`rankings`, {
+        resultQuizz: resultat,
+        timeQuizz: totalTime,
+        user_id: user.id,
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -174,7 +183,10 @@ export const QuestionProvider = ({ children }) => {
         isQuizFinished,
         resultat,
         badAnswers,
+        currentUniver,
         gameFinished,
+        setCurrentTheme,
+        setCurrentUniver,
         setTimeRemaining,
         setCurrentLevel,
         setCurrentQuestion,

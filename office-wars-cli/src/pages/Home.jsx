@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Container } from "@mui/system";
 import { linksAcceuil } from "../utils";
 import Logo from "../components/Logo";
@@ -78,22 +78,19 @@ const Home = () => {
           Très lointaine galaxie...
         </Typography>
       </Box>
-      <Box
-        mt={5}
-        ml={5}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: isSmallScreen ? "center" : "flex-start",
-          flexDirection: isSmallScreen ? "column" : "row",
-        }}
-      >
+
+      <Grid container mt={10} gap={3} justifyContent={"center"}>
         {linksAcceuil.map((link, index) => (
-          <Link key={index} to={link.path} style={{ textDecoration: "none" }}>
-            <CardAcceuil label={link.label} path={link.path} src={link.src} />
-          </Link>
+          <Grid item key={index} md={2} xs={6}>
+            <Link
+              to={link.path}
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <CardAcceuil label={link.label} path={link.path} src={link.src} />
+            </Link>
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </Box>
   );
 };

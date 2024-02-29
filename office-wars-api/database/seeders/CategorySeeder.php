@@ -24,5 +24,11 @@ class CategorySeeder extends Seeder
         Category::create([
             'categoryName' => 'Story',
         ]);
+        Category::create([
+            'categoryName' => 'Team',
+        ]);
+        Category::create([
+            'categoryName' => 'History ',
+        ]);
     }
 }

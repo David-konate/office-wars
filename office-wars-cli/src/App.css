@@ -1,0 +1,192 @@
+@charset "UTF-8";
+:root {
+  --primary-color-light: #1fa500;
+  --primary-color-dark: #d21c1c;
+  --other-color-light: #196308;
+  --other-color-dark: #720707;
+  --bg-other-color-dark: #420404;
+  --bg-other-color-light: #114705;
+  --secondary-color-light: #f3f3f3;
+  --secondary-color-dark: #231f20;
+  --color-text-light: #ffffff;
+  --color-text-dark: #000000;
+  --black-color: #231f20;
+  --black-light-color: #3f3d3e;
+  --light-dark-color: #ccc8ca;
+  --container-width: sm;
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+}
+
+body.dark {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --color-text: var(--color-text-light);
+  --color-text-title: var(--primary-color-dark);
+  background: var(--secondary-color-dark);
+  --bg-other-color: var(--bg-other-color-dark);
+  --filter: blur(5px) brightness(1) brightness(0.5) grayscale(30%);
+  --other-color: var(--other-color-dark);
+}
+
+body.light {
+  --primary-color: var(--primary-color-light);
+  --other-color: var(--other-color-light);
+  --bg-other-color: var(--bg-other-color-light);
+  --secondary-color: var(--secondary-color-dark);
+  --color-text: var(--color-text-dark);
+  background: var(--secondary-color-light);
+  --color-text-title: var(--primary-color-light);
+  --filter: blur(5px) brightness(1) brightness(0.5) grayscale(60%);
+}
+
+.img-handle {
+  height: "100%";
+  filter: var(--filter);
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+}
+.deleteButton:hover {
+  color: var(--primary-color-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text-title); /* Utilise la variable de couleur en fonction du thème */
+}
+
+.navbar_link {
+  padding: 0 8px;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text);
+  align-items: center;
+}
+.navbar_link:hover::after, .navbar_link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--primary-color);
+}
+.navbar_link.active {
+  color: var(--primary-color);
+}
+
+.custom-link {
+  color: var(--color-text-title) !important;
+  text-decoration: underline;
+}
+
+.custom-link:hover {
+  color: var(--color-text) !important;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.textAcceuil {
+  color: var(--secondary-color-light);
+}
+
+.img-planetes-index {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+.img-planetes-index > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 400px;
+  height: 350px;
+}
+
+.img-detail-event {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+.img-detail-event > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 200px;
+  height: 120px;
+}
+
+.img-event-detail {
+  width: 100%;
+}
+
+.img-detail-event > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+.img-planet-detail {
+  max-width: 60%;
+}
+
+.caroussel-container {
+  max-height: 600px; /* Remplacez cette valeur par la hauteur maximale souhaitée */
+  max-width: 600px; /* Remplacez cette valeur par la largeur maximale souhaitée */
+  margin-left: 30%;
+}
+
+.img-planet-detail > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.titre-detail {
+  background-color: var(--primary-color);
+  color: var(--color-text);
+  display: inline;
+}
+
+/* Ajoutez ces styles à votre feuille de style CSS ou dans le style inline MUI */
+.img-profil {
+  width: 100%; /* Utilisez 100% de la largeur disponible */
+  max-width: 400px; /* Définissez une largeur maximale si nécessaire */
+}
+
+.img-profil > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%; /* Utilisez 100% de la largeur disponible */
+  height: 100%; /* Utilisez 100% de la hauteur disponible */
+  max-width: 400px; /* Définissez une largeur maximale si nécessaire */
+  max-height: 350px; /* Définissez une hauteur maximale si nécessaire */
+}
+
+.rankin-user-top-scrore {
+  display: inline-block; /* Permet au fond de s'adapter à la largeur du texte */
+  background-color: var(--primary-color);
+  color: var(--color-text);
+  border-radius: 5px;
+  padding: 0.1em 0.3em; /* Ajoutez un peu de marge intérieure pour un meilleur aspect */
+}/*# sourceMappingURL=App.css.map */

@@ -7,7 +7,7 @@ const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [userRankings, setUserRankings] = useState(null);
+  const [userRankings, setUserRankings] = useState([]);
   const [userTopRankings, setUserTopRankings] = useState(null);
   const [userRankingsCount, setUserRankingsCount] = useState(null);
   const [userLatestRankings, setUserLastetRankings] = useState(null);

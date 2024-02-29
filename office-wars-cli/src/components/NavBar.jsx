@@ -7,6 +7,7 @@ import {
   Box,
   Toolbar,
   Switch,
+  Hidden,
 } from "@mui/material/";
 import { NavLink, useNavigate } from "react-router-dom";
 import { firstLetterUppercase, linksLogged, linksUnlogged } from "../utils";
@@ -44,7 +45,9 @@ function NavBar() {
   return (
     <AppBar position="sticky" sx={{ top: 0 }}>
       <Container maxWidth="xl" sx={{ display: "flex" }}>
-        <Logo />
+        <Hidden smDown>
+          <Logo />
+        </Hidden>
         <Toolbar className="toolbar" sx={{ width: "100%" }}>
           <Box
             className="Box"
@@ -74,23 +77,30 @@ function NavBar() {
               alignItems: "center",
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
-            >
-              Jedi
-            </Typography>
+            <Hidden smDown>
+              {" "}
+              <Typography
+                variant="body2"
+                sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+              >
+                Jedi
+              </Typography>
+            </Hidden>
+
             <Switch
               checked={theme === "dark"}
               onChange={toggleTheme}
               inputProps={{ "aria-label": "toggle theme" }}
             />
-            <Typography
-              variant="body2"
-              sx={{ marginLeft: 2, fontSize: "0.8rem" }}
-            >
-              Sith
-            </Typography>
+            <Hidden smDown>
+              {" "}
+              <Typography
+                variant="body2"
+                sx={{ marginLeft: 2, fontSize: "0.8rem" }}
+              >
+                Sith
+              </Typography>
+            </Hidden>
           </Box>
         </Toolbar>
       </Container>

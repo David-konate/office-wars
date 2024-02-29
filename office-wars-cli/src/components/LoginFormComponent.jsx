@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserProvider";
 
 const LoginFormComponent = () => {
-  const { setUser } = useUserContext();
+  const { setUser, authentification } = useUserContext();
   const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("");
@@ -22,10 +22,11 @@ const LoginFormComponent = () => {
       const response = await axios.post("/security/login", formData);
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
+      await authentification();
       setDialogTitle("Succès");
       setDialogMessage("Connexion réussie");
       setOpenDialog(true);
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       setDialogTitle("Erreur");
       setDialogMessage(error.response.data.message);

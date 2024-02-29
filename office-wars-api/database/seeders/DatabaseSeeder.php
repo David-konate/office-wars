@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             CategorySeeder::class,
             LevelSeeder::class,
+            ThemeSeeder::class,
+            UniverSeeder::class,
             QuestionSeeder::class,
             AnswerSeeder::class,
             RankingSeeder::class,

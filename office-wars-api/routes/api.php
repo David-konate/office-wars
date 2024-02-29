@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\AccomodationController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\ThemeController;
+use App\Http\Controllers\Api\UniverController;
 use App\Models\Ranking;
 
 /*
@@ -119,6 +121,8 @@ Route::controller(QuestionController::class)->group(function () {
     Route::get('new-game/{currentLevel}', 'newGame');
     Route::get('questions', 'index');
     Route::get('questions/{question}', 'show');
+    Route::get('questions-random', 'random');
+
     Route::post('questions/', 'store')->middleware('auth:sanctum');
     Route::post('questions/{question}', 'update')->middleware('auth:sanctum');
 });
@@ -133,6 +137,8 @@ Route::controller(PlanetController::class)->group(function () {
 });
 
 Route::resource('categories', CategoryController::class)->middleware('auth:sanctum');
+Route::resource('themes', ThemeController::class)->middleware('auth:sanctum');
+Route::resource('univers', UniverController::class)->middleware('auth:sanctum');
 
 // Routes pour le LevelController
 Route::resource('levels', LevelController::class)->middleware('auth:sanctum');
