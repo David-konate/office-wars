@@ -15,6 +15,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import ConfirmationDialog from "../message/messageValidate";
 import { useNavigate } from "react-router-dom";
+import { displayImage } from "../../utils";
 
 const UpdatePlanetForm = ({ planetId }) => {
   const [isBusy, setIsBusy] = useState(true);
@@ -132,7 +133,7 @@ const UpdatePlanetForm = ({ planetId }) => {
             display: "block",
             margin: "auto", // Centrer l'image horizontalement
           }}
-          src={image || `http://127.0.0.1:8000/storage/images/notImage.png`}
+          src={displayImage(image)}
           alt=""
         />
       </Box>

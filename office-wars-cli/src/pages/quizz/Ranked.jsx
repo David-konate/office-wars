@@ -24,7 +24,7 @@ import RulesJedi from "../../components/rules/RulesJedi";
 import RulesSith from "../../components/rules/RulesSith";
 import RankingsAllList from "../../components/lists/RankingsAllList";
 import moment from "moment";
-import { firstLetterUppercase } from "../../utils";
+import { displayImage, firstLetterUppercase } from "../../utils";
 import { useQuestionContext } from "../../context/QuestionProvider";
 import LevelBox from "../../components/LevelBox";
 const Ranked = () => {
@@ -81,7 +81,7 @@ const Ranked = () => {
       console.log(res.data);
       setLastRankings(res.data.latestRankings);
       setTopRankings(res.data.topRankings);
-      const res3 = await axios.get(`univers/`);
+      const res3 = await axios.get(`univers`);
       setUniversQuestion(res3.data);
 
       setIsBusy(false);
@@ -90,21 +90,6 @@ const Ranked = () => {
       setIsBusy(false);
     }
   };
-
-  const fetchThemes = async (universId) => {
-    try {
-      const res = await axios.get(`themes/${universId}`);
-      setUniversQuestion(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (selectedUnivers) {
-      fetchThemes(selectedUnivers.id);
-    }
-  }, [selectedUnivers]);
 
   const handleUniversChange = (event, newValue) => {
     if (newValue) {
@@ -235,9 +220,7 @@ const Ranked = () => {
                         width: 40,
                         height: 40,
                       }}
-                      src={`http://127.0.0.1:8000/storage/uploads/${
-                        ranking.userImage || "notImage.png"
-                      }`}
+                      src={displayImage(ranking.userImage)}
                     />
                   </Box>
                 </Box>
@@ -308,9 +291,7 @@ const Ranked = () => {
                         width: 40,
                         height: 40,
                       }}
-                      src={`http://127.0.0.1:8000/storage/uploads/${
-                        ranking.userImage || "notImage.png"
-                      }`}
+                      src={displayImage(ranking.userImage)}
                     />
                   </Box>
                 </Box>
@@ -343,7 +324,7 @@ const Ranked = () => {
 
             <img
               src="/images/vasVsobi.jpg"
-              alt=""
+              alt="dessin d'un duel pour lancer une partie"
               style={{
                 maxWidth: "100%",
                 boxShadow: "0px 0px 10px 0px var(--primary-color)",
@@ -453,9 +434,7 @@ const Ranked = () => {
                           width: 40,
                           height: 40,
                         }}
-                        src={`http://127.0.0.1:8000/storage/uploads/${
-                          ranking.userImage || "notImage.png"
-                        }`}
+                        src={displayImage(ranking.userImage)}
                       />
                     </Box>
                   </Box>
@@ -525,9 +504,7 @@ const Ranked = () => {
                           width: 40,
                           height: 40,
                         }}
-                        src={`http://127.0.0.1:8000/storage/uploads/${
-                          ranking.userImage || "notImage.png"
-                        }`}
+                        src={displayImage(ranking.userImage)}
                       />
                     </Box>
                   </Box>
@@ -560,9 +537,7 @@ const Ranked = () => {
                     width: 100,
                     height: 100,
                   }}
-                  src={`http://127.0.0.1:8000/storage/uploads/${
-                    user.userImage || "notImage.png"
-                  }`}
+                  src={displayImage(user.userImage)}
                 />
               </RouterLink>
               <Typography>{user?.userPseudo}</Typography>

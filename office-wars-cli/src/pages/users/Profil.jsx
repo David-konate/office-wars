@@ -5,11 +5,9 @@ import {
   Typography,
   Paper,
   Container,
-  Rating,
   Button,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import SellIcon from "@mui/icons-material/Sell";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import DateRangeIcon from "@mui/icons-material/DateRange";
@@ -17,14 +15,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import moment from "moment";
 import RankingsList from "../../components/lists/RankingList";
-import WhiteButton from "../../components/buttons/WhiteButton";
 import LevelBox from "../../components/LevelBox";
 import { useQuestionContext } from "../../context/QuestionProvider";
+import { displayImage } from "../../utils";
 
 const Profil = () => {
   const { currentLevel, setCurrentLevel } = useQuestionContext();
   const [isBusy, setIsBusy] = useState(true);
-  const [tabs, setTabs] = useState({
+  const [tabs] = useState({
     ranginksList: {
       id: 1,
       isOpen: false,
@@ -45,7 +43,6 @@ const Profil = () => {
     userLatestRankings,
     userRankingsCount,
     userTopRankings,
-    userRankings,
     authentification,
     user,
   } = useUserContext();
@@ -119,7 +116,7 @@ const Profil = () => {
                     >
                       <Box className="img-profil">
                         <img
-                          src={`http://127.0.0.1:8000/storage/uploads/${user.userImage} || notImage.png`}
+                          src={displayImage(user.userImage)}
                           alt={"image : " + user.userImage}
                           loading="lazy"
                         />

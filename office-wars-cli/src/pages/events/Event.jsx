@@ -13,6 +13,7 @@ import ReusableCarousel from "../../components/Carrousel";
 import { useLocation, useParams, useNavigate } from "react-router-dom"; // Importez Link de react-router-dom avec le nom d'alias RouterLink
 
 import moment from "moment";
+import { displayImage } from "../../utils";
 
 const Event = () => {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ const Event = () => {
           <Box className="img-event-detail">
             <img
               style={{ borderRadius: "10px", width: "100%" }}
-              src={`http://127.0.0.1:8000/storage/uploads/${getRandomImage()}`}
+              src={displayImage(getRandomImage())}
               alt={event.eventName}
             />
           </Box>
@@ -120,7 +121,7 @@ const Event = () => {
                       borderRadius: "10px",
                       width: "100%",
                     }}
-                    src={`http://127.0.0.1:8000/storage/uploads/${item.imagePath}`}
+                    src={displayImage(item.imagePath)}
                     alt={event.eventName}
                   />
                 </Box>

@@ -10,7 +10,7 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { firstLetterUppercase, IMAGE_PATH } from "../../utils";
+import { displayImage, firstLetterUppercase, IMAGE_PATH } from "../../utils";
 
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import FlareIcon from "@mui/icons-material/Flare";
@@ -74,14 +74,7 @@ const Planet = () => {
             {planet.planetName}
           </Typography>
           <Box className="img-planet-detail">
-            <img
-              src={
-                planet.imagePlanet
-                  ? { IMAGE_PATH }`/storage/uploads${planet.imagePlanet}`
-                  : "storage/images/notImage.png"
-              }
-              alt=""
-            />
+            <img src={displayImage(planet.imagePlanet)} alt="" />
           </Box>
           <Box mt={2} width={"80%"}>
             <Typography>{planet.planetDescription}</Typography>

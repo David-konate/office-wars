@@ -63,22 +63,7 @@ const Welcome = () => {
           Alliance des Connaissances : Maîtrisez-vous la force ?
         </Typography>
       </Box>
-      {/* <Box
-        mt={5}
-        ml={5}
-        sx={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: isSmallScreen ? "center" : "flex-start",
-          flexDirection: isSmallScreen ? "column" : "row",
-        }}
-      >
-        {linksAcceuilQuiz.map((link, index) => (
-          <Link key={index} to={link.path} style={{ textDecoration: "none" }}>
-            <CardAcceuil label={link.label} path={link.path} src={link.src} />
-          </Link>
-        ))}
-      </Box> */}
+
       <Grid container mt={10} gap={20} justifyContent={"center"}>
         {linksAcceuilQuiz.map((link, index) => (
           <Grid item key={index} md={2} xs={6}>

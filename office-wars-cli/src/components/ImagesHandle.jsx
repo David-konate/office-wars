@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { CircularProgress, Grid, Box, Typography } from "@mui/material";
 import axios from "axios";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { firstLetterUppercase } from "../utils";
+import { displayImage, firstLetterUppercase } from "../utils";
 
 const ImagesHandle = ({ route, customText }) => {
   const [isBusy, setIsBusy] = useState(true);
@@ -65,7 +65,7 @@ const ImagesHandle = ({ route, customText }) => {
                   objectFit: "cover",
                 }}
                 alt={`baniere ${index + 1}`}
-                src={`http://127.0.0.1:8000/storage/uploads/${image.imagePath}`}
+                src={displayImage(image.imagePath)}
               />
             </Grid>
           ))}

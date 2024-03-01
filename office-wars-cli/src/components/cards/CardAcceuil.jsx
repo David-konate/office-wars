@@ -5,7 +5,6 @@ import {
   CardContent,
   CardMedia,
   CardActionArea,
-  Box,
 } from "@mui/material";
 
 const CardAcceuil = ({ label, path, src }) => {

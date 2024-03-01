@@ -19,6 +19,7 @@ import MessageDialog from "../message/MessageDialog";
 import { Box } from "@mui/system";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { displayImage } from "../../utils";
 const UpdateEventForm = ({ eventId }) => {
   const [isBusy, setIsBusy] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
@@ -214,7 +215,7 @@ const UpdateEventForm = ({ eventId }) => {
               style={{ marginBottom: 10 }}
             >
               <img
-                src={`http://127.0.0.1:8000/storage/uploads/${image.imagePath}`}
+                src={displayImage(image.imagePath)}
                 alt={`Event ${index}`}
                 style={{ maxWidth: "100%" }}
               />

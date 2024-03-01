@@ -7,7 +7,7 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import { firstLetterUppercase } from "../../utils";
+import { displayImage, firstLetterUppercase } from "../../utils";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
@@ -57,11 +57,7 @@ const EventList = () => {
                 height: "50px",
                 objectFit: "cover",
               }}
-              src={
-                event.image
-                  ? `http://127.0.0.1:8000/storage/uploads/${event.image.imagePath}`
-                  : `http://127.0.0.1:8000/storage/images/notImage.png`
-              }
+              src={displayImage(event.image.imagePath)}
               alt={event.imageEvent}
             />
           </Box>

@@ -31,7 +31,7 @@ body.dark {
   --color-text-title: var(--primary-color-dark);
   background: var(--secondary-color-dark);
   --bg-other-color: var(--bg-other-color-dark);
-
+  --bg-img-card: var(--secondary-color-light);
   --filter: blur(5px) brightness(1) brightness(0.5) grayscale(30%);
   --other-color: var(--other-color-dark);
   // --other-color : var(--other-color-dark)
@@ -43,6 +43,7 @@ body.light {
   --secondary-color: var(--secondary-color-dark);
   --color-text: var(--color-text-dark);
   background: var(--secondary-color-light);
+  --bg-img-card: var(--black-color);
   --color-text-title: var(--primary-color-light);
   // --other-color : var(--other-color-light)
   --filter: blur(5px) brightness(1) brightness(0.5) grayscale(60%);

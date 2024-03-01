@@ -16,7 +16,7 @@ class UniverSeeder extends Seeder
         // Utilisez les IDs correspondants aux thèmes de la table themes
         DB::table('univers')->insert([
             ['univerTitle' => 'Star Wars', 'theme_id' => 1], // Cinema
-            ['univerTitle' => 'Desperate housewife', 'theme_id' => 2], // Serie
+            ['univerTitle' => 'Friends', 'theme_id' => 2], // Serie
             ['univerTitle' => 'Basket', 'theme_id' => 3], // Sport
         ]);
     }

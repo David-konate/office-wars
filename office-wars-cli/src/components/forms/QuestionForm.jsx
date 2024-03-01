@@ -17,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { Await } from "react-router-dom";
 import MessageDialog from "../message/MessageDialog";
+import { displayImage } from "../../utils";
 
 const QuestionForm = ({ questionId }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -151,9 +152,7 @@ const QuestionForm = ({ questionId }) => {
           margin: "auto", // Centrez l'avatar horizontalement
           marginTop: "16px", // Ajoutez un espace au-dessus de l'avatar
         }}
-        src={`http://127.0.0.1:8000/storage/uploads/${
-          question.imageQuestion || "notImage.png"
-        }`}
+        src={displayImage(question.imageQuestion)}
       />
 
       <form onSubmit={handleSubmit}>

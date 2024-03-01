@@ -70,9 +70,9 @@ Route::get('/me/{currentLevel}', function ($currentLevel) {
 
 //Route users
 Route::prefix('/security')->group(function () {
-    Route::post('/register', [\App\Http\Controllers\API\SecurityController::class, 'register'])->middleware('guest')->name('security.register');
-    Route::post('/login', [\App\Http\Controllers\API\SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
-    Route::post('/logout', [\App\Http\Controllers\API\SecurityController::class, 'logout'])->middleware('auth:sanctum');
+    Route::post('/register', [\App\Http\Controllers\Api\SecurityController::class, 'register'])->middleware('guest')->name('security.register');
+    Route::post('/login', [\App\Http\Controllers\Api\SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
+    Route::post('/logout', [\App\Http\Controllers\Api\SecurityController::class, 'logout'])->middleware('auth:sanctum');
 });
 
 //Route users

@@ -5,10 +5,16 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Paper,
+  Hidden,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import { QUESTION_TIMER_DURATION, convertToRoman } from "../utils";
+import {
+  QUESTION_TIMER_DURATION,
+  convertToRoman,
+  displayImage,
+} from "../utils";
 import { useQuestionContext } from "../context/QuestionProvider";
 import WhiteButton from "./buttons/WhiteButton";
 import ConfirmationDialog from "./message/messageValidate";
@@ -120,78 +126,87 @@ const Game = (rute) => {
 
   return (
     <Container sx={{ backgroundColor: "transparent" }}>
-      <Box display={"flex"}>
-        <Box width={"50%"}>
+      <Box
+        display={{ xs: "block", sm: "flex" }}
+        justifyContent="space-between"
+        alignItems="flex-start" // Aligner les éléments en haut sur les écrans plus petits
+      >
+        <Box
+          width={{ xs: "100%", sm: "100%", md: "40%", lg: "40%", xl: "35%" }}
+        >
           <Box
             sx={{
               marginTop: 3,
-              width: "80%",
-              border: "1px solid #000", // ajout de bordure
-              borderRadius: 10, // ajout de bordure arrondie
+              width: "100%", // Ajustement pour prendre 100% de la largeur sur xs et sm
+              border: "1px solid  var(--bg-primary-color)",
+              borderRadius: 2,
               overflow: "hidden",
-              background: "var(--bg-other-color)",
+              background: "transparent",
               boxShadow: "0 0 20px var(--bg-other-color)",
-              padding: "13px",
             }}
             className="custom-box"
           >
             <Typography
               variant="h6"
               sx={{
-                backgroundColor: "var(--bg-other-color)",
-                color: "#fff",
+                backgroundColor: "transparent",
+
                 padding: "4px 12px",
                 textAlign: "center",
-                borderRadius: 10,
-                border: "1px solid #ffffff6e",
+                borderRadius: 2,
+                border: "1px solid var(--black-color)",
+                color: "var(--text-color)",
                 boxShadow: "0 0 10px var(--other-color)",
               }}
             >
               {questions[currentQuestion].categoryName}
             </Typography>
-
-            <Box
+            <Paper
               sx={{
-                marginTop: 0.2,
-                backgroundColor: "var(--other-color)",
+                marginTop: 3,
+                backgroundColor: "transparent",
                 padding: "20px",
                 marginLeft: "10px",
                 marginRight: "10px",
-                borderRadius: 10,
-                border: "1px solid #ffffff6e",
-                boxShadow: "0 0 10px #472b3b",
+                borderRadius: 2,
+                border: "1px solid var(-other-card)",
               }}
               className="box-body-question"
             >
-              <Box
-                sx={{
-                  width: "fit-content",
-                  borderRadius: 5,
-                  marginBottom: "10px",
-                  boxShadow: "0 0 10px #ffff",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                className="box-hero-index"
-              >
-                <img
-                  src={`http://127.0.0.1:8000/storage/images/notImage.png`}
-                  alt=""
-                  style={{ objectFit: "cover", height: "300px" }}
-                />
-              </Box>
+              <Hidden smDown>
+                <Box
+                  sx={{
+                    width: "100%", // ou utilisez un pourcentage approprié
+                    height: "auto", // Pour maintenir le ratio hauteur/largeur de l'image
+                    borderRadius: 5,
+                    marginBottom: "10px",
+                    boxShadow: "0 0 10px var(--bg-img-card)",
+                  }}
+                  className="box-hero-index"
+                >
+                  <img
+                    src={displayImage(questions[currentQuestion].imageQuestion)}
+                    alt=""
+                    style={{
+                      objectFit: "cover",
+                      width: "100%", // ou utilisez un pourcentage approprié
+                      height: "auto",
+                    }}
+                  />
+                </Box>
+              </Hidden>
               <Box
                 sx={{
                   fontSize: "1.5em",
                   marginBottom: "10px",
-                  backgroundColor: "var(--bg-other-color)",
+                  backgroundColor: "transparent",
                   color: "#fff",
                   padding: "0px 12px",
                   textAlign: "center",
                   borderRadius: 10,
-
-                  marginTop: "5px",
-                  border: "1px solid #ffffff6e",
+                  color: "var(--text-color)",
+                  marginTop: 2,
+                  border: "1px solid var(--other-color)",
                   boxShadow: "0 0 10px #472b3b",
                 }}
                 className="box-section mt-2 mb-2"
@@ -199,25 +214,34 @@ const Game = (rute) => {
                 {convertToRoman(questions[currentQuestion].level)}
               </Box>
               <Box>
-                <Typography variant="h5" component="div" mt={2} mb={2}>
+                <Typography
+                  variant="h5"
+                  textAlign={"center"}
+                  component="div"
+                  mt={2}
+                  mb={2}
+                >
                   {questions[currentQuestion].questionTitle}
                 </Typography>
                 <div className="mb-3 ms-4"></div>
               </Box>
-            </Box>
+            </Paper>
           </Box>
         </Box>
-        <Box width={"40%"}>
+        <Box
+          width={{ xs: "100%", sm: "100%", md: "55%", lg: "55%", xl: "60%" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Box
+            marginTop={5}
             sx={{
-              marginTop: "150px",
-              marginLeft: "50px",
               width: "80%",
-              border: "1px solid #000",
-              borderRadius: 10,
               overflow: "hidden",
-              background: "var(--bg-other-color)",
-              boxShadow: "0 0 20px var(--bg-other-color)",
+              background: "transparent",
               padding: "13px",
               display: "flex",
               flexDirection: "column",
@@ -234,9 +258,9 @@ const Game = (rute) => {
                   control={<Radio />}
                   label={answer.answerText}
                   sx={{
-                    marginBottom: "8px",
+                    marginBottom: 5, // Ajuster cette valeur selon votre préférence
                     borderRadius: "8px",
-                    boxShadow: "0 0 10px #ffff",
+                    boxShadow: "0 0 10px var(--other-color)",
                     padding: "16px",
                     background: "var(--bg-primary-color)",
                     color: "#fff",
