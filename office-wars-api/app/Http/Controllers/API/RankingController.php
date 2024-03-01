@@ -9,6 +9,7 @@ use App\Models\Ranking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use PhpParser\Node\Stmt\TryCatch;
 
 class RankingController extends Controller
 {
@@ -32,26 +33,32 @@ class RankingController extends Controller
     }
 
 
-    public function welcome($currentLevel)
+    public function welcome($currentLevel, Request $request)
     {
         $now = Carbon::now();
         $firstDayOfMonth = $now->firstOfMonth()->toDateTimeString();
         $lastDayOfMonth = $now->lastOfMonth()->toDateTimeString();
+        $currentUniver = $request->query('currentUniver');
 
         try {
-            $latestRankings = DB::table('rankings')
+            $query = DB::table('rankings')
                 ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
                 ->join('users', 'rankings.user_id', '=', 'users.id')
-                ->where('rankings.level', $currentLevel) // Filtrer par le niveau actuel
+                ->join('univers', 'rankings.univer', '=', 'univers.univerTitle'); // Assurez-vous que la clé de jointure est correcte
+
+            if ($currentUniver) {
+                $query->where('univers.univerTitle', $currentUniver);
+            }
+
+            $latestRankings = $query
+                ->where('rankings.level', $currentLevel)
                 ->orderBy('rankings.created_at', 'desc')
                 ->take(5)
                 ->get();
 
-            $topRankings = DB::table('rankings')
-                ->select('rankings.*', 'users.id', 'users.userImage', 'users.userPseudo')
-                ->join('users', 'rankings.user_id', '=', 'users.id')
-                ->where('rankings.level', $currentLevel) // Filtrer par le niveau actuel
-                ->whereBetween('rankings.created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filtrer par le mois actuel
+            $topRankings = $query
+                ->where('rankings.level', $currentLevel)
+                // ->whereBetween('rankings.created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filtrer par le mois actuel
                 ->orderBy('rankings.resultQuizz', 'desc')
                 ->take(10)
                 ->get();
@@ -67,6 +74,7 @@ class RankingController extends Controller
             ], 403);
         }
     }
+
 
 
     public function saveStats(Request $request)

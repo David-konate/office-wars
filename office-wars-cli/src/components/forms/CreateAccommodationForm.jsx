@@ -54,7 +54,6 @@ const AccommodationCreateForm = ({ onSubmit }) => {
     formData.set("planet", setSelectedPlanet);
 
     for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
     }
     try {
       const res = await axios.post("accomodations", formData, {
@@ -62,13 +61,11 @@ const AccommodationCreateForm = ({ onSubmit }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data);
       setDialogTitle("Succès");
       setDialogMessage(res.data.message);
       setOpenDialog(true);
     } catch (error) {
       setDialogTitle("Erreur");
-      console.log(error);
       setDialogMessage(error.message);
       setOpenDialog(true);
     }

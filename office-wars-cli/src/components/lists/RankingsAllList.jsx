@@ -42,8 +42,10 @@ const RankingsAllList = () => {
     setOrderBy(property);
   };
 
+  // ...
   const sortedRankings = rankings.sort((a, b) => {
     const isAsc = order === "asc";
+
     if (orderBy === "resultQuizz") {
       return isAsc
         ? a.resultQuizz - b.resultQuizz
@@ -56,9 +58,17 @@ const RankingsAllList = () => {
       return isAsc
         ? a.created_at.localeCompare(b.created_at)
         : b.created_at.localeCompare(a.created_at);
+    } else if (orderBy === "univer") {
+      const univerA = a.univer || ""; // Assurez-vous que la valeur n'est pas null
+      const univerB = b.univer || ""; // Assurez-vous que la valeur n'est pas null
+      return isAsc
+        ? univerA.localeCompare(univerB)
+        : univerB.localeCompare(univerA);
     }
+
     return 0;
   });
+  // ...
 
   return isBusy ? (
     <Box sx={{ display: "flex" }}>
@@ -102,6 +112,15 @@ const RankingsAllList = () => {
               </TableCell>
               <TableCell>
                 <TableSortLabel
+                  active={orderBy === "univer"}
+                  direction={orderBy === "univer" ? order : "asc"}
+                  onClick={() => handleSort("univer")}
+                >
+                  Univer
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel
                   active={orderBy === "created_at"}
                   direction={orderBy === "created_at" ? order : "asc"}
                   onClick={() => handleSort("created_at")}
@@ -118,8 +137,9 @@ const RankingsAllList = () => {
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{ranking.resultQuizz}%</TableCell>
                   <TableCell>{ranking.user.userPseudo}</TableCell>
+                  <TableCell>{ranking.univer}</TableCell>
                   <TableCell>
-                    {moment(ranking.created_at).format("dddd D MMMM YYYY")}
+                    {moment(ranking.created_at).format(" D/MM/YY")}
                   </TableCell>
                 </TableRow>
               ))

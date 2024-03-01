@@ -4,7 +4,6 @@ import { Card, Typography } from "@mui/material";
 
 const BasAnswersList = () => {
   const { badAnswers } = useQuestionContext();
-  console.log(badAnswers);
 
   return (
     <Container

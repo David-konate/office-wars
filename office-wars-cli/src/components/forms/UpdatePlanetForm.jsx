@@ -44,10 +44,8 @@ const UpdatePlanetForm = ({ planetId }) => {
   const fetchData = async () => {
     try {
       const planetResponse = await axios.get(`planets/${planetId}`);
-      console.log(planetResponse);
       const planetData = planetResponse.data.data;
       setCurrentAccommodation(planetResponse.data.accommodations);
-      console.log(planetResponse.data.accommodations);
       setCurrentEvent(planetResponse.data.events);
       setCurrentSite(planetResponse.data.sites);
 
@@ -87,13 +85,9 @@ const UpdatePlanetForm = ({ planetId }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
 
     try {
-      const response = await axios.post(`planets/${planetId}`, formData);
-      console.log(response.data.message);
+      await axios.post(`planets/${planetId}`, formData);
 
       // Ouvrir la boîte de dialogue en cas de succès
       setIsConfirmationDialogOpen(true);

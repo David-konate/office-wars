@@ -52,7 +52,6 @@ const UpdateEventForm = ({ eventId }) => {
         (planet) => planet.id === resEvent.data.planet_id
       );
       setSelectedPlanet(eventPlanet.id);
-      console.log(resEvent.data);
     } catch (error) {
       console.error("Erreur lors de la récupération des données :", error);
     } finally {

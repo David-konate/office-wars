@@ -52,16 +52,13 @@ const CreateSiteForm = () => {
     const formData = new FormData(e.target);
     formData.set("planet", selectedPlanet);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
     try {
       const res = await axios.post("sites", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data);
+
       setDialogTitle("Succès");
       setDialogMessage(res.data.message);
       setOpenDialog(true);

@@ -10,7 +10,7 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { firstLetterUppercase } from "../../utils";
+import { firstLetterUppercase, IMAGE_PATH } from "../../utils";
 
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import FlareIcon from "@mui/icons-material/Flare";
@@ -77,7 +77,7 @@ const Planet = () => {
             <img
               src={
                 planet.imagePlanet
-                  ? `http://127.0.0.1:8000/storage/uploads/${planet.imagePlanet}`
+                  ? { IMAGE_PATH }`/storage/uploads${planet.imagePlanet}`
                   : "storage/images/notImage.png"
               }
               alt=""

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rankings', function (Blueprint $table) {
-            $table->id('Id_Ranking');
+            $table->id();
+            $table->string('univer')->nullable();
             $table->decimal('resultQuizz', 5, 2);
             $table->decimal('timeQuizz', 20, 2);
             $table->unsignedBigInteger('level');

@@ -22,7 +22,6 @@ export const UserProvider = ({ children }) => {
         setUserTopRankings(res.data.topRankings);
         setUserLastetRankings(res.data.latestRankings);
         setUserRankingsCount(res.data.totalRankingsCount);
-        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);

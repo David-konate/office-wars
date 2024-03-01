@@ -2,7 +2,6 @@
 
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SiteController;
@@ -13,7 +12,6 @@ use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\PlanetController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RankingController;
-use App\Http\Controllers\Api\SecurityController;
 use App\Http\Controllers\Api\AccomodationController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\LevelController;
@@ -72,9 +70,9 @@ Route::get('/me/{currentLevel}', function ($currentLevel) {
 
 //Route users
 Route::prefix('/security')->group(function () {
-    Route::post('/register', [SecurityController::class, 'register'])->middleware('guest')->name('security.register');
-    Route::post('/login', [SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
-    Route::post('/logout', [SecurityController::class, 'logout'])->middleware('auth:sanctum');
+    Route::post('/register', [\App\Http\Controllers\API\SecurityController::class, 'register'])->middleware('guest')->name('security.register');
+    Route::post('/login', [\App\Http\Controllers\API\SecurityController::class, 'login'])->middleware(['guest'])->name('security.login');
+    Route::post('/logout', [\App\Http\Controllers\API\SecurityController::class, 'logout'])->middleware('auth:sanctum');
 });
 
 //Route users

@@ -12,6 +12,7 @@ import {
   Container,
 } from "@mui/material";
 import ImagesHandle from "../../components/ImagesHandle";
+import { displayImage } from "../../utils";
 const IndexEvents = () => {
   const navigate = useNavigate();
   useEffect(() => {}, []);
@@ -56,9 +57,9 @@ const IndexEvents = () => {
           </Link>
         </Breadcrumbs>
         <Container>
-          <Grid container spacing={2} mt={1}>
+          <Grid container mt={10} spacing={4} justifyContent={"center"}>
             {events.map((event, index) => (
-              <Grid key={index} item mt={5} xs={6}>
+              <Grid key={index} item md={4} xs={10}>
                 <Box
                   className="event"
                   display="flex"
@@ -69,12 +70,14 @@ const IndexEvents = () => {
                   <Typography variant="h4">{event.eventName}</Typography>
                   <Box mt={3} className="img-planetes-index">
                     <img
-                      style={{ borderRadius: "10px" }}
-                      src={
-                        event.image
-                          ? `http://127.0.0.1:8000/storage/uploads/${event.image.imagePath}`
-                          : "storage/images/notImage.png"
-                      }
+                      style={{
+                        borderRadius: "10px",
+                        width: "auto",
+                        height: "auto",
+                        width: "250px",
+                        height: "250px",
+                      }}
+                      src={displayImage(event.image.imagePath)}
                       alt={event.eventName}
                     />
                   </Box>

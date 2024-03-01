@@ -20,7 +20,7 @@ export const QuestionProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState("");
   const [currentUniver, setCurrentUniver] = useState(() => {
     const storedUniver = localStorage.getItem("UniversQuestion");
-    return storedUniver ? storedUniver : null;
+    return storedUniver ? storedUniver : "";
   });
 
   const [selectedAnswer, setSelectedAnswer] = useState("");

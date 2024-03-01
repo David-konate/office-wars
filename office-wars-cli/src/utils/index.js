@@ -1,6 +1,6 @@
 // index.js
 
-export const IMAGE_PATH = process.env.REACT_APP_BASE_URL + "/storage/images/";
+export const IMAGE_PATH = process.env.REACT_APP_BASE_URL + "/storage/uploads/";
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -19,7 +19,6 @@ export const LEVELS = {
 };
 
 // Fonction pour calculer les points en fonction du temps
-
 export const calculatePoints = (userTime, userLevel) => {
   console.log(userTime);
   userTime = userTime * 1000;
@@ -168,3 +167,6 @@ export const convertToRoman = (num) => {
 
   return result;
 };
+
+export const displayImage = (image) =>
+  image ? IMAGE_PATH + "/" + image : IMAGE_PATH + "/notImage.png";

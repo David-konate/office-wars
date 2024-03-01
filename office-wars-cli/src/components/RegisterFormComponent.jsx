@@ -31,7 +31,6 @@ const RegisterFormComponent = () => {
     try {
       const response = await axios.post("/security/register", formData);
 
-      console.log(response.data);
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
       setDialogTitle("Succès");

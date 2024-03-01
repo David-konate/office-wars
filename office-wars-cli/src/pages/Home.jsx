@@ -23,21 +23,14 @@ const Home = () => {
       </Box>
     </Container>
   ) : (
-    <Box
-      sx={{
-        position: "relative",
-        overflow: "hidden",
-        minHeight: "100vh",
-        width: "100%", // Utilise "100vw" pour spécifier 100% de la largeur de la vue
-      }}
-    >
+    <Container>
       <Box
         sx={{
-          padding: 5,
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
+          maxWidth: "100%",
           height: "100%",
           backgroundImage: "url(/images/cantaopaysage2.jpg)",
           backgroundSize: "cover",
@@ -49,39 +42,25 @@ const Home = () => {
       <Box
         mt={5}
         sx={{
-          ml: "20%",
-          maxWidth: "80%", // Choisir la largeur maximale souhaitée
+          maxWidth: "100%", // Choisir la largeur maximale souhaitée
         }}
       >
         <Typography
+          component={"h1"}
           color={"#ffe436"}
           mt={5}
           className="textAcceuil"
           variant="h3"
         >
-          Bienvenue !
-        </Typography>
-        <Typography
-          color={"#ffe436"}
-          mt={3}
-          className="textAcceuil"
-          variant="h3"
-        >
-          Voyageons ensemble, dans une lointaine...
-        </Typography>
-        <Typography
-          color={"#ffe436"}
-          mt={1}
-          className="textAcceuil"
-          variant="h3"
-        >
+          Bienvenue ! <br></br>
+          Voyageons ensemble, dans une lointaine... <br></br>
           Très lointaine galaxie...
         </Typography>
       </Box>
 
-      <Grid container mt={10} gap={3} justifyContent={"center"}>
+      <Grid container mt={10} spacing={3} justifyContent={"center"}>
         {linksAcceuil.map((link, index) => (
-          <Grid item key={index} md={2} xs={6}>
+          <Grid item key={index} md={3} xs={12}>
             <Link
               to={link.path}
               style={{ textDecoration: "none", width: "100%" }}
@@ -91,7 +70,7 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 };
 

@@ -83,7 +83,7 @@ h6 {
   &.active::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -28px;
     left: 0;
     right: 0;
     width: 100%;

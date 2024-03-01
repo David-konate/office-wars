@@ -46,23 +46,47 @@ class QuestionController extends Controller
             // Niveaux à récupérer
             $levelsToRetrieve = ($currentLevel == 2) ? [1, 3] : [$currentLevel];
 
-            // Récupérer les questions pour chaque niveau spécifié
-            foreach ($levelsToRetrieve as $lvl) {
-                $levelQuestions = Question::with(['answers', 'univer'])
-                    ->select('questions.*', 'categories.categoryName', 'levels.level', 'answers.answerText')
-                    ->join('categories', 'questions.category_id', '=', 'categories.id')
-                    ->join('levels', 'questions.level_id', '=', 'levels.id')
-                    ->join('univers', 'questions.univer_id', '=', 'univers.id')
-                    ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
 
-                    ->where('questions.level_id', $lvl)
-                    ->where('univerTitle', '=', $currentUniver)
-                    ->inRandomOrder()
-                    ->limit($count)
-                    ->get();
 
-                $questions = $questions->merge($levelQuestions);
+            if ($currentUniver) {
+                // Récupérer les questions pour chaque niveau spécifié
+                foreach ($levelsToRetrieve as $lvl) {
+                    $levelQuestions = Question::with(['answers', 'univer'])
+                        ->select('questions.*', 'categories.categoryName', 'levels.level', 'answers.answerText')
+                        ->join('categories', 'questions.category_id', '=', 'categories.id')
+                        ->join('levels', 'questions.level_id', '=', 'levels.id')
+                        ->join('univers', 'questions.univer_id', '=', 'univers.id')
+                        ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
+                        ->where('questions.level_id', $lvl)
+                        ->where('univerTitle', '=', $currentUniver)
+                        ->inRandomOrder()
+                        ->limit($count)
+                        ->get();
+
+                    $questions = $questions->merge($levelQuestions);
+                }
+            } else {
+                // Récupérer les questions pour chaque niveau spécifié
+                foreach ($levelsToRetrieve as $lvl) {
+                    $levelQuestions = Question::with(['answers', 'univer'])
+                        ->select('questions.*', 'categories.categoryName', 'levels.level', 'answers.answerText')
+                        ->join('categories', 'questions.category_id', '=', 'categories.id')
+                        ->join('levels', 'questions.level_id', '=', 'levels.id')
+
+                        ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
+
+                        ->where('questions.level_id', $lvl)
+
+                        ->inRandomOrder()
+                        ->limit($count)
+                        ->get();
+
+                    $questions = $questions->merge($levelQuestions);
+                }
             }
+
+
+
 
             // Mélanger aléatoirement les réponses de chaque question
             $questions->each(function ($question) {

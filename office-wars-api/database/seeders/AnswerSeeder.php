@@ -15,2752 +15,1625 @@ class AnswerSeeder extends Seeder
         // Add your true and false answers here
         $answersData = [
             // Réponses pour la question 1
+
+
+
+
             [
                 'question_id' => 1,
-                'answerText' => 'Tatooine',
+                'answerText' => 'Chandler Bing',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 1,
-                'answerText' => 'Naboo',
+                'answerText' => 'Chandler Geller',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 1,
-                'answerText' => 'Endor',
+                'answerText' => 'Chandler Green',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 1,
-                'answerText' => 'Jakku',
+                'answerText' => 'Chandler Tribbiani',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 2
             [
                 'question_id' => 2,
-                'answerText' => 'Wookiee',
+                'answerText' => 'Chef',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 2,
-                'answerText' => 'Rodian',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 2,
-                'answerText' => 'Bothan',
+                'answerText' => 'Actrice',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 2,
-                'answerText' => 'Mon Calamari',
+                'answerText' => 'Photographe',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 2,
+                'answerText' => 'Astronaute',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 3
             [
                 'question_id' => 3,
-                'answerText' => 'Obi-Wan Kenobi',
+                'answerText' => 'Statisticien',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 3,
-                'answerText' => 'Yoda',
+                'answerText' => 'Acteur',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 3,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Cuisinier',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 3,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => false,
-            ],
-            // Réponses pour la question 4
-            [
-                'question_id' => 4,
-                'answerText' => 'Coruscant',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 4,
-                'answerText' => 'Tatooine',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 4,
-                'answerText' => 'Alderaan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 4,
-                'answerText' => 'Hoth',
+                'answerText' => 'Pompier',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 5
             [
-                'question_id' => 5,
-                'answerText' => 'Bespin',
+                'question_id' => 4,
+                'answerText' => 'Géologie',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 5,
-                'answerText' => 'Endor',
+                'question_id' => 4,
+                'answerText' => 'Astronomie',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 4,
+                'answerText' => 'Archéologie',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 4,
+                'answerText' => 'Physique',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 5,
-                'answerText' => 'Coruscant',
+                'answerText' => 'I\'ll Be There for You',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 5,
+                'answerText' => 'Friends Forever',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 5,
-                'answerText' => 'Naboo',
+                'answerText' => 'Central Perk Anthem',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 5,
+                'answerText' => 'Smelly Cat',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 6
             [
                 'question_id' => 6,
-                'answerText' => 'R2-D2',
+                'answerText' => 'Monica Geller',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 6,
-                'answerText' => 'C-3PO',
+                'answerText' => 'Phoebe Buffay',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 6,
-                'answerText' => 'BB-8',
+                'answerText' => 'Joey Tribbiani',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 6,
-                'answerText' => 'IG-88',
+                'answerText' => 'Chandler Bing',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 7
             [
                 'question_id' => 7,
-                'answerText' => 'Alderaan',
+                'answerText' => 'Central Perk',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 7,
-                'answerText' => 'Hoth',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 7,
-                'answerText' => 'Endor',
+                'answerText' => 'Java Joe',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 7,
-                'answerText' => 'Dagobah',
-                'isCorrect' => false,
-            ],
-            // Réponses pour la question 8
-            [
-                'question_id' => 8,
-                'answerText' => 'République Galactique',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 8,
-                'answerText' => 'Confédération des Systèmes Indépendants',
+                'answerText' => 'Perk Place',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 8,
-                'answerText' => 'Alliance Rebelle',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 8,
-                'answerText' => 'Empire Galactique',
+                'question_id' => 7,
+                'answerText' => 'Coffee Central',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 9
             [
-                'question_id' => 9,
-                'answerText' => 'Corellia',
+                'question_id' => 8,
+                'answerText' => 'Marcel',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 9,
-                'answerText' => 'Tatooine',
+                'question_id' => 8,
+                'answerText' => 'Gerald',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 9,
-                'answerText' => 'Naboo',
+                'question_id' => 8,
+                'answerText' => 'Charlie',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 9,
-                'answerText' => 'Dagobah',
+                'question_id' => 8,
+                'answerText' => 'Joey Jr.',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 10
             [
-                'question_id' => 10,
-                'answerText' => 'Désert de Tatooine',
+                'question_id' => 9,
+                'answerText' => 'Cleaning',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 10,
-                'answerText' => 'Désert de Jakku',
+                'question_id' => 9,
+                'answerText' => 'Spiders',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 10,
-                'answerText' => 'Désert de Geonosis',
+                'question_id' => 9,
+                'answerText' => 'Clowns',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 10,
-                'answerText' => 'Désert de Coruscant',
+                'question_id' => 9,
+                'answerText' => 'Heights',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 11 (Character)
             [
-                'question_id' => 11,
-                'answerText' => 'Han Solo',
+                'question_id' => 10,
+                'answerText' => 'David Schwimmer',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 11,
-                'answerText' => 'Lando Calrissian',
+                'question_id' => 138,
+                'answerText' => 'Matthew Perry',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 138,
+                'answerText' => 'Matt LeBlanc',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 138,
+                'answerText' => 'Courteney Cox',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 11,
-                'answerText' => 'Chewbacca',
+                'answerText' => 'How you doin\'?',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 11,
+                'answerText' => 'Hey there, beautiful',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 11,
-                'answerText' => 'C-3PO',
+                'answerText' => 'What\'s up, babe?',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 11,
+                'answerText' => 'Nice to meet you',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 12 (Character)
             [
                 'question_id' => 12,
-                'answerText' => 'Chewbacca',
+                'answerText' => 'Dr. Drake Ramoray',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 12,
-                'answerText' => 'C-3PO',
+                'answerText' => 'Hank the Dwarf',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 12,
-                'answerText' => 'R2-D2',
+                'answerText' => 'Al the Yeti',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 12,
-                'answerText' => 'Lando Calrissian',
+                'answerText' => 'Estelle Leonard',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 13 (Character)
             [
                 'question_id' => 13,
-                'answerText' => 'Yoda',
+                'answerText' => 'The One with Ross\'s Wedding',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 13,
-                'answerText' => 'Ki-Adi-Mundi',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 13,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'The Last One',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 13,
-                'answerText' => 'Obi-Wan Kenobi',
+                'answerText' => 'The One Where Everybody Finds Out',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 13,
+                'answerText' => 'The One with the Prom Video',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 14 (Character)
             [
                 'question_id' => 14,
-                'answerText' => 'Leia Organa',
+                'answerText' => 'Will Colbert',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 14,
-                'answerText' => 'Padmé Amidala',
+                'answerText' => 'Steve Thompson',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 14,
-                'answerText' => 'Mon Mothma',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 14,
-                'answerText' => 'Ahsoka Tano',
+                'answerText' => 'Mike Hannigan',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 15 (Character)
             [
                 'question_id' => 15,
-                'answerText' => 'Boba Fett',
+                'answerText' => 'David Crane',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 15,
-                'answerText' => 'IG-88',
+                'answerText' => 'Marta Kauffman',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 15,
-                'answerText' => 'Dengar',
+                'answerText' => 'Kevin S. Bright',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 15,
-                'answerText' => 'Bossk',
+                'answerText' => 'Kevin S. Bright',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 16 (Character)
             [
                 'question_id' => 16,
-                'answerText' => 'Darth Vader',
+                'answerText' => 'Joey doesn\'t share food!',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 16,
-                'answerText' => 'Emperor Palpatine',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 16,
-                'answerText' => 'Count Dooku',
+                'answerText' => 'Sharing is caring!',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 16,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'Food is for friends!',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 16,
+                'answerText' => 'Let\'s eat together!',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 17 (Character)
             [
                 'question_id' => 17,
-                'answerText' => 'Episode III: La Revanche des Sith',
+                'answerText' => 'Central Perk',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 17,
-                'answerText' => 'Episode I: La Menace Fantôme',
+                'answerText' => 'Perk Place',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 17,
-                'answerText' => 'Episode II: L\'Attaque des Clones',
+                'answerText' => 'Java Joe',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 17,
-                'answerText' => 'Episode IV: Un Nouvel Espoir',
+                'answerText' => 'Coffee Central',
                 'isCorrect' => false,
             ],
 
-
-            // Réponses pour la question 18 (Character)
             [
                 'question_id' => 18,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Janice',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 18,
-                'answerText' => 'Obi-Wan Kenobi',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 18,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Richard',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 18,
-                'answerText' => 'Anakin Skywalker',
+                'answerText' => 'Fun Bobby',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 18,
+                'answerText' => 'Ursula',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 19 (Character)
             [
                 'question_id' => 19,
-                'answerText' => 'Snoke',
+                'answerText' => 'Lisa Kudrow',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 19,
-                'answerText' => 'Kylo Ren',
+                'answerText' => 'Jennifer Aniston',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 19,
-                'answerText' => 'General Hux',
+                'answerText' => 'Courteney Cox',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 19,
-                'answerText' => 'Captain Phasma',
+                'answerText' => 'Maggie Wheeler',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 20 (Story)
             [
                 'question_id' => 20,
-                'answerText' => 'Episode IV: Un Nouvel Espoir',
+                'answerText' => '10 seasons',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 20,
-                'answerText' => 'Episode V: L\'Empire Contre-Attaque',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 20,
-                'answerText' => 'Episode VI: Le Retour du Jedi',
+                'answerText' => '8 seasons',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 20,
-                'answerText' => 'Episode I: La Menace Fantôme',
+                'answerText' => '12 seasons',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 20,
+                'answerText' => '6 seasons',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 21 (Story)
             [
                 'question_id' => 21,
-                'answerText' => 'Kylo Ren',
+                'answerText' => 'A blue dot',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 21,
-                'answerText' => 'Snoke',
+                'answerText' => 'Her initials',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 21,
-                'answerText' => 'Captain Phasma',
+                'answerText' => 'A cat',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 21,
-                'answerText' => 'General Hux',
+                'answerText' => 'A smiley face',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 22 (Story)
             [
                 'question_id' => 22,
-                'answerText' => 'Bataille de Géonosis',
+                'answerText' => 'Ikea',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 22,
-                'answerText' => 'Bataille de Naboo',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 22,
-                'answerText' => 'Bataille de Coruscant',
+                'answerText' => 'Pottery Barn',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 22,
-                'answerText' => 'Bataille de Hoth',
+                'answerText' => 'Ashley Furniture',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 22,
+                'answerText' => 'Crate & Barrel',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 23 (Story)
+
+
+
             [
                 'question_id' => 23,
-                'answerText' => 'Yoda',
+                'answerText' => 'They can\'t conceive naturally',
                 'isCorrect' => true,
-            ],
-            [
-                'question_id' => 23,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 23,
-                'answerText' => 'Mace Windu',
-                'isCorrect' => false,
             ],
             [
                 'question_id' => 23,
-                'answerText' => 'Obi-Wan Kenobi',
-                'isCorrect' => false,
-            ],
-            // Réponses pour la question 24 (Story)
-            [
-                'question_id' => 24,
-                'answerText' => 'Leia Organa',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 24,
-                'answerText' => 'Han Solo',
+                'answerText' => 'They want a big family',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 24,
-                'answerText' => 'Luke Skywalker',
+                'question_id' => 23,
+                'answerText' => 'They love children',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 24,
-                'answerText' => 'Poe Dameron',
+                'question_id' => 23,
+                'answerText' => 'They have fertility issues',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 25 (Story)
             [
-                'question_id' => 25,
-                'answerText' => 'Anakin Skywalker',
+                'question_id' => 24,
+                'answerText' => 'Elliott Gould',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 25,
-                'answerText' => 'Kylo Ren',
+                'question_id' => 24,
+                'answerText' => 'Jon Favreau',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 25,
-                'answerText' => 'Darth Maul',
+                'question_id' => 24,
+                'answerText' => 'Bruce Willis',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 25,
-                'answerText' => 'Darth Sidious',
+                'question_id' => 24,
+                'answerText' => 'Tom Selleck',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 26 (Story)
             [
-                'question_id' => 26,
-                'answerText' => 'Base Starkiller',
+                'question_id' => 25,
+                'answerText' => 'The characters from "Friends" exist in the same universe as "Mad About You."',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 26,
-                'answerText' => 'Base Endor',
+                'question_id' => 25,
+                'answerText' => 'All "Friends" characters appeared in "Mad About You" as different people.',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 26,
-                'answerText' => 'Base Hoth',
+                'question_id' => 25,
+                'answerText' => 'There is no connection between "Friends" and "Mad About You."',
                 'isCorrect' => false,
+            ],
+            [
+                'question_id' => 25,
+                'answerText' => 'The characters from "Mad About You" were mentioned but never seen in "Friends."',
+                'isCorrect' => false,
+            ],
+
+            [
+                'question_id' => 26,
+                'answerText' => 'Gunther',
+                'isCorrect' => true,
             ],
             [
                 'question_id' => 26,
-                'answerText' => 'Base Yavin IV',
+                'answerText' => 'Janice',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 26,
+                'answerText' => 'Richard',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 26,
+                'answerText' => 'Estelle Leonard',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 27 (Story)
+
             [
                 'question_id' => 27,
-                'answerText' => 'K-2SO',
+                'answerText' => 'Regina Phalange',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 27,
-                'answerText' => 'BB-8',
+                'answerText' => 'Ken Adams',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 27,
-                'answerText' => 'C-3PO',
+                'answerText' => 'Dr. Drake Ramoray',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 27,
-                'answerText' => 'R2-D2',
+                'answerText' => 'Hothouse Flower',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 28 (Story)
             [
                 'question_id' => 28,
-                'answerText' => 'Din Djarin',
+                'answerText' => 'The Last One',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 28,
-                'answerText' => 'Boba Fett',
+                'answerText' => 'The One Where They Say Goodbye',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 28,
-                'answerText' => 'Cara Dune',
+                'answerText' => 'The One with the Final Farewell',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 28,
-                'answerText' => 'Greef Karga',
+                'answerText' => 'The Farewell Episode',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 29 (Story)
             [
                 'question_id' => 29,
-                'answerText' => 'Hunter',
+                'answerText' => 'Little Women',
                 'isCorrect' => true,
-            ],
-            [
-                'question_id' => 29,
-                'answerText' => 'Crosshair',
-                'isCorrect' => false,
             ],
             [
                 'question_id' => 29,
-                'answerText' => 'Tech',
+                'answerText' => 'Pride and Prejudice',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 29,
-                'answerText' => 'Wrecker',
-                'isCorrect' => false,
-            ],
-            // Réponses pour la question 30 (Universe)
-            [
-                'question_id' => 30,
-                'answerText' => 'Mon Cala',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 30,
-                'answerText' => 'Kashyyyk',
+                'answerText' => 'War and Peace',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 30,
-                'answerText' => 'Tatooine',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 30,
-                'answerText' => 'Naboo',
+                'question_id' => 29,
+                'answerText' => 'To Kill a Mockingbird',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 31 (Universe)
             [
-                'question_id' => 31,
-                'answerText' => 'Crait',
+                'question_id' => 30,
+                'answerText' => 'New York',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 31,
-                'answerText' => 'Jakku',
+                'question_id' => 30,
+                'answerText' => 'California',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 31,
-                'answerText' => 'Hoth',
+                'question_id' => 30,
+                'answerText' => 'Illinois',
                 'isCorrect' => false,
             ],
             [
-                'question_id' => 31,
-                'answerText' => 'Tatooine',
+                'question_id' => 30,
+                'answerText' => 'Texas',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 32 (Universe)
+
+
+
             [
-                'question_id' => 32,
-                'answerText' => 'Ewoks',
+                'question_id' => 31,
+                'answerText' => 'The Secret Closet',
                 'isCorrect' => true,
             ],
             [
-                'question_id' => 32,
-                'answerText' => 'Wookiees',
+                'question_id' => 31,
+                'answerText' => 'The Hidden Room',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 31,
+                'answerText' => 'The Mystery Chamber',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 31,
+                'answerText' => 'The Covert Space',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 32,
-                'answerText' => 'Gungans',
+                'answerText' => 'The Rembrandts',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 32,
+                'answerText' => 'The Beatles',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 32,
-                'answerText' => 'Twileks',
+                'answerText' => 'Queen',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 33 (Universe)
             [
-                'question_id' => 33,
-                'answerText' => 'Summa-Verminoth',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 33,
-                'answerText' => 'Dianoga',
+                'question_id' => 32,
+                'answerText' => 'Michael Jackson',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 33,
-                'answerText' => 'Exogorth',
+                'answerText' => 'New York',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 33,
+                'answerText' => 'Los Angeles',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 33,
-                'answerText' => 'Sarlacc',
+                'answerText' => 'Chicago',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 34 (Universe)
             [
-                'question_id' => 34,
-                'answerText' => 'Trandoshan',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 34,
-                'answerText' => 'Rodian',
+                'question_id' => 33,
+                'answerText' => 'London',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 34,
-                'answerText' => 'Mon Calamari',
+                'answerText' => 'Hi',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 34,
+                'answerText' => 'Dada',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 34,
-                'answerText' => 'Weequay',
+                'answerText' => 'Mom',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 34,
+                'answerText' => 'Pizza',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 35 (Universe)
             [
                 'question_id' => 35,
-                'answerText' => 'IG-100',
+                'answerText' => 'Pizza',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 35,
-                'answerText' => 'BX-series Droid Commando',
+                'answerText' => 'Spaghetti',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 35,
-                'answerText' => 'HK-series Assassin Droid',
+                'answerText' => 'Burgers',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 35,
-                'answerText' => 'Protocol Droid',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 36 (Universe)
-            [
-                'question_id' => 36,
-                'answerText' => 'Darth Plagueis',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 36,
-                'answerText' => 'Darth Revan',
+                'answerText' => 'Tacos',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 36,
-                'answerText' => 'Darth Bane',
+                'answerText' => 'The Routine',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 36,
+                'answerText' => 'The Carlton',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 36,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'The Moonwalk',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 36,
+                'answerText' => 'The Floss',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 37,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Pete Becker',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 37,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Frank Buffay Jr.',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 37,
-                'answerText' => 'Obi-Wan Kenobi',
+                'answerText' => 'Gary',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 37,
-                'answerText' => 'Yoda',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 38 (Universe)
-            [
-                'question_id' => 38,
-                'answerText' => 'Millennium Falcon',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 38,
-                'answerText' => 'X-wing Starfighter',
+                'answerText' => 'Mike Hannigan',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 38,
-                'answerText' => 'TIE Fighter',
+                'answerText' => 'Ursula Buffay',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 38,
+                'answerText' => 'Jill Green',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 38,
-                'answerText' => 'Slave I',
+                'answerText' => 'Amy Green',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 39 (Universe)
             [
-                'question_id' => 39,
-                'answerText' => 'Mace Windu',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 39,
-                'answerText' => 'Kit Fisto',
+                'question_id' => 38,
+                'answerText' => 'Emily Waltham',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 39,
-                'answerText' => 'Ki-Adi-Mundi',
+                'answerText' => 'New York',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 39,
+                'answerText' => 'California',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 39,
-                'answerText' => 'Plo Koon',
+                'answerText' => 'Illinois',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 40 (Characters)
             [
-                'question_id' => 40,
-                'answerText' => 'Han Solo',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 40,
-                'answerText' => 'Chewbacca',
+                'question_id' => 39,
+                'answerText' => 'Texas',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 40,
-                'answerText' => 'Luke Skywalker',
+                'answerText' => 'Erica',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 40,
+                'answerText' => 'Erika',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 40,
-                'answerText' => 'Obi-Wan Kenobi',
+                'answerText' => 'Emma',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 41 (Characters)
             [
-                'question_id' => 41,
-                'answerText' => 'Chewbacca',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 41,
-                'answerText' => 'C-3PO',
+                'question_id' => 40,
+                'answerText' => 'Eleanor',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 41,
-                'answerText' => 'R2-D2',
+                'answerText' => 'La Chambre de l\'Horreur',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 41,
+                'answerText' => 'Le Nid d\'Amour',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 41,
-                'answerText' => 'Lando Calrissian',
+                'answerText' => 'Le Sanctuaire Secret',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 42 (Characters)
             [
-                'question_id' => 42,
-                'answerText' => 'Anakin Skywalker',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 42,
-                'answerText' => 'Mace Windu',
+                'question_id' => 41,
+                'answerText' => 'La Pièce Mystère',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 42,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Jack Geller',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 42,
+                'answerText' => 'Charles Bing',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 42,
-                'answerText' => 'Yoda',
+                'answerText' => 'Frank Buffay Sr.',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 43 (Characters)
             [
-                'question_id' => 43,
-                'answerText' => 'Princesse Leia Organa',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 43,
-                'answerText' => 'Padmé Amidala',
+                'question_id' => 42,
+                'answerText' => 'Joseph Tribbiani Sr.',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 43,
-                'answerText' => 'Rey',
+                'answerText' => 'Serveuse',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 43,
+                'answerText' => 'Styliste',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 43,
-                'answerText' => 'Queen Amidala',
+                'answerText' => 'Exécutrice de comptes',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 44 (Characters)
             [
-                'question_id' => 44,
-                'answerText' => 'Boba Fett',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 44,
-                'answerText' => 'Jango Fett',
+                'question_id' => 43,
+                'answerText' => 'Avocate',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 44,
-                'answerText' => 'Cad Bane',
+                'answerText' => 'Carol Willick',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 44,
+                'answerText' => 'Emily Waltham',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 44,
-                'answerText' => 'Dengar',
+                'answerText' => 'Janice Litman',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 45 (Characters)
             [
-                'question_id' => 45,
-                'answerText' => 'Asajj Ventress',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 45,
-                'answerText' => 'Darth Maul',
+                'question_id' => 44,
+                'answerText' => 'Mona',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 45,
-                'answerText' => 'Count Dooku',
+                'answerText' => 'Ursula Buffay',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 45,
+                'answerText' => 'Amy Green',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 45,
-                'answerText' => 'Aayla Secura',
+                'answerText' => 'Jill Green',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 46 (Characters)
             [
-                'question_id' => 46,
-                'answerText' => 'Darth Tyranus (Count Dooku)',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 46,
-                'answerText' => 'Darth Vader',
+                'question_id' => 45,
+                'answerText' => 'Estelle Leonard',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 46,
-                'answerText' => 'Darth Sidious',
+                'answerText' => 'My Love',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 46,
+                'answerText' => 'Wonderwall',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 46,
-                'answerText' => 'Kylo Ren',
+                'answerText' => 'I Will Always Love You',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 47 (Characters)
             [
-                'question_id' => 47,
-                'answerText' => 'Barriss Offee',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 47,
-                'answerText' => 'Ahsoka Tano',
+                'question_id' => 46,
+                'answerText' => 'Bohemian Rhapsody',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 47,
-                'answerText' => 'Shaak Ti',
+                'answerText' => 'John Underhill',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 47,
+                'answerText' => 'Peter Becker',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 47,
-                'answerText' => 'Luminara Unduli',
+                'answerText' => 'George Costanza',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 48 (Characters)
             [
-                'question_id' => 48,
-                'answerText' => 'Rose Tico',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 48,
-                'answerText' => 'Poe Dameron',
+                'question_id' => 47,
+                'answerText' => 'Mark Robinson',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 48,
-                'answerText' => 'Finn',
+                'answerText' => 'The Geller Cup',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 48,
+                'answerText' => 'The Golden Trophy',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 48,
-                'answerText' => 'Rey',
+                'answerText' => 'The Gladiator Award',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 49 (Characters)
             [
-                'question_id' => 49,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 49,
-                'answerText' => 'Mace Windu',
+                'question_id' => 48,
+                'answerText' => 'The Champion Plaque',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 49,
-                'answerText' => 'Ki-Adi-Mundi',
+                'answerText' => 'Miss Chanandler Bong',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 49,
+                'answerText' => 'Channy Boy',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 49,
-                'answerText' => 'Plo Koon',
+                'answerText' => 'Chandler Bing-Bong',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 50 (Story)
             [
-                'question_id' => 50,
-                'answerText' => 'Il est le père de Luke Skywalker.',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 50,
-                'answerText' => 'Il est le frère de Luke Skywalker.',
+                'question_id' => 49,
+                'answerText' => 'Bingster',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 50,
-                'answerText' => 'Il est le maître de Luke Skywalker.',
+                'answerText' => 'Chloe',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 50,
+                'answerText' => 'Julie',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 50,
-                'answerText' => 'Il est le fils de Luke Skywalker.',
+                'answerText' => 'Janice',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 51 (Story)
             [
-                'question_id' => 51,
-                'answerText' => 'Ben Solo (Kylo Ren)',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 51,
-                'answerText' => 'Anakin Skywalker',
+                'question_id' => 50,
+                'answerText' => 'Emily',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 51,
-                'answerText' => 'Luke Skywalker',
+                'answerText' => 'Roger',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 51,
+                'answerText' => 'Dr. Richard Burke',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 51,
-                'answerText' => 'Obi-Wan Kenobi',
+                'answerText' => 'Dr. Sidney Freedman',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 52 (Story)
             [
-                'question_id' => 52,
-                'answerText' => 'Le Premier Ordre',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 52,
-                'answerText' => 'La Résistance',
+                'question_id' => 51,
+                'answerText' => 'Dr. Marshall Goran',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 52,
-                'answerText' => 'Les Chevaliers de Ren',
+                'answerText' => 'Paul Stevens',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 52,
+                'answerText' => 'Bruce Willis',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 52,
-                'answerText' => 'Les Hutts',
+                'answerText' => 'David the Scientist Guy',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 53 (Story)
             [
-                'question_id' => 53,
-                'answerText' => 'Darth Sidious ',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 53,
-                'answerText' => 'Count Dooku',
+                'question_id' => 52,
+                'answerText' => 'Mike Hannigan',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 53,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Scientifique',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 53,
+                'answerText' => 'Pilote',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 53,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Médecin',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 54 (Universe)
             [
-                'question_id' => 54,
-                'answerText' => 'Mace Windu',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 54,
-                'answerText' => 'Yoda',
+                'question_id' => 53,
+                'answerText' => 'Artiste',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 54,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Leonard Hayes',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 54,
+                'answerText' => 'Warren Beatty',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 54,
-                'answerText' => 'Ki-Adi-Mundi',
+                'answerText' => 'Harvey Specter',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 55 (Universe)
             [
-                'question_id' => 55,
-                'answerText' => 'Executor',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 55,
-                'answerText' => 'Imperial Star Destroyer',
+                'question_id' => 54,
+                'answerText' => 'Jerry Seinfeld',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 55,
-                'answerText' => 'Devastator',
+                'answerText' => 'Mac and Cheese',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 55,
+                'answerText' => 'Spaghetti Bolognese',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 55,
-                'answerText' => 'Eclipse',
+                'answerText' => 'Thanksgiving Turkey',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 56 (Universe)
             [
-                'question_id' => 56,
-                'answerText' => 'Theed',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 56,
-                'answerText' => 'Coruscant',
+                'question_id' => 55,
+                'answerText' => 'Chicken Parmesan',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 56,
-                'answerText' => 'Gungan City',
+                'answerText' => 'Janice Litman-Goralnik',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 56,
+                'answerText' => 'Mrs. Heckles',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 56,
-                'answerText' => 'Naboo City',
+                'answerText' => 'Carol Willick',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 57 (Universe)
             [
-                'question_id' => 57,
-                'answerText' => 'Ordre 66',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 57,
-                'answerText' => 'Protocole 17',
+                'question_id' => 56,
+                'answerText' => 'Gunther',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 57,
-                'answerText' => 'Directive Alpha',
+                'answerText' => 'Doctor Monkey',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 57,
+                'answerText' => 'Captain Bubblegum',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 57,
-                'answerText' => 'Code 42',
+                'answerText' => 'Sir Floss-A-Lot',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 58 (Universe)
             [
-                'question_id' => 58,
-                'answerText' => 'Le Cartel de la Passe',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 58,
-                'answerText' => 'La Guilde des Chasseurs de Primes',
+                'question_id' => 57,
+                'answerText' => 'Major Toothpaste',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 58,
-                'answerText' => 'Les Hutts',
+                'answerText' => 'The One with All the Resolutions',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 58,
+                'answerText' => 'The Last One',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 58,
-                'answerText' => 'Le Syndicat des Criminels',
+                'answerText' => 'The One Where Everybody Finds Out',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 59 (Universe)
             [
-                'question_id' => 59,
-                'answerText' => 'Darth',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 59,
-                'answerText' => 'Héros des Sables',
+                'question_id' => 58,
+                'answerText' => 'The One Where No One\'s Ready',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 59,
-                'answerText' => 'Tueur de Tuskens',
+                'answerText' => 'Reserved for the Dead',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 59,
+                'answerText' => 'Monica\'s Obsession',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 59,
-                'answerText' => 'Ani',
+                'answerText' => 'Chandler\'s Mystery',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 59,
+                'answerText' => 'Purple Haze',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 60,
-                'answerText' => 'La race de Yoda est appelée les "Yoda\'s species".',
+                'answerText' => 'Phoebe\'s Band',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 60,
-                'answerText' => 'Kubaz',
+                'answerText' => 'Central Perk Jam',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 60,
-                'answerText' => 'Trandoshan',
+                'answerText' => 'Gladys and the Cracked Pots',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 60,
-                'answerText' => 'Rodian',
+                'answerText' => 'Smelly Cat Experience',
                 'isCorrect' => false,
             ],
-            [
-                'question_id' => 60,
-                'answerText' => 'Mon Calamari',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 61 (Universe)
             [
                 'question_id' => 61,
-                'answerText' => 'Kashyyyk est la planète d\'origine des Wookiees, dont Chewbacca est originaire.',
+                'answerText' => 'Erica',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 61,
-                'answerText' => 'Endor',
+                'answerText' => 'Emily',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 61,
-                'answerText' => 'Dagobah',
+                'answerText' => 'Leslie',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 61,
-                'answerText' => 'Tatooine',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 61,
-                'answerText' => 'Naboo',
-                'isCorrect' => false,
-            ],
-            // Réponses pour la question 62 (Universe)
-            [
-                'question_id' => 62,
-                'answerText' => 'Le protagoniste de la série "The Mandalorian" est Din Djarin.',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 62,
-                'answerText' => 'Boba Fett',
+                'answerText' => 'Alice',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 62,
-                'answerText' => 'Jango Fett',
+                'answerText' => 'Oh. My. God.',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 62,
+                'answerText' => 'Hey Chandler!',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 62,
-                'answerText' => 'Cad Bane',
+                'answerText' => 'I\'m back, baby!',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 63 (Universe)
             [
-                'question_id' => 63,
-                'answerText' => 'Darth Bane a élaboré le plan connu sous le nom de "Règle des Deux" pour maintenir la domination Sith.',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 63,
-                'answerText' => 'Darth Sidious',
+                'question_id' => 62,
+                'answerText' => 'Could I BE wearing any more clothes?',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 63,
-                'answerText' => 'Darth Plagueis',
+                'answerText' => 'The One with All the Thanksgivings',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 63,
+                'answerText' => 'The One Where No One\'s Ready',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 63,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'The Last One',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 64 (Characters)
             [
-                'question_id' => 64,
-                'answerText' => 'Obi-Wan Kenobi',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 64,
-                'answerText' => 'Yoda',
+                'question_id' => 63,
+                'answerText' => 'The One with the Prom Video',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 64,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Dick Clark',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 64,
+                'answerText' => 'Guy Incognito',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 64,
-                'answerText' => 'Qui-Gon Jinn',
+                'answerText' => 'Mr. Celebration',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 65 (Characters)
             [
-                'question_id' => 65,
-                'answerText' => 'Darth Bane',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 65,
-                'answerText' => 'Darth Sidious',
+                'question_id' => 64,
+                'answerText' => 'Party Pete',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 65,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'Tom Selleck',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 65,
+                'answerText' => 'Bruce Willis',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 65,
-                'answerText' => 'Count Dooku',
+                'answerText' => 'John Stamos',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 66 (Characters)
             [
-                'question_id' => 66,
-                'answerText' => 'Darth Plagueis',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 66,
-                'answerText' => 'Asajj Ventress',
+                'question_id' => 65,
+                'answerText' => 'Dermot Mulroney',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 66,
-                'answerText' => 'Darth Sidious',
+                'answerText' => 'All-Wasters International',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 66,
+                'answerText' => 'Statistical Digest Corporation',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 66,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'Transponster Industries',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 67 (Characters)
             [
-                'question_id' => 67,
-                'answerText' => 'Jango Fett',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 67,
-                'answerText' => 'Cad Bane',
+                'question_id' => 66,
+                'answerText' => 'Numbers R Us',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 67,
-                'answerText' => 'Boba Fett',
+                'answerText' => 'Jill',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 67,
+                'answerText' => 'Amy',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 67,
-                'answerText' => 'Zam Wesell',
+                'answerText' => 'Emily',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 68 (Characters)
             [
-                'question_id' => 68,
-                'answerText' => 'Shaak Ti',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 68,
-                'answerText' => 'Aayla Secura',
+                'question_id' => 67,
+                'answerText' => 'Christina',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 68,
-                'answerText' => 'Ki-Adi-Mundi',
+                'answerText' => 'Smelly Cat',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 68,
+                'answerText' => 'Sticky Shoes',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 68,
-                'answerText' => 'Plo Koon',
+                'answerText' => 'Pervert Pete',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 69 (Characters)
             [
-                'question_id' => 69,
-                'answerText' => 'Admiral Ackbar',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 69,
-                'answerText' => 'Mon Mothma',
+                'question_id' => 68,
+                'answerText' => 'Coffee House Blues',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 69,
-                'answerText' => 'Wedge Antilles',
+                'answerText' => 'Phoebe Buffay',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 69,
+                'answerText' => 'Rachel Green',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 69,
-                'answerText' => 'General Dodonna',
+                'answerText' => 'Monica Geller',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 69,
+                'answerText' => 'Joey Tribbiani',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 70 (Characters)
             [
                 'question_id' => 70,
-                'answerText' => 'Mara Jade',
+                'answerText' => 'Claustrophobia',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 70,
-                'answerText' => 'Kyle Katarn',
+                'answerText' => 'Arachnophobia',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 70,
-                'answerText' => 'Corran Horn',
+                'answerText' => 'Acrophobia',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 70,
-                'answerText' => 'Jaina Solo',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 71 (Characters)
-            [
-                'question_id' => 71,
-                'answerText' => 'Darth Revan',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 71,
-                'answerText' => 'Darth Malak',
+                'answerText' => 'Agoraphobia',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 71,
-                'answerText' => 'Darth Nihilus',
+                'answerText' => 'Jon Favreau',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 71,
+                'answerText' => 'George Clooney',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 71,
-                'answerText' => 'Darth Sion',
+                'answerText' => 'Brad Pitt',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 72 (Characters)
             [
-                'question_id' => 72,
-                'answerText' => 'K-2SO',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 72,
-                'answerText' => 'IG-88',
+                'question_id' => 71,
+                'answerText' => 'Tom Hanks',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 72,
-                'answerText' => 'C-3PO',
+                'answerText' => 'Amanda Buffamonteezi',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 72,
+                'answerText' => 'Janice Litman-Goralnik',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 72,
-                'answerText' => 'R2-D2',
+                'answerText' => 'Mona',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 73 (Characters)
             [
-                'question_id' => 73,
-                'answerText' => 'Jabba the Hutt',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 73,
-                'answerText' => 'Bib Fortuna',
+                'question_id' => 72,
+                'answerText' => 'Charlie Wheeler',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 73,
-                'answerText' => 'Greedo',
+                'answerText' => 'Eric',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 73,
+                'answerText' => 'Jack',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 73,
-                'answerText' => 'Sebulba',
+                'answerText' => 'John',
                 'isCorrect' => false,
             ],
-            // Réponses pour la question 74 (Story)
             [
-                'question_id' => 74,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 74,
-                'answerText' => 'Obi-Wan Kenobi',
+                'question_id' => 73,
+                'answerText' => 'James',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 74,
-                'answerText' => 'Mace Windu',
+                'answerText' => 'Café Nervosa',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 74,
+                'answerText' => 'Central Perk',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 74,
-                'answerText' => 'Yoda',
+                'answerText' => 'Gunther\'s Brew',
                 'isCorrect' => false,
             ],
-
-            // Réponses pour la question 75 (Story)
             [
-                'question_id' => 75,
-                'answerText' => 'Boba Fett',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 75,
-                'answerText' => 'Darth Vader',
+                'question_id' => 74,
+                'answerText' => 'Joey\'s Java Joint',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 75,
-                'answerText' => 'Emperor Palpatine',
+                'answerText' => 'Jack Bing',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 75,
+                'answerText' => 'Eric Bing',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 75,
-                'answerText' => 'Jabba the Hutt',
+                'answerText' => 'Joey Bing',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 75,
+                'answerText' => 'James Bing',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 76 (Story)
+            [
+                'question_id' => 207,
+                'answerText' => 'So no one told you life was gonna be this way',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 207,
+                'answerText' => 'I\'ll be there for you',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 207,
+                'answerText' => 'Your job\'s a joke, you\'re broke, your love life\'s DOA',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 207,
+                'answerText' => 'It\'s like you\'re always stuck in second gear',
+                'isCorrect' => false,
+            ],
+
+            [
+                'question_id' => 208,
+                'answerText' => 'Kevin S. Bright',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 208,
+                'answerText' => 'David Crane',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 208,
+                'answerText' => 'Marta Kauffman',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 208,
+                'answerText' => 'James Burrows',
+                'isCorrect' => false,
+            ],
             [
                 'question_id' => 76,
-                'answerText' => 'Anakin Skywalker',
+                'answerText' => 'So no one told you life was gonna be this way',
                 'isCorrect' => true,
             ],
             [
                 'question_id' => 76,
-                'answerText' => 'Darth Maul',
+                'answerText' => 'I\'ll be there for you',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 76,
-                'answerText' => 'Count Dooku',
+                'answerText' => 'Your job\'s a joke, you\'re broke, your love life\'s DOA',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 76,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 77 (Story)
-            [
-                'question_id' => 77,
-                'answerText' => 'Luke Skywalker',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 77,
-                'answerText' => 'Han Solo',
+                'answerText' => 'It\'s like you\'re always stuck in second gear',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 77,
-                'answerText' => 'Leia Organa',
+                'answerText' => 'Kevin S. Bright',
+                'isCorrect' => true,
+            ],
+            [
+                'question_id' => 77,
+                'answerText' => 'David Crane',
                 'isCorrect' => false,
             ],
             [
                 'question_id' => 77,
-                'answerText' => 'Chewbacca',
+                'answerText' => 'Marta Kauffman',
+                'isCorrect' => false,
+            ],
+            [
+                'question_id' => 77,
+                'answerText' => 'James Burrows',
                 'isCorrect' => false,
             ],
 
-            // Réponses pour la question 78 (Story)
-            [
-                'question_id' => 78,
-                'answerText' => 'Darth Vader',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 78,
-                'answerText' => 'Darth Sidious',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 78,
-                'answerText' => 'Count Dooku',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 78,
-                'answerText' => 'General Grievous',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 79 (Story)
-            [
-                'question_id' => 79,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 79,
-                'answerText' => 'Obi-Wan Kenobi',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 79,
-                'answerText' => 'Mace Windu',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 79,
-                'answerText' => 'Yoda',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 80 (Story)
-            [
-                'question_id' => 80,
-                'answerText' => 'Ben Solo (Kylo Ren)',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 80,
-                'answerText' => 'Finn',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 80,
-                'answerText' => 'Poe Dameron',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 80,
-                'answerText' => 'Rey',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 81 (Story)
-            [
-                'question_id' => 81,
-                'answerText' => 'Qui-Gon Jinn',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 81,
-                'answerText' => 'Obi-Wan Kenobi',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 81,
-                'answerText' => 'Mace Windu',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 81,
-                'answerText' => 'Yoda',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 82 (Story)
-            [
-                'question_id' => 82,
-                'answerText' => 'Yoda',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 82,
-                'answerText' => 'Chewbacca',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 82,
-                'answerText' => 'Han Solo',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 82,
-                'answerText' => 'Leia Organa',
-                'isCorrect' => false,
-            ],
-
-            // Réponses pour la question 83 (Story)
-            [
-                'question_id' => 83,
-                'answerText' => 'Darth Plagueis',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 83,
-                'answerText' => 'Darth Sidious',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 83,
-                'answerText' => 'Darth Vader',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 83,
-                'answerText' => 'Darth Maul',
-                'isCorrect' => false,
-            ],
-
-
-            //basket
-
-            [
-                'question_id' => 84,
-                'answerText' => '1891',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 84,
-                'answerText' => '1900',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 84,
-                'answerText' => '1920',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 84,
-                'answerText' => '1950',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 85,
-                'answerText' => 'James Naismith',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 85,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 85,
-                'answerText' => 'Kobe Bryant',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 85,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 86,
-                'answerText' => 'Springfield, Massachusetts, USA',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 86,
-                'answerText' => 'New York City, New York, USA',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 86,
-                'answerText' => 'Chicago, Illinois, USA',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 86,
-                'answerText' => 'Los Angeles, California, USA',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 87,
-                'answerText' => '1936',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 87,
-                'answerText' => '1900',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 87,
-                'answerText' => '1960',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 87,
-                'answerText' => '1980',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 88,
-                'answerText' => 'Le terme provient du fait que le premier panier était un panier de pêches.',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 88,
-                'answerText' => 'Il a été inventé par un joueur nommé Bask et son ballon avait une forme particulière.',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 88,
-                'answerText' => 'Cela vient de la hauteur du panier qui était initialement très basse.',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 88,
-                'answerText' => 'Le nom est inspiré d\'un joueur de l\'équipe nationale de basket-ball.',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 89,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 89,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 89,
-                'answerText' => 'Kobe Bryant',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 89,
-                'answerText' => 'Shaquille O\'Neal',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 90,
-                'answerText' => 'Kareem Abdul-Jabbar',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 90,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 90,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 90,
-                'answerText' => 'Magic Johnson',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 91,
-                'answerText' => 'Wilt Chamberlain',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 91,
-                'answerText' => 'Kobe Bryant',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 91,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 91,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 92,
-                'answerText' => 'Karl Malone',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 92,
-                'answerText' => 'Tim Duncan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 92,
-                'answerText' => 'Kevin Garnett',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 92,
-                'answerText' => 'Hakeem Olajuwon',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 93,
-                'answerText' => 'Allen Iverson',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 93,
-                'answerText' => 'Dwyane Wade',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 93,
-                'answerText' => 'Stephon Marbury',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 93,
-                'answerText' => 'Chris Paul',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 94,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 94,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 94,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 94,
-                'answerText' => 'Golden State Warriors',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 95,
-                'answerText' => 'Golden State Warriors',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 95,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 95,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 95,
-                'answerText' => 'Miami Heat',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 96,
-                'answerText' => 'Milwaukee Bucks',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 96,
-                'answerText' => 'Miami Heat',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 96,
-                'answerText' => 'Philadelphia 76ers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 96,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 97,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 97,
-                'answerText' => 'Golden State Warriors',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 97,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 97,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 98,
-                'answerText' => 'Dallas Mavericks',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 98,
-                'answerText' => 'Houston Rockets',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 98,
-                'answerText' => 'San Antonio Spurs',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 98,
-                'answerText' => 'Memphis Grizzlies',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 99,
-                'answerText' => 'Le décret Title IX en 1972',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 99,
-                'answerText' => 'La création de la WNBA en 1996',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 99,
-                'answerText' => 'Les Jeux olympiques de 1984',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 99,
-                'answerText' => 'La première Coupe du monde féminine en 1953',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 100,
-                'answerText' => 'États-Unis',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 100,
-                'answerText' => 'Soviet Union',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 100,
-                'answerText' => 'Australia',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 100,
-                'answerText' => 'Brazil',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 101,
-                'answerText' => 'Wilt Chamberlain',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 101,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 101,
-                'answerText' => 'Kobe Bryant',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 101,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 102,
-                'answerText' => '1951',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 102,
-                'answerText' => '1960',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 102,
-                'answerText' => '1975',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 102,
-                'answerText' => '1983',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 103,
-                'answerText' => 'Minneapolis Lakers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 103,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 103,
-                'answerText' => 'New York Knicks',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 103,
-                'answerText' => 'Philadelphia Warriors',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 104,
-                'answerText' => '6 fois',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 104,
-                'answerText' => '4 fois',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 104,
-                'answerText' => '8 fois',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 104,
-                'answerText' => '3 fois',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 105,
-                'answerText' => 'James Harden',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 105,
-                'answerText' => 'Stephen Curry',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 105,
-                'answerText' => 'Kawhi Leonard',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 105,
-                'answerText' => 'Giannis Antetokounmpo',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 106,
-                'answerText' => 'Gheorghe Mureșan',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 106,
-                'answerText' => 'Shaquille O\'Neal',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 106,
-                'answerText' => 'Yao Ming',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 106,
-                'answerText' => 'Manute Bol',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 107,
-                'answerText' => 'Wilt Chamberlain',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 107,
-                'answerText' => 'Bill Russell',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 107,
-                'answerText' => 'Kareem Abdul-Jabbar',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 107,
-                'answerText' => 'Dennis Rodman',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 108,
-                'answerText' => 'Anthony Edwards',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 108,
-                'answerText' => 'LaMelo Ball',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 108,
-                'answerText' => 'James Wiseman',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 108,
-                'answerText' => 'Obi Toppin',
-                'isCorrect' => false,
-            ],
-
-
-            // Niveau 2: Intermédiaire - Équipes
-
-            [
-                'question_id' => 109,
-                'answerText' => 'Philadelphia 76ers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 109,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 109,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 109,
-                'answerText' => 'Toronto Raptors',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 110,
-                'answerText' => 'Milwaukee Bucks',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 110,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 110,
-                'answerText' => 'Golden State Warriors',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 110,
-                'answerText' => 'Miami Heat',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 111,
-                'answerText' => 'San Antonio Spurs',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 111,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 111,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 111,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 112,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 112,
-                'answerText' => 'Golden State Warriors',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 112,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 112,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 113,
-                'answerText' => 'Minneapolis Lakers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 113,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 113,
-                'answerText' => 'Philadelphia Warriors',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 113,
-                'answerText' => 'St. Louis Hawks',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 114,
-                'answerText' => 'Phil Jackson',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 114,
-                'answerText' => 'Red Auerbach',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 114,
-                'answerText' => 'Gregg Popovich',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 114,
-                'answerText' => 'Pat Riley',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 115,
-                'answerText' => 'Los Angeles Lakers (1971-1972)',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 115,
-                'answerText' => 'Golden State Warriors (2015-2016)',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 115,
-                'answerText' => 'Chicago Bulls (1995-1996)',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 115,
-                'answerText' => 'Miami Heat (2012-2013)',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 116,
-                'answerText' => 'LeBron James',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 116,
-                'answerText' => 'Kobe Bryant',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 116,
-                'answerText' => 'Michael Jordan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 116,
-                'answerText' => 'Magic Johnson',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 117,
-                'answerText' => 'Bill Russell',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 117,
-                'answerText' => 'Kareem Abdul-Jabbar',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 117,
-                'answerText' => 'Wilt Chamberlain',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 117,
-                'answerText' => 'Shaquille O\'Neal',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 118,
-                'answerText' => 'Golden State Warriors (2015-2016)',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 118,
-                'answerText' => 'Chicago Bulls (1995-1996)',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 118,
-                'answerText' => 'Los Angeles Lakers (1971-1972)',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 118,
-                'answerText' => 'Boston Celtics (2007-2008)',
-                'isCorrect' => false,
-            ],
-
-
-            // Niveau 3 : Avancé - Joueurs
-
-            [
-                'question_id' => 119,
-                'answerText' => 'Oscar Robertson',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 119,
-                'answerText' => 'Magic Johnson',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 119,
-                'answerText' => 'Russell Westbrook',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 119,
-                'answerText' => 'LeBron James',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 120,
-                'answerText' => 'Dwight Howard',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 120,
-                'answerText' => 'Ben Wallace',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 120,
-                'answerText' => 'Rudy Gobert',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 120,
-                'answerText' => 'Hakeem Olajuwon',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 121,
-                'answerText' => '5 fois',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 121,
-                'answerText' => '8 fois',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 121,
-                'answerText' => '3 fois',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 121,
-                'answerText' => '7 fois',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 122,
-                'answerText' => 'Jerry West',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 122,
-                'answerText' => 'Elgin Baylor',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 122,
-                'answerText' => 'Shaquille O\'Neal',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 122,
-                'answerText' => 'Tim Duncan',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 123,
-                'answerText' => 'Detroit Pistons',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 123,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 123,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 123,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 124,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 124,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 124,
-                'answerText' => 'Detroit Pistons',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 124,
-                'answerText' => 'Philadelphia 76ers',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 125,
-                'answerText' => 'Chicago Bulls',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 125,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 125,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 125,
-                'answerText' => 'Miami Heat',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 126,
-                'answerText' => 'San Antonio Spurs',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 126,
-                'answerText' => 'Los Angeles Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 126,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 126,
-                'answerText' => 'Miami Heat',
-                'isCorrect' => false,
-            ],
-
-            [
-                'question_id' => 127,
-                'answerText' => 'Philadelphia 76ers',
-                'isCorrect' => true,
-            ],
-            [
-                'question_id' => 127,
-                'answerText' => 'Minneapolis Lakers',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 127,
-                'answerText' => 'Boston Celtics',
-                'isCorrect' => false,
-            ],
-            [
-                'question_id' => 127,
-                'answerText' => 'St. Louis Hawks',
-                'isCorrect' => false,
-            ],
 
 
 

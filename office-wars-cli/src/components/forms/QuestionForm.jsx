@@ -40,7 +40,6 @@ const QuestionForm = ({ questionId }) => {
       { answerText: "", isCorrect: false },
     ],
   });
-  console.log(questionId);
   const [levels, setLevels] = useState([]);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -117,16 +116,16 @@ const QuestionForm = ({ questionId }) => {
 
     try {
       if (questionId) {
-        const response = await axios.post(`questions/${questionId}`, formData);
-        console.log(response.data);
+        await axios.post(`questions/${questionId}`, formData);
+
         setDialogOpen(true); // Ouvrir la boîte de dialogue après une réponse réussie
         setDialogMessage({
           title: "Succès",
           message: "Votre formulaire a été mis à jour avec succès.",
         });
       } else {
-        const response = await axios.post("/questions", formData);
-        console.log(response.data);
+        await axios.post("/questions", formData);
+
         setDialogOpen(true); // Ouvrir la boîte de dialogue après une réponse réussie
         setDialogMessage({
           title: "Succès",
@@ -143,7 +142,6 @@ const QuestionForm = ({ questionId }) => {
       });
     }
   };
-  console.log(question.imageQuestion);
   return (
     <Container>
       <Avatar

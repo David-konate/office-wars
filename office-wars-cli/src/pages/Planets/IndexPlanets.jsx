@@ -10,7 +10,7 @@ import {
   Container,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-
+import { displayImage } from "../../utils";
 import axios from "axios";
 import ImagesHandle from "../../components/ImagesHandle";
 import { useUserContext } from "../../context/UserProvider";
@@ -76,9 +76,9 @@ const IndexPlanets = () => {
           </Link>
         </Breadcrumbs>
         <Container>
-          <Grid container spacing={2} mt={1}>
+          <Grid container mt={10} spacing={4} justifyContent={"center"}>
             {planets.map((planet, index) => (
-              <Grid key={index} item mt={5} xs={6}>
+              <Grid key={index} item md={4} xs={10}>
                 <Box
                   className="Planete"
                   display="flex"
@@ -87,24 +87,16 @@ const IndexPlanets = () => {
                   justifyContent="center"
                 >
                   <Typography variant="h4">{planet.planetName}</Typography>
-                  <Box
-                    mt={3}
-                    className="img-planetes-index"
-                    sx={{ maxWidth: "65%", maxHeight: "65%" }}
-                  >
+                  <Box mt={3} className="img-planetes-index">
                     <img
                       style={{
                         borderRadius: "10px",
                         width: "auto",
                         height: "auto",
-                        maxWidth: "100%",
-                        maxHeight: "100%",
+                        width: "250px",
+                        height: "250px",
                       }}
-                      src={
-                        planet.imagePlanet
-                          ? `http://127.0.0.1:8000/storage/uploads/${planet.imagePlanet}`
-                          : `http://127.0.0.1:8000/storage/images/notImage.png`
-                      }
+                      src={displayImage(planet.imagePlanet)}
                       alt={planet.planetName}
                     />
                   </Box>

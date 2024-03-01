@@ -73,7 +73,12 @@ const Ranked = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`rankings-welcome/${currentLevel}`);
+      const res = await axios.get(`rankings-welcome/${currentLevel}`, {
+        params: {
+          currentUniver: currentUniver,
+        },
+      });
+      console.log(res.data);
       setLastRankings(res.data.latestRankings);
       setTopRankings(res.data.topRankings);
       const res3 = await axios.get(`univers/`);

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             ThemeSeeder::class,
             UniverSeeder::class,
             QuestionSeeder::class,
-            AnswerSeeder::class,
+
             RankingSeeder::class,
         ]);
     }
